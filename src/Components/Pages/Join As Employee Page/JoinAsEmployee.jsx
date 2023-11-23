@@ -4,6 +4,16 @@ import employeeRegisterLottie from "../../../assets/Lottie_Files/employeeRegiste
 import GoogleIcon from '@mui/icons-material/Google';
 
 const JoinAsEmployee = () => {
+    let handleJoinAsEmployee = (e) => {
+        e.preventDefault();
+        let fullName=e.target.fullName.value;
+        let email=e.target.email.value;
+        let password=e.target.password.value;
+        let dob = e.target.dob.value;
+        console.log(fullName,email,password,dob)
+    }
+
+
     return (
         <div className='h-fit'>
             <div className='w-[85%] bg-[#5CDB95] mx-auto px-12 my-12 h-fit rounded-md shadow-xl'>
@@ -13,7 +23,7 @@ const JoinAsEmployee = () => {
                 </div>
 
                 <div>
-                    <form className='pb-12 gap-8 flex justify-center items-center'>
+                    <form onSubmit={handleJoinAsEmployee} className='pb-12 gap-8 flex justify-center items-center'>
                         <div className='w-[50%]'>
                             <div className='w-full'>
                                 <label className='text-2xl text-[#05386B] font-bold' htmlFor="fullName">Full Name:</label> <br />
@@ -32,7 +42,7 @@ const JoinAsEmployee = () => {
 
                             <div className='w-full mt-3'>
                                 <label className='text-2xl text-[#05386B] font-bold' htmlFor="dob">Date of Birth:</label> <br />
-                                <input className='py-3 px-4 rounded-md mt-2 w-full' type="date" name="" id="" />
+                                <input className='py-3 px-4 rounded-md mt-2 w-full' type="date" name="dob" id="" />
                             </div>
                             <button className='py-3 w-full bg-[#05386B] border-2 border-[#05386B] text-white font-bold text-lg mt-4 rounded-md hover:bg-transparent hover:text-[#05386B] hover:border-2 hover:border-[#05386B]' type='submit'>
                                 Sign Up
