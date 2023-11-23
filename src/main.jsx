@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import GuestHomepage from './Components/Homepage/Guest/Guest Homepage/GuestHomepage.jsx';
 import JoinAsEmployee from './Components/Pages/Join As Employee Page/JoinAsEmployee.jsx';
+import JoinAsAdmin from './Components/Pages/Join As Admin/JoinAsAdmin.jsx';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "/joinAsEmployee",
         element: <JoinAsEmployee></JoinAsEmployee>,
+      },
+      {
+        path: "/joinAsAdmin",
+        element: <JoinAsAdmin></JoinAsAdmin>
       },
     ],
   },
