@@ -54,7 +54,7 @@ const JoinAsEmployee = () => {
                     </form>
                     <div className='text-[#05386B] font-bold text-center pb-12'>
                         <h2 className='text-xl'>You can also</h2>
-                        <div className='flex justify-center items-center cursor-pointer hover:bg-[#05386B] hover:text-white gap-2 p-4 border-2  mt-2 text-2xl rounded-md border-[#05386B] w-[30%] mx-auto'>
+                        <div className='flex justify-center items-center cursor-pointer hover:bg-[#05386B] hover:text-white gap-2 p-3 border-2  mt-2 text-2xl rounded-md border-[#05386B] w-[30%] mx-auto'>
                             Join With Google
                             <GoogleIcon />
                         </div>

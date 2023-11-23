@@ -17,7 +17,7 @@ const JoinAsAdmin = () => {
         let email = e.target.email.value;
         let password = e.target.password.value;
         let dob = e.target.dob.value;
-        console.log(fullName, email, password, dob)
+        console.log(fullName, email, password, dob, adminPackage)
     }
 
 
