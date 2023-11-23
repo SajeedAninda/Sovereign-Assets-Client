@@ -6,12 +6,20 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import GuestHomepage from './Components/Homepage/Guest Homepage/GuestHomepage.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
+    children: [
+      {
+        path: "/",
+        element: <GuestHomepage />,
+      },
+    ],
   },
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
