@@ -27,7 +27,7 @@ const GuestBanner = () => {
                 className="mySwiper"
             >
                 <SwiperSlide>
-                    <div className='employee h-[85vh] flex justify-end items-center pr-20 pb-20'>
+                    <div className='employee h-[85vh] flex justify-end items-center pr-32 pb-20'>
                         <div className='flex-col justify-center items-center'>
                             <h1 className='text-[#EDF5E1] text-6xl font-bold'>
                                 Join As an Employee
@@ -41,7 +41,7 @@ const GuestBanner = () => {
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <div className='admin h-[85vh] flex justify-start items-center pl-20 pb-20'>
+                    <div className='admin h-[85vh] flex justify-start items-center pl-32 pb-20'>
                         <div className='flex-col justify-end items-end'>
                             <h1 className='text-[#EDF5E1] text-6xl font-bold'>
                                 Join As an HR/Admin

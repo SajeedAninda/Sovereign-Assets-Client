@@ -6,7 +6,8 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import GuestHomepage from './Components/Homepage/Guest Homepage/GuestHomepage.jsx';
+import GuestHomepage from './Components/Homepage/Guest/Guest Homepage/GuestHomepage.jsx';
+import JoinAsEmployee from './Components/Pages/Join As Employee Page/JoinAsEmployee.jsx';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <GuestHomepage />,
+      },
+      {
+        path: "/joinAsEmployee",
+        element: <JoinAsEmployee></JoinAsEmployee>,
       },
     ],
   },
