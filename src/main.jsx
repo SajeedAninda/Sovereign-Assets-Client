@@ -9,6 +9,7 @@ import {
 import GuestHomepage from './Components/Homepage/Guest/Guest Homepage/GuestHomepage.jsx';
 import JoinAsEmployee from './Components/Pages/Join As Employee Page/JoinAsEmployee.jsx';
 import JoinAsAdmin from './Components/Pages/Join As Admin/JoinAsAdmin.jsx';
+import Login from './Components/Pages/Login/Login.jsx';
 
 const router = createBrowserRouter([
   {
@@ -25,7 +26,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/joinAsAdmin",
-        element: <JoinAsAdmin></JoinAsAdmin>
+        element: <JoinAsAdmin></JoinAsAdmin>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>
       },
     ],
   },
