@@ -2,14 +2,38 @@ import React from 'react';
 import Lottie from "lottie-react";
 import loginLottie from "../../../assets/Lottie_Files/loginLottie.json";
 import GoogleIcon from '@mui/icons-material/Google';
+import useAuth from '../../Hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
+import useAxiosInstance from '../../Hooks/useAxiosInstance';
+import toast from 'react-hot-toast';
 
 const Login = () => {
+    let { signIn, googleLogin } = useAuth();
+    let navigate = useNavigate();
+    let axiosInstance = useAxiosInstance();
 
     let handleLogin = (e) => {
         e.preventDefault();
         let email = e.target.email.value;
         let password = e.target.password.value;
-        console.log(email, password);
+        // console.log(email, password);
+
+        signIn(email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    console.log(user);
+                    toast.success('Logged In Successfully!', {
+                        duration: 3000,
+                    });
+
+                    navigate('/');
+                })
+                .catch((error) => {
+                    let errorCode = error.code;
+                    if (errorCode === "auth/invalid-login-credentials") {
+                        return toast.error("Invalid Username or Password")
+                    }
+                });
     }
 
     return (
@@ -30,7 +54,7 @@ const Login = () => {
 
                             <div className='w-full mt-4'>
                                 <label className='text-2xl text-[#05386B] font-bold' htmlFor="password">Password:</label> <br />
-                                <input className='py-3 px-4 rounded-md mt-2 w-full' placeholder='Enter Your Password' type="text" id='password' name='password' required />
+                                <input className='py-3 px-4 rounded-md mt-2 w-full' placeholder='Enter Your Password' type="password" id='password' name='password' required />
                             </div>
                             <button className='py-3 w-full bg-[#05386B] border-2 border-[#05386B] text-white font-bold text-lg mt-4 rounded-md hover:bg-transparent hover:text-[#05386B] hover:border-2 hover:border-[#05386B]' type='submit'>
                                 Login
