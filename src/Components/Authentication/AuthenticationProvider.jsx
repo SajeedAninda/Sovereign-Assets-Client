@@ -24,6 +24,11 @@ const AuthenticationProvider = ({ children }) => {
     let logOut = () => {
         return signOut(auth)
     }
+    let profileUpdate = (fullName,photoUrl) => {
+        return updateProfile(auth.currentUser, {
+            displayName: fullName, photoURL: photoUrl
+        })
+    }
     useEffect(() => {
         let unSubscribe = onAuthStateChanged(auth, (user) => {
             setLoggedInUser(user);
@@ -42,7 +47,8 @@ const AuthenticationProvider = ({ children }) => {
         loggedInUser,
         googleLogin,
         logOut,
-        loading
+        loading,
+        profileUpdate
     }
     return (
         <AuthContext.Provider value={authentication}>

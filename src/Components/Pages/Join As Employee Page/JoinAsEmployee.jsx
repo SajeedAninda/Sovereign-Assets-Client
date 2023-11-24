@@ -8,7 +8,7 @@ import useAxiosInstance from '../../Hooks/useAxiosInstance';
 import toast from 'react-hot-toast';
 
 const JoinAsEmployee = () => {
-    let { signUp, googleLogin } = useAuth();
+    let { signUp, googleLogin, profileUpdate } = useAuth();
     let navigate = useNavigate();
     let axiosInstance = useAxiosInstance();
     let handleJoinAsEmployee = (e) => {
@@ -32,16 +32,21 @@ const JoinAsEmployee = () => {
         signUp(email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                let employeeInfo = { email: email, role: "employee", fullName: fullName, date_of_birth: dob, image: image, companyName: "null", companyLogo: "null" };
+                profileUpdate(fullName, image)
+                    .then(() => {
+                        let employeeInfo = { email: email, role: "employee", fullName: fullName, date_of_birth: dob, image: image, companyName: "null", companyLogo: "null" };
 
-                axiosInstance.post("/employeeRegister", employeeInfo)
-                    .then(res => {
-                        console.log(res.data);
-                        navigate("/")
+
+                        axiosInstance.post("/employeeRegister", employeeInfo)
+                            .then(res => {
+                                console.log(res.data);
+                                navigate("/")
+                            })
+
+                        toast.success("Succesfully Logged In");
+                        console.log(user);
                     })
 
-                toast.success("Succesfully Logged In");
-                console.log(user);
             })
             .catch((error) => {
                 const errorCode = error.code;
