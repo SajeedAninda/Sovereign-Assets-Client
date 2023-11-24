@@ -36,6 +36,27 @@ const Login = () => {
                 });
     }
 
+    let handleGoogleLogin = () => {
+        googleLogin()
+            .then((result) => {
+                const user = result.user;
+                console.log(user);
+                let employeeInfo = { email: user?.email, role: "employee", fullName: user?.displayName, date_of_birth: "", image: user?.photoURL, companyName: "null", companyLogo: "null" }
+
+                axiosInstance.post("/employeeSocialRegister", employeeInfo)
+                    .then(res => {
+                        console.log(res.data);
+                        navigate("/")
+                    })
+                toast.success('Logged In Successfully!', {
+                    duration: 3000,
+                });
+                navigate('/');
+            }).catch((error) => {
+                console.log(error);
+            });
+    }
+
     return (
         <div className='h-fit'>
             <div className='w-[85%] bg-[#5CDB95] mx-auto px-12 my-12 h-fit rounded-md shadow-xl'>
@@ -61,7 +82,7 @@ const Login = () => {
                             </button>
                             <div className='text-[#05386B] w-full font-bold text-center mt-6 pb-12'>
                                 <h2 className='text-xl'>You can also</h2>
-                                <div className='flex justify-center items-center cursor-pointer hover:bg-[#05386B] hover:text-white gap-2 p-3 border-2 mt-2 text-2xl rounded-md border-[#05386B] w-[60%] mx-auto'>
+                                <div onClick={handleGoogleLogin} className='flex justify-center items-center cursor-pointer hover:bg-[#05386B] hover:text-white gap-2 p-3 border-2 mt-2 text-2xl rounded-md border-[#05386B] w-[60%] mx-auto'>
                                     Login With Google
                                     <GoogleIcon />
                                 </div>

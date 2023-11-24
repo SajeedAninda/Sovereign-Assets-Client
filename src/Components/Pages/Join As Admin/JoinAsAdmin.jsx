@@ -56,7 +56,7 @@ const JoinAsAdmin = () => {
                 axiosInstance.post("/adminRegister", adminInfo)
                     .then(res => {
                         console.log(res.data);
-                        // navigate("/payment")
+                        navigate("/payment")
                     })
 
                 toast.success("Succesfully Logged In");
