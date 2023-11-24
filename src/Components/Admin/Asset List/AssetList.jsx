@@ -11,6 +11,8 @@ import useAuth from '../../Hooks/useAuth';
 import SavedSearchIcon from '@mui/icons-material/SavedSearch';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Swal from 'sweetalert2';
+import toast from 'react-hot-toast';
 
 const AssetList = () => {
     const [status, setStatus] = useState('');
@@ -34,7 +36,7 @@ const AssetList = () => {
     let currentUserEmail = loggedInUser?.email;
 
     let axiosInstance = useAxiosInstance();
-    const { data: assetList, isPending: isListLoading } = useQuery({
+    const { data: assetList, isPending: isListLoading, refetch } = useQuery({
         queryKey: ['assetList', currentUserEmail, assetType, sorted, status, searchField],
         queryFn: async () => {
             const response = await axiosInstance.get(`/assetList/${currentUserEmail}?productType=${assetType}&sort=${sorted}&status=${status}&productName=${searchField}`);
@@ -43,6 +45,32 @@ const AssetList = () => {
         enabled: !!currentUserEmail,
     })
 
+    let handleDelete = (id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'Once Deleted, you cannot revert this!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#05386B',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Delete!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosInstance.delete(`/assetList/${id}`)
+                    .then(res => {
+                        if (res.data.deletedCount > 0) {
+                            refetch();
+                            console.log(res.data);
+                            toast.success("Asset Deleted Succesfully")
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error :", error);
+                        toast.error('Error', 'Failed to delete Asset');
+                    });
+            }
+        });
+    }
 
 
 
@@ -143,7 +171,7 @@ const AssetList = () => {
                             <button className='text-[#05386B] text-center font-semibold col-span-1'>
                                 < BorderColorIcon />
                             </button>
-                            <button className='text-[#05386B] text-center font-semibold col-span-1'>
+                            <button onClick={() => handleDelete(asset._id)} className='text-[#05386B] text-center font-semibold col-span-1'>
                                 <DeleteIcon />
                             </button>
                         </div>
