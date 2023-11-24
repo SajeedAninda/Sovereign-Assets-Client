@@ -19,6 +19,9 @@ const AddAsset = () => {
     let axiosInstance = useAxiosInstance();
     let [userData] = useCurrentUserData();
 
+    let currentDate = new Date();
+
+
 
     let handleAddAsset = (e) => {
         e.preventDefault();
@@ -27,15 +30,16 @@ const AddAsset = () => {
         let productQuantity = parseFloat(e.target.productQuantity.value);
         let status = "Not-Requested";
         let assetPostedBy = userData.email;
-        let assetList = { productName, productType, productQuantity, status, assetPostedBy };
+        let dateAdded = currentDate
+        let assetList = { productName, productType, productQuantity, status, assetPostedBy, dateAdded };
 
         axiosInstance.post("/addAsset", assetList)
             .then(res => {
-                if(res.data.insertedId){
+                if (res.data.insertedId) {
                     toast.success("Assets Added Succesfully")
                 }
-                e.target.productName.value="";
-                e.target.productQuantity.value="";
+                e.target.productName.value = "";
+                e.target.productQuantity.value = "";
                 setAssetType('');
             })
 

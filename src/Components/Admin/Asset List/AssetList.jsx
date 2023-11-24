@@ -164,11 +164,17 @@ const AssetList = () => {
                 {
                     assetList?.map(asset =>
                         <div className='w-full bg-[#05386B] border-2 border-[#05386B] bg-transparent border-collapse text-[#05386B] py-3 px-3 h-fit grid grid-cols-12'>
-                            <h2 className='text-[#05386B] text-center font-semibold col-span-2'>{asset.productName}</h2>
-                            <h2 className='text-[#05386B] text-center font-semibold col-span-2'>{asset.productType}</h2>
-                            <h3 className='text-[#05386B] text-center font-semibold col-span-1'>{asset.productQuantity}</h3>
-                            <h3 className='text-[#05386B] text-center font-semibold col-span-2'>{asset.status}</h3>
-                            <h3 className='text-[#05386B] text-center font-semibold col-span-3'>ADDED DATE</h3>
+                            <h2 className='text-[#05386B] text-center font-semibold col-span-2'>{asset?.productName}</h2>
+                            <h2 className='text-[#05386B] text-center font-semibold col-span-2'>{asset?.productType}</h2>
+                            <h3 className='text-[#05386B] text-center font-semibold col-span-1'>{asset?.productQuantity}</h3>
+                            <h3 className='text-[#05386B] text-center font-semibold col-span-2'>{asset?.status}</h3>
+                            <h3 className='text-[#05386B] text-center font-semibold col-span-3'>
+                                {new Date(asset?.dateAdded).toLocaleDateString('en-US', {
+                                    month: 'long',
+                                    day: 'numeric',
+                                    year: 'numeric'
+                                })}
+                            </h3>
                             <Link to={`/updateAsset/${asset._id}`}>
                                 <button className='text-[#05386B] text-center font-semibold col-span-1'>
                                     < BorderColorIcon />
