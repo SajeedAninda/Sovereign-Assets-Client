@@ -2,15 +2,74 @@ import React from 'react';
 import Lottie from "lottie-react";
 import employeeRegisterLottie from "../../../assets/Lottie_Files/employeeRegister.json";
 import GoogleIcon from '@mui/icons-material/Google';
+import useAuth from '../../Hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
+import useAxiosInstance from '../../Hooks/useAxiosInstance';
+import toast from 'react-hot-toast';
 
 const JoinAsEmployee = () => {
+    let { signUp, googleLogin } = useAuth();
+    let navigate = useNavigate();
+    let axiosInstance = useAxiosInstance();
     let handleJoinAsEmployee = (e) => {
         e.preventDefault();
-        let fullName=e.target.fullName.value;
-        let email=e.target.email.value;
-        let password=e.target.password.value;
+        let fullName = e.target.fullName.value;
+        let email = e.target.email.value;
+        let password = e.target.password.value;
+        let image = e.target.image.value;
         let dob = e.target.dob.value;
-        console.log(fullName,email,password,dob)
+        // console.log(fullName, email, password,image, dob)
+        if (password.length < 6) {
+            return toast.error("Password Length should atleast be 6 Characters!")
+        }
+
+        if (!/[A-Z]/.test(password)) {
+            return toast.error("Password should contain at least one capital letter!")
+        }
+        if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+            return toast.error("Password should contain at least one special character!")
+        }
+        signUp(email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                let employeeInfo = { email: email, role: "employee", fullName: fullName, date_of_birth: dob, image: image, companyName: "null", companyLogo: "null" };
+
+                axiosInstance.post("/employeeRegister", employeeInfo)
+                    .then(res => {
+                        console.log(res.data);
+                        navigate("/")
+                    })
+
+                toast.success("Succesfully Logged In");
+                console.log(user);
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                if (errorCode === "auth/email-already-in-use") {
+                    return toast.error("Email is already being used");
+                }
+            });
+    }
+
+    let handleGoogleLogin = () => {
+        googleLogin()
+            .then((result) => {
+                const user = result.user;
+                console.log(user);
+                let employeeInfo = { email: user?.email, role: "employee", fullName: user?.displayName, date_of_birth: "", image: user?.photoURL, companyName: "null", companyLogo: "null" }
+
+                axiosInstance.post("/employeeSocialRegister", employeeInfo)
+                    .then(res => {
+                        console.log(res.data);
+                        navigate("/")
+                    })
+                toast.success('Logged In Successfully!', {
+                    duration: 3000,
+                });
+                navigate('/');
+            }).catch((error) => {
+                console.log(error);
+            });
     }
 
 
@@ -36,8 +95,13 @@ const JoinAsEmployee = () => {
                             </div>
 
                             <div className='w-full mt-3'>
+                                <label className='text-2xl text-[#05386B] font-bold' htmlFor="image">Image:</label> <br />
+                                <input className='py-3 px-4 rounded-md mt-2 w-full' placeholder='Enter Your Image URL' type="text" id='image' name='image' required />
+                            </div>
+
+                            <div className='w-full mt-3'>
                                 <label className='text-2xl text-[#05386B] font-bold' htmlFor="password">Password:</label> <br />
-                                <input className='py-3 px-4 rounded-md mt-2 w-full' placeholder='Enter Your Password' type="text" id='password' name='password' required />
+                                <input className='py-3 px-4 rounded-md mt-2 w-full' placeholder='Enter Your Password' type="password" id='password' name='password' required />
                             </div>
 
                             <div className='w-full mt-3'>
@@ -54,7 +118,7 @@ const JoinAsEmployee = () => {
                     </form>
                     <div className='text-[#05386B] font-bold text-center pb-12'>
                         <h2 className='text-xl'>You can also</h2>
-                        <div className='flex justify-center items-center cursor-pointer hover:bg-[#05386B] hover:text-white gap-2 p-3 border-2  mt-2 text-2xl rounded-md border-[#05386B] w-[30%] mx-auto'>
+                        <div onClick={handleGoogleLogin} className='flex justify-center items-center cursor-pointer hover:bg-[#05386B] hover:text-white gap-2 p-3 border-2  mt-2 text-2xl rounded-md border-[#05386B] w-[30%] mx-auto'>
                             Join With Google
                             <GoogleIcon />
                         </div>

@@ -51,12 +51,12 @@ const JoinAsAdmin = () => {
         signUp(email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                let adminInfo = { email: email, role: "unpaid admin", fullName: fullName, date_of_birth: dob, companyName: companyName, companyLogo: companyLogo, availableEmployees: availableEmployees, payableAmount: adminPackage, paymentStatus: "unpaid" };
+                let adminInfo = { email: email, role: "admin", fullName: fullName, date_of_birth: dob, companyName: companyName, companyLogo: companyLogo, availableEmployees: availableEmployees, payableAmount: adminPackage, paymentStatus: "unpaid" };
 
                 axiosInstance.post("/adminRegister", adminInfo)
                     .then(res => {
                         console.log(res.data);
-                        navigate("/payment")
+                        // navigate("/payment")
                     })
 
                 toast.success("Succesfully Logged In");
