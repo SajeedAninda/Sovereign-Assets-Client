@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import useAxiosInstance from '../../Hooks/useAxiosInstance';
 import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../Hooks/useAuth';
+import SavedSearchIcon from '@mui/icons-material/SavedSearch';
 
 const AssetList = () => {
     const [status, setStatus] = useState('');
@@ -39,6 +40,8 @@ const AssetList = () => {
         },
         enabled: !!currentUserEmail,
     })
+
+    console.log(searchField)
 
 
 
@@ -106,31 +109,13 @@ const AssetList = () => {
                 </div>
             </div>
 
-            <div className='mt-3'>
-                <Box
-                    component="form"
-                    sx={{
-                        '& > :not(style)': { mt: 1, width: '100%' },
-                        '& .MuiOutlinedInput-root': {
-                            '& fieldset': {
-                                backgroundColor: 'white',
-                            },
-                        },
-                    }}
-                    noValidate
-                    autoComplete="off"
-                >
-                    <TextField
-                        id="outlined-uncontrolled"
-                        label="Search By Item Name"
-                        value={searchField}
-                        onChange={(event) => {
-                            setSearchField(event.target.value);
-                        }}
-                        variant="outlined"
-                    />
-                </Box>
-
+            <div className='mt-3 relative'>
+                <input onChange={(event) => {
+                    setSearchField(event.target.value);
+                }} type="text" className='w-full py-3 px-3' placeholder='Search By Item Name' />
+                <span className='absolute right-4 top-3'>
+                    <SavedSearchIcon />
+                </span>
             </div>
 
             <div>
