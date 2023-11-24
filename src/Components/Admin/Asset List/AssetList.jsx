@@ -9,6 +9,8 @@ import useAxiosInstance from '../../Hooks/useAxiosInstance';
 import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../Hooks/useAuth';
 import SavedSearchIcon from '@mui/icons-material/SavedSearch';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const AssetList = () => {
     const [status, setStatus] = useState('');
@@ -33,7 +35,7 @@ const AssetList = () => {
 
     let axiosInstance = useAxiosInstance();
     const { data: assetList, isPending: isListLoading } = useQuery({
-        queryKey: ['assetList', currentUserEmail, assetType, sorted, status,searchField],
+        queryKey: ['assetList', currentUserEmail, assetType, sorted, status, searchField],
         queryFn: async () => {
             const response = await axiosInstance.get(`/assetList/${currentUserEmail}?productType=${assetType}&sort=${sorted}&status=${status}&productName=${searchField}`);
             return response.data;
@@ -138,8 +140,12 @@ const AssetList = () => {
                             <h3 className='text-[#05386B] text-center font-semibold col-span-1'>{asset.productQuantity}</h3>
                             <h3 className='text-[#05386B] text-center font-semibold col-span-2'>{asset.status}</h3>
                             <h3 className='text-[#05386B] text-center font-semibold col-span-3'>ADDED DATE</h3>
-                            <h3 className='text-[#05386B] text-center font-semibold col-span-1'>UPDATE</h3>
-                            <h3 className='text-[#05386B] text-center font-semibold col-span-1'>DELETE</h3>
+                            <button className='text-[#05386B] text-center font-semibold col-span-1'>
+                                < BorderColorIcon />
+                            </button>
+                            <button className='text-[#05386B] text-center font-semibold col-span-1'>
+                                <DeleteIcon />
+                            </button>
                         </div>
                     )
                 }
