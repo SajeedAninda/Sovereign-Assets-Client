@@ -4,12 +4,17 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import useAuth from '../../Hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const JoinAsAdmin = () => {
     const [adminPackage, setAdminPackage] = useState('');
     const handleChange = (event) => {
         setAdminPackage(event.target.value);
     };
+    let { signUp } = useAuth();
+    let navigate = useNavigate();
 
     let handleJoinAsAdmin = (e) => {
         e.preventDefault();
@@ -19,7 +24,34 @@ const JoinAsAdmin = () => {
         let dob = e.target.dob.value;
         let companyName = e.target.companyName.value;
         let companyLogo = e.target.companyLogo.value
-        console.log(fullName, email, password, dob, companyName, companyLogo, adminPackage)
+        // console.log(fullName, email, password, dob, companyName, companyLogo, adminPackage)
+        if (password.length < 6) {
+            return toast.error("Password Length should atleast be 6 Characters!")
+        }
+
+        if (!/[A-Z]/.test(password)) {
+            return toast.error("Password should contain at least one capital letter!")
+        }
+        if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+            return toast.error("Password should contain at least one special character!")
+        }
+
+        signUp(email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                // navigate('/');
+                toast.success("Succesfully Logged In");
+                console.log(user);
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                if (errorCode === "auth/email-already-in-use") {
+                    toast.dismiss(loadingToast);
+                    return toast.error("Email is already being used");
+                }
+            });
+
+
     }
 
 
@@ -59,7 +91,7 @@ const JoinAsAdmin = () => {
 
                                 <div className='w-full'>
                                     <label className='text-2xl text-[#05386B] font-bold' htmlFor="password">Password:</label> <br />
-                                    <input className='py-3 px-4 rounded-md mt-2 w-full' placeholder='Enter Your Password' type="text" id='password' name='password' required />
+                                    <input className='py-3 px-4 rounded-md mt-2 w-full' placeholder='Enter Your Password' type="password" id='password' name='password' required />
                                 </div>
                             </div>
 

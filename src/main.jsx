@@ -10,6 +10,8 @@ import GuestHomepage from './Components/Homepage/Guest/Guest Homepage/GuestHomep
 import JoinAsEmployee from './Components/Pages/Join As Employee Page/JoinAsEmployee.jsx';
 import JoinAsAdmin from './Components/Pages/Join As Admin/JoinAsAdmin.jsx';
 import Login from './Components/Pages/Login/Login.jsx';
+import AuthenticationProvider from './Components/Authentication/AuthenticationProvider.jsx';
+import { Toaster } from 'react-hot-toast';
 
 const router = createBrowserRouter([
   {
@@ -39,6 +41,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Toaster/>
+    <AuthenticationProvider>
+      <RouterProvider router={router} />
+    </AuthenticationProvider>
   </React.StrictMode>,
 )
