@@ -5,6 +5,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Pagination, Navigation } from 'swiper/modules';
 import "./guestBanner.css"
+import { Link } from 'react-router-dom';
 
 
 const GuestBanner = () => {
@@ -33,9 +34,11 @@ const GuestBanner = () => {
                                 Join As an Employee
                             </h1>
                             <div className='flex justify-end'>
-                                <button className='px-20 py-3 mt-5 rounded-md hover:bg-transparent border-2 border-[#05386B] hover:border-2 hover:border-[#05386B] hover:text-[#05386B] bg-[#05386B] text-xl text-white font-bold'>
-                                    Join
-                                </button>
+                                <Link to={"/joinAsEmployee"}>
+                                    <button className='px-20 py-3 mt-5 rounded-md hover:bg-transparent border-2 border-[#05386B] hover:border-2 hover:border-[#05386B] hover:text-[#05386B] bg-[#05386B] text-xl text-white font-bold'>
+                                        Join
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -46,9 +49,11 @@ const GuestBanner = () => {
                             <h1 className='text-[#EDF5E1] text-6xl font-bold'>
                                 Join As an HR/Admin
                             </h1>
-                            <button className='px-20 py-3 mt-5 rounded-md hover:bg-transparent border-2 border-[#05386B] hover:border-2 hover:border-[#05386B] hover:text-[#05386B] bg-[#05386B] text-white text-xl font-bold'>
-                                Join
-                            </button>
+                            <Link to={"/joinAsAdmin"}>
+                                <button className='px-20 py-3 mt-5 rounded-md hover:bg-transparent border-2 border-[#05386B] hover:border-2 hover:border-[#05386B] hover:text-[#05386B] bg-[#05386B] text-white text-xl font-bold'>
+                                    Join
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </SwiperSlide>
