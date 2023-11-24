@@ -33,15 +33,14 @@ const AssetList = () => {
 
     let axiosInstance = useAxiosInstance();
     const { data: assetList, isPending: isListLoading } = useQuery({
-        queryKey: ['assetList', currentUserEmail, assetType, sorted, status],
+        queryKey: ['assetList', currentUserEmail, assetType, sorted, status,searchField],
         queryFn: async () => {
-            const response = await axiosInstance.get(`/assetList/${currentUserEmail}?productType=${assetType}&sort=${sorted}&status=${status}`);
+            const response = await axiosInstance.get(`/assetList/${currentUserEmail}?productType=${assetType}&sort=${sorted}&status=${status}&productName=${searchField}`);
             return response.data;
         },
         enabled: !!currentUserEmail,
     })
 
-    console.log(searchField)
 
 
 
