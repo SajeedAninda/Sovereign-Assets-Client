@@ -20,11 +20,40 @@ const Navbar = () => {
 
 
     return (
-        <div className='bg-[#5CDB95] h-fit'>
-            <div className='w-[95%] mx-auto flex justify-between items-center'>
-                <div className='logo'>
-                    <img src={siteLogo} className='w-[95px]' alt="" />
-                </div>
+        <div className='bg-[#5CDB95] '>
+            <div className='w-[95%] mx-auto h-[13vh] flex justify-between items-center'>
+
+                {/* CONDITIONAL LOGOS */}
+                {
+                    !loggedInUser &&
+                    <div className='logo'>
+                        <img src={siteLogo} className='w-[95px]' alt="" />
+                    </div>
+                }
+
+
+                {loggedInUser && userData?.role === "employee" && (
+                    <div className='logo'>
+                        {userData?.companyLogo === "null" ? (
+                            <img src={siteLogo} className='w-[95px]' alt="" />
+                        )
+                            :
+                            (
+                                <img src={userData?.companyLogo} className='w-[95px]' alt="" />
+                            )}
+                    </div>
+                )}
+
+                {(loggedInUser && userData?.role === "admin") && (
+                    <div className='logo'>
+                        <img src={userData?.companyLogo} className='w-[95px]' alt="" />
+                    </div>
+                )}
+
+
+
+
+                {/* CONDITIONAL LINKS  */}
                 {
                     !loggedInUser &&
                     <div className='flex gap-6 justify-between items-center'>
