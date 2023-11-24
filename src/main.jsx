@@ -12,6 +12,17 @@ import JoinAsAdmin from './Components/Pages/Join As Admin/JoinAsAdmin.jsx';
 import Login from './Components/Pages/Login/Login.jsx';
 import AuthenticationProvider from './Components/Authentication/AuthenticationProvider.jsx';
 import { Toaster } from 'react-hot-toast';
+import AdminPayment from './Components/Admin Payment/AdminPayment.jsx';
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+
+const queryClient = new QueryClient()
+
 
 const router = createBrowserRouter([
   {
@@ -36,14 +47,20 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/payment",
+    element: <AdminPayment></AdminPayment>,
+  }
 
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Toaster/>
-    <AuthenticationProvider>
-      <RouterProvider router={router} />
-    </AuthenticationProvider>
+    <Toaster />
+    <QueryClientProvider client={queryClient}>
+      <AuthenticationProvider>
+        <RouterProvider router={router} />
+      </AuthenticationProvider>
+    </QueryClientProvider>
   </React.StrictMode>,
 )

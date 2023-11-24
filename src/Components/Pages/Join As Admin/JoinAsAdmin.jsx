@@ -7,6 +7,7 @@ import Select from '@mui/material/Select';
 import useAuth from '../../Hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import useAxiosInstance from '../../Hooks/useAxiosInstance';
 
 const JoinAsAdmin = () => {
     const [adminPackage, setAdminPackage] = useState('');
@@ -15,6 +16,7 @@ const JoinAsAdmin = () => {
     };
     let { signUp } = useAuth();
     let navigate = useNavigate();
+    let axiosInstance = useAxiosInstance();
 
     let handleJoinAsAdmin = (e) => {
         e.preventDefault();
@@ -23,7 +25,17 @@ const JoinAsAdmin = () => {
         let password = e.target.password.value;
         let dob = e.target.dob.value;
         let companyName = e.target.companyName.value;
-        let companyLogo = e.target.companyLogo.value
+        let companyLogo = e.target.companyLogo.value;
+        let availableEmployees;
+        if (adminPackage === 5) {
+            availableEmployees = 5;
+        } else if (adminPackage === 8) {
+            availableEmployees = 10;
+        } else if (adminPackage === 15) {
+            availableEmployees = 20;
+        } else {
+            availableEmployees = 0;
+        }
         // console.log(fullName, email, password, dob, companyName, companyLogo, adminPackage)
         if (password.length < 6) {
             return toast.error("Password Length should atleast be 6 Characters!")
@@ -39,19 +51,23 @@ const JoinAsAdmin = () => {
         signUp(email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                // navigate('/');
+                let adminInfo = { email: email, role: "unpaid admin", fullName: fullName, date_of_birth: dob, companyName: companyName, companyLogo: companyLogo, availableEmployees: availableEmployees, payableAmount: adminPackage, paymentStatus: "unpaid" };
+
+                axiosInstance.post("/adminRegister", adminInfo)
+                    .then(res => {
+                        console.log(res.data);
+                        navigate("/payment")
+                    })
+
                 toast.success("Succesfully Logged In");
                 console.log(user);
             })
             .catch((error) => {
                 const errorCode = error.code;
                 if (errorCode === "auth/email-already-in-use") {
-                    toast.dismiss(loadingToast);
                     return toast.error("Email is already being used");
                 }
             });
-
-
     }
 
 
