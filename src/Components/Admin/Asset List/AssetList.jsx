@@ -5,6 +5,9 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
+import useAxiosInstance from '../../Hooks/useAxiosInstance';
+import { useQuery } from '@tanstack/react-query';
+import useAuth from '../../Hooks/useAuth';
 
 const AssetList = () => {
     const [status, setStatus] = useState('');
@@ -24,7 +27,20 @@ const AssetList = () => {
         setSorted(event.target.value);
     };
 
-    console.log(status, assetType, sorted, searchField);
+    let { loggedInUser } = useAuth();
+    let currentUserEmail = loggedInUser?.email;
+
+    let axiosInstance = useAxiosInstance();
+    const { data: assetList, isPending: isListLoading } = useQuery({
+        queryKey: ['assetList', currentUserEmail, assetType, sorted, status],
+        queryFn: async () => {
+            const response = await axiosInstance.get(`/assetList/${currentUserEmail}?productType=${assetType}&sort=${sorted}&status=${status}`);
+            return response.data;
+        },
+        enabled: !!currentUserEmail,
+    })
+
+
 
 
     return (
@@ -94,7 +110,7 @@ const AssetList = () => {
                 <Box
                     component="form"
                     sx={{
-                        '& > :not(style)': { m: 1, width: '100%' },
+                        '& > :not(style)': { mt: 1, width: '100%' },
                         '& .MuiOutlinedInput-root': {
                             '& fieldset': {
                                 backgroundColor: 'white',
@@ -115,6 +131,34 @@ const AssetList = () => {
                     />
                 </Box>
 
+            </div>
+
+            <div>
+                <div className='w-full bg-[#05386B] py-3 px-3 h-fit mt-4 rounded-tr-md rounded-tl-md grid grid-cols-12'>
+                    <h2 className='text-white text-center font-semibold col-span-2'>NAME</h2>
+                    <h2 className='text-white text-center font-semibold col-span-2'>TYPE</h2>
+                    <h3 className='text-white text-center font-semibold col-span-1'>QUANTITY</h3>
+                    <h3 className='text-white text-center font-semibold col-span-2'>STATUS</h3>
+                    <h3 className='text-white text-center font-semibold col-span-3'>ADDED DATE</h3>
+                    <h3 className='text-white text-center font-semibold col-span-1'>UPDATE</h3>
+                    <h3 className='text-white text-center font-semibold col-span-1'>DELETE</h3>
+                </div>
+            </div>
+
+            <div>
+                {
+                    assetList?.map(asset =>
+                        <div className='w-full bg-[#05386B] border-2 border-[#05386B] bg-transparent border-collapse text-[#05386B] py-3 px-3 h-fit grid grid-cols-12'>
+                            <h2 className='text-[#05386B] text-center font-semibold col-span-2'>{asset.productName}</h2>
+                            <h2 className='text-[#05386B] text-center font-semibold col-span-2'>{asset.productType}</h2>
+                            <h3 className='text-[#05386B] text-center font-semibold col-span-1'>{asset.productQuantity}</h3>
+                            <h3 className='text-[#05386B] text-center font-semibold col-span-2'>{asset.status}</h3>
+                            <h3 className='text-[#05386B] text-center font-semibold col-span-3'>ADDED DATE</h3>
+                            <h3 className='text-[#05386B] text-center font-semibold col-span-1'>UPDATE</h3>
+                            <h3 className='text-[#05386B] text-center font-semibold col-span-1'>DELETE</h3>
+                        </div>
+                    )
+                }
             </div>
         </div>
     );
