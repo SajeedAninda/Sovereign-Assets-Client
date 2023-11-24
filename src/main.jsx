@@ -22,6 +22,7 @@ import {
 } from '@tanstack/react-query'
 import AddAsset from './Components/Admin/Admin Add Asset/AddAsset.jsx';
 import AssetList from './Components/Admin/Asset List/AssetList.jsx';
+import UpdateAsset from './Components/Admin/Admin Update Asset/UpdateAsset.jsx';
 
 
 const queryClient = new QueryClient()
@@ -55,6 +56,11 @@ const router = createBrowserRouter([
       {
         path: "/assetList",
         element: <AssetList></AssetList>
+      },
+      {
+        path: "/updateAsset/:id",
+        element: <UpdateAsset></UpdateAsset>,
+        loader: ({ params }) => fetch(`http://localhost:5000/updateAsset/${params.id}`)
       },
     ],
   },

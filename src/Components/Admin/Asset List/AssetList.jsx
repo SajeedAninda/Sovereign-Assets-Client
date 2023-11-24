@@ -13,6 +13,7 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Swal from 'sweetalert2';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 const AssetList = () => {
     const [status, setStatus] = useState('');
@@ -168,9 +169,11 @@ const AssetList = () => {
                             <h3 className='text-[#05386B] text-center font-semibold col-span-1'>{asset.productQuantity}</h3>
                             <h3 className='text-[#05386B] text-center font-semibold col-span-2'>{asset.status}</h3>
                             <h3 className='text-[#05386B] text-center font-semibold col-span-3'>ADDED DATE</h3>
-                            <button className='text-[#05386B] text-center font-semibold col-span-1'>
-                                < BorderColorIcon />
-                            </button>
+                            <Link to={`/updateAsset/${asset._id}`}>
+                                <button className='text-[#05386B] text-center font-semibold col-span-1'>
+                                    < BorderColorIcon />
+                                </button>
+                            </Link>
                             <button onClick={() => handleDelete(asset._id)} className='text-[#05386B] text-center font-semibold col-span-1'>
                                 <DeleteIcon />
                             </button>
