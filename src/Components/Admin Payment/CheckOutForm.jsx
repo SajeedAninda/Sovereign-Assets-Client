@@ -94,7 +94,8 @@ const CheckOutForm = () => {
 
                     axiosInstance.patch(`/updateAdmin/${loggedInUser?.email}`, updateAdminInfo)
                         .then(res => {
-                            if (res.data.insertedId) {
+                            console.log(res.data)
+                            if (res.data.modifiedCount > 0) {
                                 toast.success("Payment successful!");
                                 navigate('/')
                             }
@@ -129,7 +130,7 @@ const CheckOutForm = () => {
             />
             <div className="flex justify-center items-center mt-4">
                 <button
-                    className="bg-[#05386B] text-white rounded-md hover:bg-white border-2 border-[#05386B] hover:text-[#05386B] font-bold px-12 py-3"
+                    className="bg-[#05386B] text-white rounded-md hover:bg-transparent border-2 border-[#05386B] hover:text-[#05386B] font-bold px-12 py-3"
                     type="submit"
                     disabled={!stripe || !clientSecret}
                 >

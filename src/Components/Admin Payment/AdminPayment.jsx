@@ -7,13 +7,13 @@ import { Elements } from '@stripe/react-stripe-js';
 import CheckOutForm from './CheckOutForm';
 
 
-
 const AdminPayment = () => {
     let { loggedInUser } = useAuth();
     let currentUserEmail = loggedInUser?.email;
     let axiosInstance = useAxiosInstance();
+    // console.log(import.meta.env.VITE_STRIPE_PAYMENT_KEY);
 
-    const stripePromise = loadStripe(`${import.meta.env.STRIPE_PAYMENT_KEY}`);
+    const stripePromise = loadStripe(`${import.meta.env.VITE_STRIPE_PAYMENT_KEY}`);
 
     const { data: paymentData, refetch } = useQuery({
         queryKey: ['paymentData', currentUserEmail],
