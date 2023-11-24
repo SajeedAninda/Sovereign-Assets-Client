@@ -120,7 +120,7 @@ const JoinAsAdmin = () => {
                                 <div className='w-full mt-3'>
                                     <label className='text-2xl text-[#05386B] font-bold' htmlFor="package">Select a Package:</label> <br />
                                     <Box sx={{ minWidth: 120, marginTop: "8px", backgroundColor: "white" }}>
-                                        <FormControl fullWidth>
+                                        <FormControl fullWidth required>
                                             <InputLabel id="demo-simple-select-label">Package</InputLabel>
                                             <Select
                                                 labelId="demo-simple-select-label"
