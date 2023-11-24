@@ -17,7 +17,9 @@ const JoinAsAdmin = () => {
         let email = e.target.email.value;
         let password = e.target.password.value;
         let dob = e.target.dob.value;
-        console.log(fullName, email, password, dob, adminPackage)
+        let companyName = e.target.companyName.value;
+        let companyLogo = e.target.companyLogo.value
+        console.log(fullName, email, password, dob, companyName, companyLogo, adminPackage)
     }
 
 
@@ -35,6 +37,18 @@ const JoinAsAdmin = () => {
                             <div className='w-full'>
                                 <label className='text-2xl text-[#05386B] font-bold' htmlFor="fullName">Full Name:</label> <br />
                                 <input className='py-3 px-4 rounded-md mt-2 w-full' placeholder='Enter Your Full Name' type="text" id='fullName' name='fullName' required />
+                            </div>
+
+                            <div className='mt-4 flex gap-6'>
+                                <div className='w-full'>
+                                    <label className='text-2xl text-[#05386B] font-bold' htmlFor="companyName">Company Name:</label> <br />
+                                    <input className='py-3 px-4 rounded-md mt-2 w-full' placeholder='Enter Your Company Name' type="text" id='companyName' name='companyName' required />
+                                </div>
+
+                                <div className='w-full'>
+                                    <label className='text-2xl text-[#05386B] font-bold' htmlFor="companyLogo">Company Logo:</label> <br />
+                                    <input className='py-3 px-4 rounded-md mt-2 w-full' placeholder='Enter The Image URL for Company Logo' type="text" id='companyLogo' name='companyLogo' required />
+                                </div>
                             </div>
 
                             <div className='mt-4 flex gap-6'>
@@ -57,9 +71,9 @@ const JoinAsAdmin = () => {
 
                                 <div className='w-full mt-3'>
                                     <label className='text-2xl text-[#05386B] font-bold' htmlFor="package">Select a Package:</label> <br />
-                                    <Box sx={{ minWidth: 120, marginTop:"8px", backgroundColor:"white" }}>
+                                    <Box sx={{ minWidth: 120, marginTop: "8px", backgroundColor: "white" }}>
                                         <FormControl fullWidth>
-                                        <InputLabel id="demo-simple-select-label">Package</InputLabel>
+                                            <InputLabel id="demo-simple-select-label">Package</InputLabel>
                                             <Select
                                                 labelId="demo-simple-select-label"
                                                 id="demo-simple-select"
