@@ -21,6 +21,9 @@ const AuthenticationProvider = ({ children }) => {
         setLoading(true);
         return signInWithPopup(auth, googleProvider);
     }
+    let logOut = () => {
+        return signOut(auth)
+    }
     useEffect(() => {
         let unSubscribe = onAuthStateChanged(auth, (user) => {
             setLoggedInUser(user);
@@ -37,7 +40,9 @@ const AuthenticationProvider = ({ children }) => {
         signUp,
         signIn,
         loggedInUser,
-        googleLogin
+        googleLogin,
+        logOut,
+        loading
     }
     return (
         <AuthContext.Provider value={authentication}>
