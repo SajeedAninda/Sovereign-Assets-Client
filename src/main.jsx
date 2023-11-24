@@ -20,6 +20,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
+import AddAsset from './Components/Admin/Admin Add Asset/AddAsset.jsx';
 
 
 const queryClient = new QueryClient()
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>
+      },
+      {
+        path: "/addAsset",
+        element: <AddAsset></AddAsset>
       },
     ],
   },
