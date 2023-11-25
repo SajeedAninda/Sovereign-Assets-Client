@@ -25,6 +25,7 @@ import AssetList from './Components/Admin/Asset List/AssetList.jsx';
 import UpdateAsset from './Components/Admin/Admin Update Asset/UpdateAsset.jsx';
 import AddEmployee from './Components/Admin/Add Employee/AddEmployee.jsx';
 import UpgradePackage from './Components/Admin/Upgrade Package/UpgradePackage.jsx';
+import EmployeeList from './Components/Admin/Employee List/EmployeeList.jsx';
 
 
 const queryClient = new QueryClient()
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
       {
         path: "/addEmployee",
         element: <AddEmployee></AddEmployee>
+      },
+      {
+        path: "/employeeList",
+        element: <EmployeeList></EmployeeList>
       },
     ],
   },

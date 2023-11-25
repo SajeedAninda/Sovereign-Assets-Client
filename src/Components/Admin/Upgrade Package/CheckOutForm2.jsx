@@ -87,8 +87,8 @@ const CheckOutForm2 = ({ adminPackage, increasbleEmployees }) => {
                         .then(res => {
                             console.log(res.data);
                             if (res.data.modifiedCount > 0) {
-                                toast.success("Payment successful! You have Upgraded Package");
                                 navigate('/addEmployee');
+                                toast.success("Payment successful! You have Upgraded Package");
                             }
                         });
                 }
