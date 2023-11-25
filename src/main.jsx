@@ -23,6 +23,8 @@ import {
 import AddAsset from './Components/Admin/Admin Add Asset/AddAsset.jsx';
 import AssetList from './Components/Admin/Asset List/AssetList.jsx';
 import UpdateAsset from './Components/Admin/Admin Update Asset/UpdateAsset.jsx';
+import AddEmployee from './Components/Admin/Add Employee/AddEmployee.jsx';
+import UpgradePackage from './Components/Admin/Upgrade Package/UpgradePackage.jsx';
 
 
 const queryClient = new QueryClient()
@@ -62,12 +64,21 @@ const router = createBrowserRouter([
         element: <UpdateAsset></UpdateAsset>,
         loader: ({ params }) => fetch(`http://localhost:5000/updateAsset/${params.id}`)
       },
+      {
+        path: "/addEmployee",
+        element: <AddEmployee></AddEmployee>
+      },
     ],
   },
   {
     path: "/payment",
     element: <AdminPayment></AdminPayment>,
-  }
+  },
+  {
+    path: "/upgradePackage",
+    element: <UpgradePackage></UpgradePackage>
+  },
+
 
 ]);
 
