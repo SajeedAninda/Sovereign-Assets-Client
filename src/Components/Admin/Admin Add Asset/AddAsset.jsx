@@ -30,8 +30,9 @@ const AddAsset = () => {
         let productQuantity = parseFloat(e.target.productQuantity.value);
         let status = "Not-Requested";
         let assetPostedBy = userData.email;
-        let dateAdded = currentDate
-        let assetList = { productName, productType, productQuantity, status, assetPostedBy, dateAdded };
+        let dateAdded = currentDate;
+        let assetCompany = userData.companyName;
+        let assetList = { productName, productType, productQuantity, status, assetPostedBy, assetCompany, dateAdded };
 
         axiosInstance.post("/addAsset", assetList)
             .then(res => {
