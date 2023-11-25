@@ -5,6 +5,7 @@ import useCurrentUserData from '../../Hooks/useCurrentUserData';
 import useAuth from '../../Hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
+import Swal from 'sweetalert2';
 
 const AllRequests = () => {
     const [searchField, setSearchField] = useState('');
@@ -38,14 +39,29 @@ const AllRequests = () => {
             })
     }
 
-    let handleReject = (id) => {
-        axiosInstance.patch(`/statusRejected/${id}`)
-            .then(res => {
-                if (res.data.modifiedCount > 0) {
-                    toast.success("Request Rejected!")
-                    refetch();
-                }
-            })
+    let handleReject = (id, assetId) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'Once Rejected, you cannot Approve this!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#05386B',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Reject!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosInstance.patch(`/statusRejected/${id}`)
+                    .then(res => {
+                        axiosInstance.patch(`/changeAssetStatus/${assetId}`)
+                            .then(res => {
+                                if (res.data.modifiedCount > 0) {
+                                    toast.success("Request Rejected!")
+                                    refetch();
+                                }
+                            })
+                    })
+            }
+        });
     }
 
     return (
@@ -81,7 +97,7 @@ const AllRequests = () => {
                 {
                     allRequests?.length == 0 ?
                         <div>
-                            <h1 className='text-3xl text-[#05386B] text-center mt-3 font-bold'>No Users Available To Add</h1>
+                            <h1 className='text-3xl text-[#05386B] text-center mt-3 font-bold'>No Requests Currently</h1>
                         </div>
                         :
                         <div>
@@ -105,19 +121,21 @@ const AllRequests = () => {
 
                                         <button
                                             onClick={() => handleApprove(requests?._id, requests?.assetId)}
-                                            className={`text-white py-2 px-1 rounded-md border ${requests?.requestStatus === "Approved" ? "bg-gray-300 text-gray-500 border-gray-500 cursor-not-allowed" : "border-[#05386B] bg-[#05386B] hover:bg-transparent hover:text-[#05386B] hover:border hover:border-[#05386B]"} mr-2`}
-                                            disabled={requests?.requestStatus === "Approved"}
+                                            className={`text-white py-2 px-1 rounded-md border ${requests?.requestStatus === "Rejected" || requests?.requestStatus === "Approved" ? "bg-gray-300 text-gray-500 border-gray-500 cursor-not-allowed" : "border-[#05386B] bg-[#05386B] hover:bg-transparent hover:text-[#05386B] hover:border hover:border-[#05386B]"} mr-2`}
+                                            disabled={requests?.requestStatus === "Rejected" || requests?.requestStatus === "Approved"}
                                         >
                                             APPROVE
                                         </button>
 
+
                                         <button
-                                            onClick={() => handleReject(requests?._id)}
+                                            onClick={() => handleReject(requests?._id, requests?.assetId)}
                                             className={`text-white py-2 px-1 rounded-md border ${requests?.requestStatus === "Rejected" ? "bg-gray-300 text-gray-500 border-gray-500 cursor-not-allowed" : "border-[#05386B] bg-[#05386B] hover:bg-transparent hover:text-[#05386B] hover:border hover:border-[#05386B]"} mr-2`}
                                             disabled={requests?.requestStatus === "Rejected"}
                                         >
                                             REJECT
                                         </button>
+
 
                                     </div>
                                 )

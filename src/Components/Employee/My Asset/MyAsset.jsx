@@ -1,0 +1,150 @@
+import React, { useState } from 'react';
+import SavedSearchIcon from '@mui/icons-material/SavedSearch';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import useAuth from '../../Hooks/useAuth';
+import useCurrentUserData from '../../Hooks/useCurrentUserData';
+import useAxiosInstance from '../../Hooks/useAxiosInstance';
+import { useQuery } from '@tanstack/react-query';
+
+const MyAsset = () => {
+    const [searchField, setSearchField] = useState('');
+    const [status, setStatus] = useState('');
+    const [assetType, setAssetType] = useState('');
+
+
+    const handleStatusChange = (event) => {
+        setStatus(event.target.value);
+    };
+
+    const handleAssetTypeChange = (event) => {
+        setAssetType(event.target.value);
+    };
+
+    let { loggedInUser } = useAuth();
+    let currentUserEmail = loggedInUser?.email;
+    let [userData] = useCurrentUserData();
+    let axiosInstance = useAxiosInstance();
+
+    const { data: requestedData, refetch } = useQuery({
+        queryKey: ['requestedData', currentUserEmail, assetType, status, searchField],
+        queryFn: async () => {
+            const response = await axiosInstance.get(`/getRequestedData/${currentUserEmail}?assetType=${assetType}&requestStatus=${status}&assetName=${searchField}`);
+            return response.data;
+        },
+        enabled: !!currentUserEmail,
+    })
+
+
+    return (
+        <div className='mx-auto w-[85%] my-12 bg-[#5CDB95] shadow-2xl py-8 px-8'>
+            <div className='pb-6 border-b-2 border-[#05386B]'>
+                <div className='mt-3 relative'>
+                    <input onChange={(event) => {
+                        setSearchField(event.target.value);
+                    }} type="text" className='w-full py-4 px-3' placeholder='Search By Item Name' />
+                    <span className='absolute right-4 top-3'>
+                        <SavedSearchIcon />
+                    </span>
+                </div>
+
+                <div className='grid grid-cols-2 gap-6 mt-3'>
+                    <div>
+                        <Box sx={{ minWidth: 120, marginTop: "8px", backgroundColor: "white" }}>
+                            <FormControl fullWidth>
+                                <InputLabel id="demo-simple-select-label">Request Status</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label-status"
+                                    id="demo-simple-select-status"
+                                    value={status}
+                                    label="status"
+                                    onChange={handleStatusChange}
+                                >
+                                    <MenuItem value={"Pending"}>Pending</MenuItem>
+                                    <MenuItem value={"Approved"}>Approved</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Box>
+                    </div>
+
+                    <div>
+                        <Box sx={{ minWidth: 120, marginTop: "8px", backgroundColor: "white" }}>
+                            <FormControl fullWidth>
+                                <InputLabel id="demo-simple-select-label-asset">Asset Type</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label-asset"
+                                    id="demo-simple-select"
+                                    value={assetType}
+                                    label="assetType"
+                                    onChange={handleAssetTypeChange}
+                                >
+                                    <MenuItem value={"Returnable"}>Returnable</MenuItem>
+                                    <MenuItem value={"Non-Returnable"}>Non-Returnable</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Box>
+                    </div>
+                </div>
+            </div>
+
+            <div className='mt-6'>
+                <div>
+                    <h2 className='text-3xl font-bold text-[#05386B]'>All Requests Made by You:</h2>
+                </div>
+                <div>
+                    <div className='w-full bg-[#05386B] py-3 px-3 h-fit mt-4 rounded-tr-md rounded-tl-md grid grid-cols-12'>
+                        <h2 className='text-white text-center font-semibold col-span-2'>ASSET NAME</h2>
+                        <h2 className='text-white text-center font-semibold col-span-2'>ASSET TYPE</h2>
+                        <h2 className='text-white text-center font-semibold col-span-2'>REQUEST DATE</h2>
+                        <h2 className='text-white text-center font-semibold col-span-2'>APPROVAL DATE</h2>
+                        <h3 className='text-white text-center font-semibold col-span-2'>REQUEST STATUS</h3>
+                        <h3 className='text-white text-center font-semibold col-span-2'>ACTION</h3>
+                    </div>
+                </div>
+            </div>
+
+            {
+                requestedData?.length == 0 ?
+                    <div>
+                        <h1 className='text-3xl text-[#05386B] text-center mt-3 font-bold'>No Requests Made</h1>
+                    </div>
+                    :
+                    <div>
+                        {
+                            requestedData?.map((data, index) =>
+                                <div className='w-full bg-[#05386B] border-2 border-[#05386B] bg-transparent border-collapse text-[#05386B] py-3 px-3 h-fit grid grid-cols-12'>
+                                    <h2 className='text-[#05386B] text-xl text-center font-semibold col-span-2'>{data?.assetName}</h2>
+                                    <h2 className='text-[#05386B] text-xl text-center font-semibold col-span-2'>{data?.assetType}</h2>
+                                    <h3 className='text-[#05386B] text-center font-semibold col-span-2'>
+                                        {new Date(data?.requestedDate).toLocaleDateString('en-US', {
+                                            month: 'long',
+                                            day: 'numeric',
+                                            year: 'numeric'
+                                        })}
+                                    </h3>
+                                    <h3 className='text-[#05386B] text-center font-semibold col-span-2'>
+                                        {new Date(data?.approvalDate).toLocaleDateString('en-US', {
+                                            month: 'long',
+                                            day: 'numeric',
+                                            year: 'numeric'
+                                        })}
+                                    </h3>
+                                    <h2 className='text-[#05386B] text-xl text-center font-semibold col-span-2'>{data?.requestStatus}</h2>
+                                    <button
+                                        className='text-white py-2 px-2 rounded-md hover:bg-transparent border-2 text-center font-semibold col-span-2'
+                                    >
+                                        Action
+                                    </button>
+                                </div>
+                            )
+                        }
+                    </div>
+            }
+        </div>
+    );
+};
+
+export default MyAsset;

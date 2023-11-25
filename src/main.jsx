@@ -28,6 +28,7 @@ import UpgradePackage from './Components/Admin/Upgrade Package/UpgradePackage.js
 import EmployeeList from './Components/Admin/Employee List/EmployeeList.jsx';
 import RequestAsset from './Components/Employee/Request Asset/RequestAsset.jsx';
 import AllRequests from './Components/Admin/All Requests/AllRequests.jsx';
+import MyAsset from './Components/Employee/My Asset/MyAsset.jsx';
 
 
 const queryClient = new QueryClient()
@@ -82,6 +83,10 @@ const router = createBrowserRouter([
       {
         path: "/allRequests",
         element: <AllRequests></AllRequests>
+      },
+      {
+        path: "/myAssets",
+        element: <MyAsset></MyAsset>
       },
     ],
   },
