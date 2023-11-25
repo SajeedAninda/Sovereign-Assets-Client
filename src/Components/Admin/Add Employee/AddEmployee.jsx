@@ -4,6 +4,8 @@ import useCurrentUserData from '../../Hooks/useCurrentUserData';
 import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../Hooks/useAuth';
 import { Link } from 'react-router-dom';
+import Person3Icon from '@mui/icons-material/Person3';
+
 
 const AddEmployee = () => {
     let axiosInstance = useAxiosInstance();
@@ -20,18 +22,64 @@ const AddEmployee = () => {
         enabled: !!currentUserEmail,
     })
 
-    console.log(productCountData);
+    const { data: availableEmployeeData, isPending: isEmployeeLoading } = useQuery({
+        queryKey: ['availableEmployeeData'],
+        queryFn: async () => {
+            const response = await axiosInstance.get(`/availableEmployees`);
+            return response.data;
+        },
+    })
+
+
 
     return (
         <div className='mx-auto w-[85%] my-12 bg-[#5CDB95] shadow-2xl py-8 px-8'>
-            <h2 className='text-4xl text-[#05386B] text-center font-bold'>
-                Total Product Count: You have added {productCountData?.productCount} Assets
+            <div className='border-b-2 border-[#05386B] pb-4'>
+                <h2 className='text-4xl text-[#05386B] text-center font-bold'>
+                    Total Product Count: You have added {productCountData?.productCount} Assets
+                </h2>
+                <h2 className='text-4xl mt-2 text-[#05386B] text-center font-bold'>
+                    Package Limit: You have {userData?.availableEmployees} Members Limit
+                </h2>
+                <p className='text-2xl mt-4 text-[#05386B] text-center font-bold'>To increase Your Package Limit, <Link to={"/upgradePackage"}><button className='px-4 py-1 rounded-md border-2 border-[#05386B] hover:bg-transparent hover:border-2 hover:border-[#05386B] ml-1 bg-[#05386B] text-white font-semibold'>Click Here</button></Link>
+                </p>
+            </div>
+
+            <h2 className='text-3xl text-[#05386B] text-left mt-10 font-bold'>
+                List of Users who are Currently Available to Add:
             </h2>
-            <h2 className='text-4xl mt-2 text-[#05386B] text-center font-bold'>
-                Package Limit: You have {userData?.availableEmployees} Members Limit
-            </h2>
-            <p className='text-2xl mt-4 text-[#05386B] text-center font-bold'>To increase Your Package Limit, <Link to={"/upgradePackage"}><button className='px-4 py-1 rounded-md border-2 border-[#05386B] hover:bg-transparent hover:border-2 hover:border-[#05386B] ml-1 bg-[#05386B] text-white font-semibold'>Click Here</button></Link>
-            </p>
+
+            <div>
+                <div className='w-full bg-[#05386B] py-3 px-3 h-fit mt-4 rounded-tr-md rounded-tl-md grid grid-cols-12'>
+                    <h2 className='text-white text-center font-semibold col-span-1'>SL</h2>
+                    <h2 className='text-white text-center font-semibold col-span-3'>IMAGE</h2>
+                    <h3 className='text-white text-center font-semibold col-span-4'>NAME</h3>
+                    <h3 className='text-white text-center font-semibold col-span-2'>TYPE</h3>
+                    <h3 className='text-white text-center font-semibold col-span-2'>ADD TO TEAM</h3>
+                </div>
+            </div>
+
+            <div>
+                {
+                    availableEmployeeData?.map((employee, index) =>
+                        <div className='w-full bg-[#05386B] border-2 border-[#05386B] bg-transparent border-collapse text-[#05386B] py-3 px-3 h-fit grid grid-cols-12'>
+                            <h2 className='text-[#05386B] text-xl text-center font-semibold col-span-1'>#{index + 1}</h2>
+                            <div className='text-[#05386B] flex justify-center text-center font-semibold col-span-3'>
+                                <img className='w-[40px] rounded-full' src={employee?.image} alt="" />
+                            </div>
+                            <h3 className='text-[#05386B] text-xl text-center font-semibold col-span-4'>{employee?.fullName}</h3>
+                            <div className='text-[#05386B] text-center font-semibold col-span-2'>
+                                <Person3Icon />
+                            </div>
+                            <button className='text-white py-2 px-2 rounded-md hover:bg-transparent border-2 border-[#05386B] hover:text-[#05386B] bg-[#05386B] text-center font-semibold col-span-2'>
+                                Add to Team
+                            </button>
+
+                        </div>
+                    )
+                }
+            </div>
+
         </div>
     );
 };
