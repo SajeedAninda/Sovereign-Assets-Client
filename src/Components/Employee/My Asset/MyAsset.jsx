@@ -9,6 +9,7 @@ import useAuth from '../../Hooks/useAuth';
 import useCurrentUserData from '../../Hooks/useCurrentUserData';
 import useAxiosInstance from '../../Hooks/useAxiosInstance';
 import { useQuery } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 
 const MyAsset = () => {
     const [searchField, setSearchField] = useState('');
@@ -37,6 +38,16 @@ const MyAsset = () => {
         },
         enabled: !!currentUserEmail,
     })
+
+    let handleCancel = (id) => {
+        axiosInstance.delete(`/deleteRequest/${id}`)
+            .then(res => {
+                if (res.data.deletedCount > 0) {
+                    toast.success("Request Canceled Succesfully")
+                    refetch();
+                }
+            })
+    }
 
 
     return (
@@ -92,7 +103,7 @@ const MyAsset = () => {
 
             <div className='mt-6'>
                 <div>
-                    <h2 className='text-3xl font-bold text-[#05386B]'>All Requests Made by You:</h2>
+                    <h2 className='text-3xl font-bold text-[#05386B]'>All Requests for Assets Made by You:</h2>
                 </div>
                 <div>
                     <div className='w-full bg-[#05386B] py-3 px-3 h-fit mt-4 rounded-tr-md rounded-tl-md grid grid-cols-12'>
@@ -115,29 +126,59 @@ const MyAsset = () => {
                     <div>
                         {
                             requestedData?.map((data, index) =>
-                                <div className='w-full bg-[#05386B] border-2 border-[#05386B] bg-transparent border-collapse text-[#05386B] py-3 px-3 h-fit grid grid-cols-12'>
+                                <div className='w-full bg-[#05386B] justify-center items-center border-2 border-[#05386B] bg-transparent border-collapse text-[#05386B] py-3 px-3 h-fit grid grid-cols-12'>
                                     <h2 className='text-[#05386B] text-xl text-center font-semibold col-span-2'>{data?.assetName}</h2>
                                     <h2 className='text-[#05386B] text-xl text-center font-semibold col-span-2'>{data?.assetType}</h2>
-                                    <h3 className='text-[#05386B] text-center font-semibold col-span-2'>
+                                    <h3 className='text-[#05386B] text-lg text-center font-semibold col-span-2'>
                                         {new Date(data?.requestedDate).toLocaleDateString('en-US', {
                                             month: 'long',
                                             day: 'numeric',
                                             year: 'numeric'
                                         })}
                                     </h3>
-                                    <h3 className='text-[#05386B] text-center font-semibold col-span-2'>
-                                        {new Date(data?.approvalDate).toLocaleDateString('en-US', {
-                                            month: 'long',
-                                            day: 'numeric',
-                                            year: 'numeric'
-                                        })}
+                                    <h3 className='text-[#05386B] text-lg text-center font-semibold col-span-2'>
+                                        {data?.approvalDate === "null"
+                                            ? ""
+                                            : new Date(data?.approvalDate).toLocaleDateString('en-US', {
+                                                month: 'long',
+                                                day: 'numeric',
+                                                year: 'numeric'
+                                            })
+                                        }
                                     </h3>
+
                                     <h2 className='text-[#05386B] text-xl text-center font-semibold col-span-2'>{data?.requestStatus}</h2>
-                                    <button
-                                        className='text-white py-2 px-2 rounded-md hover:bg-transparent border-2 text-center font-semibold col-span-2'
-                                    >
-                                        Action
-                                    </button>
+
+                                    {/* CONDITIONAL BUTTONS  */}
+                                    {
+                                        data?.requestStatus === "Pending" &&
+                                        <button
+                                            onClick={() => handleCancel(data?._id)}
+                                            className='text-white bg-[#05386B] py-3 rounded-md border border-[#05386B] hover:bg-transparent hover:text-[#05386B] hover:border hover:border-[#05386B] col-span-2'
+                                        >
+                                            Cancel Request
+                                        </button>
+                                    }
+
+                                    {
+                                        (data?.requestStatus === "Approved" && data?.assetType !== "Returnable") &&
+                                        <button
+                                            className='text-white bg-[#05386B] py-3 rounded-md border border-[#05386B] hover:bg-transparent hover:text-[#05386B] hover:border hover:border-[#05386B] col-span-2'
+                                        >
+                                            Print
+                                        </button>
+                                    }
+
+                                    {
+                                        (data?.requestStatus === "Approved" && data?.assetType === "Returnable") &&
+                                        <button
+                                            onClick={() => handleReturn(data?._id, data?.assetId)}
+                                            className='text-white bg-[#05386B] py-3 rounded-md border border-[#05386B] hover:bg-transparent hover:text-[#05386B] hover:border hover:border-[#05386B] col-span-2'
+                                        >
+                                            Return
+                                        </button>
+                                    }
+
                                 </div>
                             )
                         }
