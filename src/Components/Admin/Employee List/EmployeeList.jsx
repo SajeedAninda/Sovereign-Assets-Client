@@ -5,6 +5,8 @@ import useAuth from '../../Hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import Person3Icon from '@mui/icons-material/Person3';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import toast from 'react-hot-toast';
+import Swal from 'sweetalert2';
 
 const EmployeeList = () => {
     let axiosInstance = useAxiosInstance();
@@ -12,7 +14,7 @@ const EmployeeList = () => {
     let { loggedInUser } = useAuth();
     let currentUserEmail = loggedInUser?.email;
 
-    const { data: teamEmployees } = useQuery({
+    const { data: teamEmployees, refetch } = useQuery({
         queryKey: ['teamEmployees', userData],
         queryFn: async () => {
             const response = await axiosInstance.get(`/getUsersByCompanyName/${userData.companyName}`);
@@ -21,9 +23,28 @@ const EmployeeList = () => {
         enabled: !!userData,
     })
 
-    let handleRemoveFromTeam = (id) => {
-        console.log(id);
-    }
+    const handleRemoveFromTeam = (id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'Once Removed, you cannot revert this!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#05386B',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Remove!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosInstance.patch(`/removeFromTeam/${id}`)
+                    .then(response => {
+                        if (response.data.modifiedCount > 0) {
+                            toast.success("Removed from the team");
+                            refetch();
+                        }
+                    })
+                    .catch(error => console.error(error));
+            }
+        });
+    };
 
 
 
