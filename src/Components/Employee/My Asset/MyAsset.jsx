@@ -49,6 +49,19 @@ const MyAsset = () => {
             })
     }
 
+    let handleReturn = (id, assetId) => {
+        axiosInstance.patch(`/returnAsset/${id}`)
+            .then(res => {
+                axiosInstance.patch(`/returnAssetCount/${assetId}`)
+                    .then(res => {
+                        if (res.data.modifiedCount > 0) {
+                            toast.success("Asset Returned");
+                            refetch();
+                        }
+                    })
+            })
+    }
+
 
     return (
         <div className='mx-auto w-[85%] my-12 bg-[#5CDB95] shadow-2xl py-8 px-8'>
@@ -170,10 +183,11 @@ const MyAsset = () => {
                                     }
 
                                     {
-                                        (data?.requestStatus === "Approved" && data?.assetType === "Returnable") &&
+                                        ((data?.requestStatus === "Approved" || data?.requestStatus === "Returned") && data?.assetType === "Returnable") &&
                                         <button
                                             onClick={() => handleReturn(data?._id, data?.assetId)}
-                                            className='text-white bg-[#05386B] py-3 rounded-md border border-[#05386B] hover:bg-transparent hover:text-[#05386B] hover:border hover:border-[#05386B] col-span-2'
+                                            className={`text-white bg-[#05386B] py-3 rounded-md border ${data?.requestStatus === "Returned" ? "bg-gray-300 text-gray-500 border-gray-500 cursor-not-allowed" : "border-[#05386B] hover:bg-transparent hover:text-[#05386B] hover:border hover:border-[#05386B]"} col-span-2`}
+                                            disabled={data?.requestStatus === "Returned"}
                                         >
                                             Return
                                         </button>
