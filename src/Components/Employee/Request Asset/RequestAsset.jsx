@@ -109,6 +109,7 @@ const RequestAsset = () => {
         axiosInstance.post("/assetRequest", requestData)
             .then(res => {
                 if (res.data.insertedId) {
+                    setSearchField('')
                     axiosInstance.patch(`/changeAssetStatus/${id}`)
                         .then(res => {
                             if (res.data.modifiedCount > 0) {
@@ -116,6 +117,7 @@ const RequestAsset = () => {
                             }
                         })
                 }
+                
                 toast.success("Made an Asset Request Succesfully");
             })
     }
