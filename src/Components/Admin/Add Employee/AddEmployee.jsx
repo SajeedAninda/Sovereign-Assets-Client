@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../Hooks/useAuth';
 import { Link } from 'react-router-dom';
 import Person3Icon from '@mui/icons-material/Person3';
+import toast from 'react-hot-toast';
 
 
 const AddEmployee = () => {
@@ -22,13 +23,23 @@ const AddEmployee = () => {
         enabled: !!currentUserEmail,
     })
 
-    const { data: availableEmployeeData, isPending: isEmployeeLoading } = useQuery({
+    const { data: availableEmployeeData, refetch } = useQuery({
         queryKey: ['availableEmployeeData'],
         queryFn: async () => {
             const response = await axiosInstance.get(`/availableEmployees`);
             return response.data;
         },
     })
+
+    let handleAddToTeam = (id) => {
+        axiosInstance.patch(`/addToTeam/${id}`, { currentUserEmail })
+            .then((res) => {
+                if (res.data.modifiedCount > 0) {
+                    refetch();
+                    toast.success("User Added to the Team");
+                }
+            })
+    }
 
 
 
@@ -59,7 +70,13 @@ const AddEmployee = () => {
                 </div>
             </div>
 
-            <div>
+            {
+                availableEmployeeData?.length==0?
+                <div>
+                    <h1 className='text-3xl text-[#05386B] text-center mt-3 font-bold'>No Users Available To Add</h1>
+                </div>
+                :
+                <div>
                 {
                     availableEmployeeData?.map((employee, index) =>
                         <div className='w-full bg-[#05386B] border-2 border-[#05386B] bg-transparent border-collapse text-[#05386B] py-3 px-3 h-fit grid grid-cols-12'>
@@ -71,14 +88,14 @@ const AddEmployee = () => {
                             <div className='text-[#05386B] text-center font-semibold col-span-2'>
                                 <Person3Icon />
                             </div>
-                            <button className='text-white py-2 px-2 rounded-md hover:bg-transparent border-2 border-[#05386B] hover:text-[#05386B] bg-[#05386B] text-center font-semibold col-span-2'>
+                            <button onClick={() => handleAddToTeam(employee._id)} className='text-white py-2 px-2 rounded-md hover:bg-transparent border-2 border-[#05386B] hover:text-[#05386B] bg-[#05386B] text-center font-semibold col-span-2'>
                                 Add to Team
                             </button>
-
                         </div>
                     )
                 }
             </div>
+            }
 
         </div>
     );
