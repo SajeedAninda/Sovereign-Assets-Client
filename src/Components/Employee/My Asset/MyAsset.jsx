@@ -10,6 +10,8 @@ import useCurrentUserData from '../../Hooks/useCurrentUserData';
 import useAxiosInstance from '../../Hooks/useAxiosInstance';
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
+import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
+import MyDocument from './MyDocument';
 
 const MyAsset = () => {
     const [searchField, setSearchField] = useState('');
@@ -175,11 +177,19 @@ const MyAsset = () => {
 
                                     {
                                         (data?.requestStatus === "Approved" && data?.assetType !== "Returnable") &&
-                                        <button
-                                            className='text-white bg-[#05386B] py-3 rounded-md border border-[#05386B] hover:bg-transparent hover:text-[#05386B] hover:border hover:border-[#05386B] col-span-2'
-                                        >
-                                            Print
-                                        </button>
+                                        <div className='col-span-2'>
+                                            <PDFDownloadLink document={data?.assetId ? <MyDocument assetId={data.assetId} /> : null} fileName="somename.pdf">
+                                                {({ blob, url, loading, error }) => (
+                                                    <button
+                                                        className='text-white bg-[#05386B] py-3 rounded-md border border-[#05386B] hover:bg-transparent hover:text-[#05386B] hover:border hover:border-[#05386B] w-full col-span-2'
+                                                        disabled={loading}
+                                                    >
+                                                        {loading ? 'Loading document...' : 'Print'}
+                                                    </button>
+                                                )}
+                                            </PDFDownloadLink>
+                                        </div>
+
                                     }
 
                                     {
@@ -196,6 +206,7 @@ const MyAsset = () => {
                                 </div>
                             )
                         }
+
                     </div>
             }
         </div>
