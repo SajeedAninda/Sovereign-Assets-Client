@@ -9,11 +9,31 @@ import useAuth from '../../Hooks/useAuth';
 import useCurrentUserData from '../../Hooks/useCurrentUserData';
 import useAxiosInstance from '../../Hooks/useAxiosInstance';
 import { useQuery } from '@tanstack/react-query';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal'
 
 const RequestAsset = () => {
     const [searchField, setSearchField] = useState('');
     const [status, setStatus] = useState('');
     const [assetType, setAssetType] = useState('');
+
+    const [openAssets, setOpenAssets] = useState([]);
+    const [open, setOpen] = useState(false);
+
+
+    const handleOpen = (assetId) => {
+        setOpenAssets((prevOpenAssets) => ({
+            ...prevOpenAssets,
+            [assetId]: true,
+        }));
+    };
+    const handleClose = (assetId) => {
+        setOpenAssets((prevOpenAssets) => ({
+            ...prevOpenAssets,
+            [assetId]: false,
+        }));
+    };
 
     const handleStatusChange = (event) => {
         setStatus(event.target.value);
@@ -36,6 +56,26 @@ const RequestAsset = () => {
         },
         enabled: !!userData,
     })
+
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 700,
+        bgcolor: 'background.paper',
+        border: '8px solid #05386B',
+        boxShadow: 24,
+        p: 4,
+    };
+
+    let handleRequest = (id) => {
+        //GET INDIVIDUAL ASSET BASED ON ID
+        let foundAssetData = assetData.find(asset => asset._id === id);
+        console.log(foundAssetData);
+
+        
+    }
 
 
     return (
@@ -126,11 +166,34 @@ const RequestAsset = () => {
                                                 {asset?.productQuantity > 0 ? 'Available' : 'Unavailable'}
                                             </h3>
                                             <button
-                                                onClick={() => handleRemoveFromTeam(asset._id)}
-                                                className='border-[#05386B] hover:text-[#05386B] bg-[#05386B] text-center text-white rounded-md hover:bg-transparent hover:border-2 hover:border-[#05386B] font-semibold col-span-2'
+                                                onClick={() => handleOpen(asset._id)}
+                                                disabled={asset?.productQuantity === 0}
+                                                className={`border-[#05386B] py-1 border-2 hover:text-[#05386B] bg-[#05386B] text-center text-white rounded-md hover:bg-transparent hover:border-2 ${asset?.productQuantity === 0 ? 'cursor-not-allowed opacity-50' : 'hover:border-[#05386B]'
+                                                    } font-semibold col-span-2`}
                                             >
                                                 Request
                                             </button>
+
+                                            <div>
+                                                <Modal
+                                                    open={openAssets[asset._id]}
+                                                    onClose={() => handleClose(asset._id)}
+                                                    aria-labelledby="modal-modal-title"
+                                                    aria-describedby="modal-modal-description"
+                                                >
+                                                    <Box sx={style}>
+                                                        <Typography id="modal-modal-title" variant="h6" component="h2">
+                                                            <input className="w-full border-2 px-2 py-2 border-[#05386B]" placeholder='Write Additional Notes' type="text" />
+                                                        </Typography>
+                                                        <div className='flex justify-center items-center mt-4'>
+                                                            <button onClick={() => handleRequest(asset._id)} className='border-[#05386B] mx-auto py-2 px-8 border-2 hover:text-[#05386B] bg-[#05386B] text-center text-white rounded-md hover:bg-transparent hover:border-2'>
+                                                                Request
+                                                            </button>
+                                                        </div>
+                                                    </Box>
+                                                </Modal>
+                                            </div>
+
                                         </div>
                                     )
                                 }
