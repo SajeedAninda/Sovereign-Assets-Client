@@ -12,6 +12,9 @@ import { useQuery } from '@tanstack/react-query';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal'
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const RequestAsset = () => {
     const [searchField, setSearchField] = useState('');
@@ -21,6 +24,7 @@ const RequestAsset = () => {
     const [openAssets, setOpenAssets] = useState([]);
     const [open, setOpen] = useState(false);
 
+    const [additionalInfo, setAdditionalInfo] = useState('');
 
     const handleOpen = (assetId) => {
         setOpenAssets((prevOpenAssets) => ({
@@ -68,14 +72,54 @@ const RequestAsset = () => {
         boxShadow: 24,
         p: 4,
     };
+    const currentDate = new Date();
 
     let handleRequest = (id) => {
         //GET INDIVIDUAL ASSET BASED ON ID
-        let foundAssetData = assetData.find(asset => asset._id === id);
-        console.log(foundAssetData);
+        let foundAssetData = assetData?.find(asset => asset._id === id);
+        let assetName = foundAssetData?.productName;
+        let assetType = foundAssetData?.productType;
+        let requestedDate = currentDate;
+        let requestStatus = "Pending";
+        let requestorEmail = currentUserEmail;
+        let requestorName = userData?.fullName;
+        let requestorTeam = userData?.companyName;
+        let assetId = id;
+        let approvalDate = "null"
+        let assetPostedBy = foundAssetData?.assetPostedBy;
+        let assetCompany = foundAssetData?.assetCompany;
+        let assetAddedOn = foundAssetData?.dateAdded;
+        let extraAdditionalInfo = additionalInfo;
+        let requestData = {
+            assetName,
+            assetType,
+            requestedDate,
+            requestStatus,
+            requestorEmail,
+            requestorName,
+            requestorTeam,
+            assetId,
+            approvalDate,
+            assetPostedBy,
+            assetCompany,
+            assetAddedOn,
+            extraAdditionalInfo,
+        };
 
-        
+        axiosInstance.post("/assetRequest", requestData)
+            .then(res => {
+                if (res.data.insertedId) {
+                    axiosInstance.patch(`/changeAssetStatus/${id}`)
+                        .then(res => {
+                            if (res.data.modifiedCount > 0) {
+                                refetch();
+                            }
+                        })
+                }
+                toast.success("Made an Asset Request Succesfully");
+            })
     }
+
 
 
     return (
@@ -183,7 +227,9 @@ const RequestAsset = () => {
                                                 >
                                                     <Box sx={style}>
                                                         <Typography id="modal-modal-title" variant="h6" component="h2">
-                                                            <input className="w-full border-2 px-2 py-2 border-[#05386B]" placeholder='Write Additional Notes' type="text" />
+                                                            <input onChange={(event) => {
+                                                                setAdditionalInfo(event.target.value);
+                                                            }} className="w-full border-2 px-2 py-2 border-[#05386B]" placeholder='Write Additional Notes' type="text" />
                                                         </Typography>
                                                         <div className='flex justify-center items-center mt-4'>
                                                             <button onClick={() => handleRequest(asset._id)} className='border-[#05386B] mx-auto py-2 px-8 border-2 hover:text-[#05386B] bg-[#05386B] text-center text-white rounded-md hover:bg-transparent hover:border-2'>
