@@ -178,13 +178,13 @@ const MyAsset = () => {
                                     {
                                         (data?.requestStatus === "Approved" && data?.assetType !== "Returnable") &&
                                         <div className='col-span-2'>
-                                            <PDFDownloadLink document={data?.assetId ? <MyDocument assetId={data.assetId} /> : null} fileName="somename.pdf">
+                                            <PDFDownloadLink document={data?.assetId ? <MyDocument assetId={data.assetId} /> : null} fileName="AssetDetails.pdf">
                                                 {({ blob, url, loading, error }) => (
                                                     <button
                                                         className='text-white bg-[#05386B] py-3 rounded-md border border-[#05386B] hover:bg-transparent hover:text-[#05386B] hover:border hover:border-[#05386B] w-full col-span-2'
                                                         disabled={loading}
                                                     >
-                                                        {loading ? 'Loading document...' : 'Print'}
+                                                        {loading ? 'Loading...' : 'Print'}
                                                     </button>
                                                 )}
                                             </PDFDownloadLink>

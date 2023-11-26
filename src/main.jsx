@@ -29,6 +29,7 @@ import EmployeeList from './Components/Admin/Employee List/EmployeeList.jsx';
 import RequestAsset from './Components/Employee/Request Asset/RequestAsset.jsx';
 import AllRequests from './Components/Admin/All Requests/AllRequests.jsx';
 import MyAsset from './Components/Employee/My Asset/MyAsset.jsx';
+import MyTeam from './Components/Employee/My Team/MyTeam.jsx';
 
 
 const queryClient = new QueryClient()
@@ -87,6 +88,10 @@ const router = createBrowserRouter([
       {
         path: "/myAssets",
         element: <MyAsset></MyAsset>
+      },
+      {
+        path: "/myTeam",
+        element: <MyTeam></MyTeam>
       },
     ],
   },

@@ -83,7 +83,7 @@ const EmployeeList = () => {
                 {
                     teamEmployees?.length == 0 ?
                         <div>
-                            <h1 className='text-3xl text-[#05386B] text-center mt-3 font-bold'>No Users Available To Add</h1>
+                            <h1 className='text-3xl text-[#05386B] text-center mt-3 font-bold'>No Employees Available</h1>
                         </div>
                         :
                         <div>
