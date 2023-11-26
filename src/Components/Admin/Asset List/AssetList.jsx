@@ -36,6 +36,7 @@ const AssetList = () => {
     let { loggedInUser } = useAuth();
     let currentUserEmail = loggedInUser?.email;
 
+
     let axiosInstance = useAxiosInstance();
     const { data: assetList, isPending: isListLoading, refetch } = useQuery({
         queryKey: ['assetList', currentUserEmail, assetType, sorted, status, searchField],
@@ -87,7 +88,7 @@ const AssetList = () => {
                 <div>
                     <Box sx={{ minWidth: 120, marginTop: "8px", backgroundColor: "white" }}>
                         <FormControl fullWidth>
-                            <InputLabel id="demo-simple-select-label">Status</InputLabel>
+                            <InputLabel id="demo-simple-select-label">Stock Status</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label-status"
                                 id="demo-simple-select-status"
@@ -95,8 +96,8 @@ const AssetList = () => {
                                 label="status"
                                 onChange={handleStatusChange}
                             >
-                                <MenuItem value={"Pending"}>Pending</MenuItem>
-                                <MenuItem value={"Approved"}>Approved</MenuItem>
+                                <MenuItem value={"available"}>Available</MenuItem>
+                                <MenuItem value={"stockOut"}>Out-Of-Stock</MenuItem>
                             </Select>
                         </FormControl>
                     </Box>
@@ -149,11 +150,10 @@ const AssetList = () => {
             </div>
 
             <div>
-                <div className='w-full bg-[#05386B] py-3 px-3 h-fit mt-4 rounded-tr-md rounded-tl-md grid grid-cols-12'>
+                <div className='w-full bg-[#05386B] py-3 px-3 h-fit mt-4 rounded-tr-md rounded-tl-md grid grid-cols-10 justify-center items-center'>
                     <h2 className='text-white text-center font-semibold col-span-2'>NAME</h2>
                     <h2 className='text-white text-center font-semibold col-span-2'>TYPE</h2>
                     <h3 className='text-white text-center font-semibold col-span-1'>QUANTITY</h3>
-                    <h3 className='text-white text-center font-semibold col-span-2'>STATUS</h3>
                     <h3 className='text-white text-center font-semibold col-span-3'>ADDED DATE</h3>
                     <h3 className='text-white text-center font-semibold col-span-1'>UPDATE</h3>
                     <h3 className='text-white text-center font-semibold col-span-1'>DELETE</h3>
@@ -163,11 +163,10 @@ const AssetList = () => {
             <div>
                 {
                     assetList?.map(asset =>
-                        <div className='w-full bg-[#05386B] border-2 border-[#05386B] bg-transparent border-collapse text-[#05386B] py-3 px-3 h-fit grid grid-cols-12'>
+                        <div className='w-full bg-[#05386B] border-2 border-[#05386B] bg-transparent border-collapse text-[#05386B] py-3 px-3 h-fit grid grid-cols-10 justify-center items-center'>
                             <h2 className='text-[#05386B] text-center font-semibold col-span-2'>{asset?.productName}</h2>
                             <h2 className='text-[#05386B] text-center font-semibold col-span-2'>{asset?.productType}</h2>
                             <h3 className='text-[#05386B] text-center font-semibold col-span-1'>{asset?.productQuantity}</h3>
-                            <h3 className='text-[#05386B] text-center font-semibold col-span-2'>{asset?.status}</h3>
                             <h3 className='text-[#05386B] text-center font-semibold col-span-3'>
                                 {new Date(asset?.dateAdded).toLocaleDateString('en-US', {
                                     month: 'long',
@@ -175,8 +174,8 @@ const AssetList = () => {
                                     year: 'numeric'
                                 })}
                             </h3>
-                            <Link to={`/updateAsset/${asset._id}`}>
-                                <button className='text-[#05386B] text-center font-semibold col-span-1'>
+                            <Link className='flex justify-center items-center' to={`/updateAsset/${asset._id}`}>
+                                <button className='text-[#05386B] flex justify-center items-center text-center font-semibold'>
                                     < BorderColorIcon />
                                 </button>
                             </Link>

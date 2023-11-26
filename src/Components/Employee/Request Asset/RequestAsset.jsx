@@ -117,7 +117,7 @@ const RequestAsset = () => {
                             }
                         })
                 }
-                
+
                 toast.success("Made an Asset Request Succesfully");
             })
     }
@@ -140,7 +140,7 @@ const RequestAsset = () => {
                     <div>
                         <Box sx={{ minWidth: 120, marginTop: "8px", backgroundColor: "white" }}>
                             <FormControl fullWidth>
-                                <InputLabel id="demo-simple-select-label">Status</InputLabel>
+                                <InputLabel id="demo-simple-select-label">Availability</InputLabel>
                                 <Select
                                     labelId="demo-simple-select-label-status"
                                     id="demo-simple-select-status"
@@ -148,8 +148,8 @@ const RequestAsset = () => {
                                     label="status"
                                     onChange={handleStatusChange}
                                 >
-                                    <MenuItem value={"Pending"}>Pending</MenuItem>
-                                    <MenuItem value={"Approved"}>Approved</MenuItem>
+                                    <MenuItem value={"available"}>Available</MenuItem>
+                                    <MenuItem value={"stockOut"}>Out-Of-Stock</MenuItem>
                                 </Select>
                             </FormControl>
                         </Box>
@@ -182,11 +182,10 @@ const RequestAsset = () => {
                         <h2 className='text-3xl font-bold text-[#05386B]'>All Assets Available to your Team:</h2>
                     </div>
                     <div>
-                        <div className='w-full bg-[#05386B] py-3 px-3 h-fit mt-4 rounded-tr-md rounded-tl-md grid grid-cols-12'>
+                        <div className='w-full bg-[#05386B] justify-center items-center py-3 px-3 h-fit mt-4 rounded-tr-md rounded-tl-md grid grid-cols-12'>
                             <h2 className='text-white text-center font-semibold col-span-1'>#SL</h2>
                             <h2 className='text-white text-center font-semibold col-span-3'>NAME</h2>
-                            <h2 className='text-white text-center font-semibold col-span-2'>TYPE</h2>
-                            <h2 className='text-white text-center font-semibold col-span-2'>STATUS</h2>
+                            <h2 className='text-white text-center font-semibold col-span-3'>TYPE</h2>
                             <h3 className='text-white text-center font-semibold col-span-2'>Availibility</h3>
                             <h3 className='text-white text-center font-semibold col-span-2'>Request</h3>
                         </div>
@@ -201,13 +200,12 @@ const RequestAsset = () => {
                             <div>
                                 {
                                     assetData?.map((asset, index) =>
-                                        <div className='w-full bg-[#05386B] border-2 border-[#05386B] bg-transparent border-collapse text-[#05386B] py-3 px-3 h-fit grid grid-cols-12'>
+                                        <div className='w-full bg-[#05386B] border-2 border-[#05386B] bg-transparent border-collapse justify-center items-center text-[#05386B] py-3 px-3 h-fit grid grid-cols-12'>
                                             <h2 className='text-[#05386B] text-xl text-center font-semibold col-span-1'>#{index + 1}</h2>
 
                                             <h3 className='text-[#05386B] text-xl text-center font-semibold col-span-3'>{asset?.productName}</h3>
 
-                                            <h3 className='text-[#05386B] text-xl text-center font-semibold col-span-2'>{asset?.productType}</h3>
-                                            <h3 className='text-[#05386B] text-xl text-center font-semibold col-span-2'>{asset?.status}</h3>
+                                            <h3 className='text-[#05386B] text-xl text-center font-semibold col-span-3'>{asset?.productType}</h3>
                                             <h3 className='text-[#05386B] text-xl text-center font-semibold col-span-2'>
                                                 {asset?.productQuantity > 0 ? 'Available' : 'Unavailable'}
                                             </h3>
