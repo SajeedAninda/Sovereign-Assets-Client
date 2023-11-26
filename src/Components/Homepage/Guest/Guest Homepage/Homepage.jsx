@@ -16,7 +16,7 @@ const Homepage = () => {
     return (
         <div>
             {
-                !loggedInUser &&
+                !userData &&
                 <div>
                     <GuestBanner></GuestBanner>
                     <GuestAbout></GuestAbout>

@@ -27,7 +27,7 @@ const Navbar = () => {
 
                 {/* CONDITIONAL LOGOS */}
                 {
-                    !loggedInUser &&
+                    !userData &&
                     <div className='logo'>
                         <img src={siteLogo} className='w-[95px]' alt="" />
                     </div>
@@ -57,7 +57,7 @@ const Navbar = () => {
 
                 {/* CONDITIONAL LINKS  */}
                 {
-                    !loggedInUser &&
+                    !userData &&
                     <div className='flex gap-6 justify-between items-center'>
                         <NavLink
                             to={"/"}
