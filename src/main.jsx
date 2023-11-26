@@ -32,6 +32,7 @@ import MyAsset from './Components/Employee/My Asset/MyAsset.jsx';
 import MyTeam from './Components/Employee/My Team/MyTeam.jsx';
 import CustomAsset from './Components/Employee/Custom Asset Request/CustomAsset.jsx';
 import CustomRequestsAdmin from './Components/Admin/Custom Requests Admin/CustomRequestsAdmin.jsx';
+import Profile from './Components/Pages/Profile/Profile.jsx';
 
 
 const queryClient = new QueryClient()
@@ -102,6 +103,10 @@ const router = createBrowserRouter([
       {
         path: "/customRequests",
         element: <CustomRequestsAdmin></CustomRequestsAdmin>
+      },
+      {
+        path: "/profile",
+        element: <Profile></Profile>
       },
     ],
   },

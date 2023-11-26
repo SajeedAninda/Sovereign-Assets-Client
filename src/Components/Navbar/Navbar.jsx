@@ -147,6 +147,16 @@ const Navbar = () => {
                         >
                             Custom Asset Request
                         </NavLink>
+
+                        <NavLink
+                            to={"/profile"}
+                            className={({ isActive, isPending }) =>
+                                isPending ? "pending" : isActive ? "text-lg font-bold text-[#05386B] hover:text-[#379683] border-b-2 border-[#05386B]" : "text-lg font-bold text-[#05386B] hover:text-[#379683]"
+                            }
+                        >
+                            Profile
+                        </NavLink>
+
                         <div className='flex justify-center items-center gap-2'>
                             <div>
                                 <img className='w-[40px] rounded-full' src={loggedInUser?.photoURL} alt="" />
@@ -232,6 +242,15 @@ const Navbar = () => {
                             }
                         >
                             Custom Requests
+                        </NavLink>
+
+                        <NavLink
+                            to={"/profile"}
+                            className={({ isActive, isPending }) =>
+                                isPending ? "pending" : isActive ? "text-lg font-bold text-[#05386B] hover:text-[#379683] border-b-2 border-[#05386B]" : "text-lg font-bold text-[#05386B] hover:text-[#379683]"
+                            }
+                        >
+                            Profile
                         </NavLink>
 
                         <div className='flex justify-center items-center gap-2'>
