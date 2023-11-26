@@ -30,6 +30,7 @@ import RequestAsset from './Components/Employee/Request Asset/RequestAsset.jsx';
 import AllRequests from './Components/Admin/All Requests/AllRequests.jsx';
 import MyAsset from './Components/Employee/My Asset/MyAsset.jsx';
 import MyTeam from './Components/Employee/My Team/MyTeam.jsx';
+import CustomAsset from './Components/Employee/Custom Asset Request/CustomAsset.jsx';
 
 
 const queryClient = new QueryClient()
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
         path: "/myTeam",
         element: <MyTeam></MyTeam>
       },
+      {
+        path: "/requestCustomAsset",
+        element: <CustomAsset></CustomAsset>
+      },
     ],
   },
   {
@@ -103,6 +108,7 @@ const router = createBrowserRouter([
     path: "/upgradePackage",
     element: <UpgradePackage></UpgradePackage>
   },
+  
 
 
 ]);
