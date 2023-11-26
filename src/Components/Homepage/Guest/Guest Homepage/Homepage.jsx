@@ -4,8 +4,9 @@ import GuestAbout from '../Guest About/GuestAbout';
 import Packages from '../Packages/Packages';
 import useAuth from '../../../Hooks/useAuth';
 import useCurrentUserData from '../../../Hooks/useCurrentUserData';
-import EmployeeBanner from '../../Employee/EmployeeBanner';
 import AdminBanner from '../../Admin/AdminBanner';
+import EmployeeCustomRequests from '../../Employee/EmployeeCustomRequests';
+import EmployeeBanner from '../../Employee/EmployeeBanner';
 
 
 const Homepage = () => {
@@ -25,6 +26,7 @@ const Homepage = () => {
             {
                 (loggedInUser && userData?.role === "employee") &&
                 <div>
+                    <EmployeeCustomRequests></EmployeeCustomRequests>
                     <EmployeeBanner></EmployeeBanner>
                 </div>
             }

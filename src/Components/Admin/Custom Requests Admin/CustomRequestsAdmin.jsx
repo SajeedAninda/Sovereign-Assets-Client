@@ -66,9 +66,9 @@ const CustomRequestsAdmin = () => {
                     <div className='w-full bg-[#05386B] py-3 px-1 h-fit mt-4 rounded-tr-md rounded-tl-md grid grid-cols-12 justify-center items-center'>
                         <h2 className='text-white text-center font-semibold col-span-2'>ASSET NAME</h2>
                         <h2 className='text-white text-center font-semibold col-span-1'>ASSET PRICE</h2>
-                        <h3 className='text-white text-center font-semibold col-span-2'>ASSET TYPE</h3>
-                        <h3 className='text-white text-center font-semibold col-span-1'>ASSET IMAGE</h3>
-                        <h3 className='text-white text-center font-semibold col-span-2'>WHY NEEDED</h3>
+                        <h3 className='text-white text-center font-semibold col-span-1'>ASSET TYPE</h3>
+                        <h3 className='text-white text-center font-semibold col-span-2'>ASSET IMAGE</h3>
+                        <h3 className='text-white text-center font-semibold col-span-3'>WHY NEEDED</h3>
                         <h3 className='text-white text-center font-semibold col-span-2'>ADDITIONAL INFO</h3>
                         <h3 className='text-white text-center font-semibold col-span-1'>APPROVE</h3>
                         <h3 className='text-white text-center font-semibold col-span-1'>REJECT</h3>
@@ -87,11 +87,11 @@ const CustomRequestsAdmin = () => {
                                     <div className='w-full justify-center items-center bg-[#05386B] border-2 border-[#05386B] bg-transparent border-collapse text-[#05386B] py-3 px-3 h-fit grid grid-cols-12'>
                                         <h2 className='text-[#05386B] text-base text-center font-semibold col-span-2'>{requests?.assetName}</h2>
                                         <h2 className='text-[#05386B] text-base text-center font-semibold col-span-1'>{requests?.assetPrice}</h2>
-                                        <h2 className='text-[#05386B] text-base text-center font-semibold col-span-2'>{requests?.assetTypes}</h2>
+                                        <h2 className='text-[#05386B] text-base text-center font-semibold col-span-1'>{requests?.assetTypes}</h2>
                                         <div className='text-[#05386B] text-base text-center font-semibold col-span-1'>
                                             <img src={requests?.assetImage} alt="" />
                                         </div>
-                                        <h2 className='text-[#05386B] text-base text-center font-semibold col-span-2'>{requests?.whyNeed}</h2>
+                                        <h2 className='text-[#05386B] text-base text-center font-semibold col-span-3'>{requests?.whyNeed}</h2>
                                         <h2 className='text-[#05386B] text-base text-center font-semibold col-span-2'>{requests?.additionalInfo}</h2>
 
                                         <button
