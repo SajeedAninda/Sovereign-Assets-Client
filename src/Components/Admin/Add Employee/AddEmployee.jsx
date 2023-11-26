@@ -34,9 +34,13 @@ const AddEmployee = () => {
     let handleAddToTeam = (id) => {
         axiosInstance.patch(`/addToTeam/${id}`, { currentUserEmail })
             .then((res) => {
+                console.log(res.data)
                 if (res.data.modifiedCount > 0) {
                     refetch();
                     toast.success("User Added to the Team");
+                }
+                if (res.data ==="Not Enough Limit") {
+                    toast.error("Not Enough Limit");
                 }
             })
     }
