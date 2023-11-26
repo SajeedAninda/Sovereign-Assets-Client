@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 const GuestBanner = () => {
     return (
-        <div className='h-[90vh]'>
+        <div className='h-[80vh]'>
             <Swiper
                 slidesPerView={1}
                 spaceBetween={30}
