@@ -16,6 +16,7 @@ import LimitedStockItems from '../../Admin/Limited Stock Items/LimitedStockItems
 import PieChartSection from '../../Admin/PieChartSection';
 import HomepageEmployeeInfo from '../../Admin/HomepageEmployeeInfo';
 import AssetAllocation from '../../Admin/AssetAllocation';
+import EmployeeBanner from '../../Employee/EmployeeBanner';
 
 
 const Homepage = () => {
@@ -42,6 +43,7 @@ const Homepage = () => {
                             </div>
                             :
                             <div>
+                                <EmployeeBanner></EmployeeBanner>
                                 <EmployeeCustomRequests></EmployeeCustomRequests>
                                 <PendingRequests></PendingRequests>
                                 <MonthlyRequests></MonthlyRequests>
@@ -55,6 +57,7 @@ const Homepage = () => {
             {
                 (loggedInUser && userData?.role === "admin") &&
                 <div>
+                    <AdminBanner></AdminBanner>
                     <PendingAdminHomepage></PendingAdminHomepage>
                     <MostReqItemAdmin></MostReqItemAdmin>
                     <LimitedStockItems></LimitedStockItems>
