@@ -6,7 +6,8 @@ import useAuth from '../../../Hooks/useAuth';
 import useCurrentUserData from '../../../Hooks/useCurrentUserData';
 import AdminBanner from '../../Admin/AdminBanner';
 import EmployeeCustomRequests from '../../Employee/EmployeeCustomRequests';
-import EmployeeBanner from '../../Employee/EmployeeBanner';
+import PendingRequests from '../../Employee/PendingRequests';
+import MonthlyRequests from '../../Employee/MonthlyRequests';
 
 
 const Homepage = () => {
@@ -27,7 +28,8 @@ const Homepage = () => {
                 (loggedInUser && userData?.role === "employee") &&
                 <div>
                     <EmployeeCustomRequests></EmployeeCustomRequests>
-                    <EmployeeBanner></EmployeeBanner>
+                    <PendingRequests></PendingRequests>
+                    <MonthlyRequests></MonthlyRequests>
                 </div>
             }
             {
