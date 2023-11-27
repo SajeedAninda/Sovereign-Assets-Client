@@ -6,6 +6,7 @@ import useAuth from '../../Hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import useAxiosInstance from '../../Hooks/useAxiosInstance';
 import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
 
 const JoinAsEmployee = () => {
     let { signUp, googleLogin, profileUpdate } = useAuth();
@@ -80,6 +81,9 @@ const JoinAsEmployee = () => {
 
     return (
         <div className='h-fit'>
+            <Helmet>
+                <title>Join As Employee</title>
+            </Helmet>
             <div className='w-[85%] bg-[#5CDB95] mx-auto px-12 my-12 h-fit rounded-md shadow-xl'>
                 <div className='py-6'>
                     <h1 className='text-white text-center font-bold text-4xl'>Join As An Employee</h1>

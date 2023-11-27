@@ -6,6 +6,7 @@ import useAuth from '../../Hooks/useAuth';
 import { Link } from 'react-router-dom';
 import Person3Icon from '@mui/icons-material/Person3';
 import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
 
 
 const AddEmployee = () => {
@@ -49,6 +50,9 @@ const AddEmployee = () => {
 
     return (
         <div className='mx-auto w-[85%] my-12 bg-[#5CDB95] shadow-2xl py-8 px-8'>
+            <Helmet>
+                <title>Admin | Add Employee</title>
+            </Helmet>
             <div className='border-b-2 border-[#05386B] pb-4'>
                 <h2 className='text-4xl text-[#05386B] text-center font-bold'>
                     Total Product Count: You have added {productCountData?.productCount} Assets

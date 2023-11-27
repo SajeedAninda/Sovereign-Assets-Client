@@ -7,6 +7,7 @@ import Person3Icon from '@mui/icons-material/Person3';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import toast from 'react-hot-toast';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const EmployeeList = () => {
     let axiosInstance = useAxiosInstance();
@@ -50,6 +51,9 @@ const EmployeeList = () => {
 
     return (
         <div className='mx-auto w-[85%] my-12 bg-[#5CDB95] shadow-2xl py-8 px-8'>
+            <Helmet>
+                <title>Admin | Employee List</title>
+            </Helmet>
             <div className='border-b-2 border-[#05386B] pb-8'>
                 <div className='flex justify-center items-center gap-20'>
                     <h2 className='text-4xl text-[#05386B] text-center font-bold'>

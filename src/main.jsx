@@ -36,6 +36,7 @@ import Profile from './Components/Pages/Profile/Profile.jsx';
 import EmployeeRoute from './Components/Pages/EmployeeRoute/EmployeeRoute.jsx';
 import AdminRoute from './Components/Pages/Admin Route/AdminRoute.jsx';
 import PrivateRoute from './Components/Pages/Private Route/PrivateRoute.jsx';
+import { HelmetProvider } from 'react-helmet-async';
 
 
 const queryClient = new QueryClient()
@@ -121,7 +122,7 @@ const router = createBrowserRouter([
     path: "/upgradePackage",
     element: <UpgradePackage></UpgradePackage>
   },
-  
+
 
 
 ]);
@@ -131,7 +132,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Toaster />
     <QueryClientProvider client={queryClient}>
       <AuthenticationProvider>
-        <RouterProvider router={router} />
+        <HelmetProvider>
+          <RouterProvider router={router} />
+        </HelmetProvider>
       </AuthenticationProvider>
     </QueryClientProvider>
   </React.StrictMode>,

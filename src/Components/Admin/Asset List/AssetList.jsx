@@ -14,6 +14,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Swal from 'sweetalert2';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const AssetList = () => {
     const [status, setStatus] = useState('');
@@ -79,6 +80,9 @@ const AssetList = () => {
 
     return (
         <div className='mx-auto w-[85%] my-12 bg-[#5CDB95] shadow-2xl py-8 px-8'>
+            <Helmet>
+                <title>Admin | Asset List</title>
+            </Helmet>
             <div>
                 <h1 className='text-4xl text-[#05386B] text-center font-bold'>Asset List</h1>
                 <p className='text-xl mt-2 w-[75%] mx-auto text-[#05386B] text-center font-bold'>Efficiently manage and track your assets with this user-friendly system, providing a detailed overview of your organizational resources</p>

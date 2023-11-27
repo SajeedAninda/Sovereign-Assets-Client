@@ -15,6 +15,7 @@ import Modal from '@mui/material/Modal'
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const RequestAsset = () => {
     const [searchField, setSearchField] = useState('');
@@ -128,6 +129,9 @@ const RequestAsset = () => {
 
     return (
         <div className='mx-auto w-[85%] my-12 bg-[#5CDB95] shadow-2xl py-8 px-8'>
+            <Helmet>
+                <title>Employee | Request Assets</title>
+            </Helmet>
             <div>
                 <div className='mt-3 relative'>
                     <input onChange={(event) => {

@@ -6,6 +6,7 @@ import useAuth from '../../Hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const AllRequests = () => {
     const [searchField, setSearchField] = useState('');
@@ -66,6 +67,9 @@ const AllRequests = () => {
 
     return (
         <div className='mx-auto w-[85%] my-12 bg-[#5CDB95] shadow-2xl py-8 px-8'>
+            <Helmet>
+                <title>Admin | All Requests</title>
+            </Helmet>
             <div className='mt-3 relative border-b-2 border-[#05386B] pb-8'>
                 <input onChange={(event) => {
                     setSearchField(event.target.value);

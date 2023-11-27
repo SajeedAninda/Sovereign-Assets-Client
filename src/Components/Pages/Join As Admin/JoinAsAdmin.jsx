@@ -8,6 +8,7 @@ import useAuth from '../../Hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import useAxiosInstance from '../../Hooks/useAxiosInstance';
+import { Helmet } from 'react-helmet';
 
 const JoinAsAdmin = () => {
     const [adminPackage, setAdminPackage] = useState('');
@@ -73,6 +74,9 @@ const JoinAsAdmin = () => {
 
     return (
         <div className='h-fit'>
+            <Helmet>
+                <title>Join As Admin</title>
+            </Helmet>
             <div className='w-[85%] bg-[#5CDB95] mx-auto px-12 my-12 h-fit rounded-md shadow-xl'>
                 <div className='py-6'>
                     <h1 className='text-white text-center font-bold text-4xl'>Join As An Admin/HR</h1>

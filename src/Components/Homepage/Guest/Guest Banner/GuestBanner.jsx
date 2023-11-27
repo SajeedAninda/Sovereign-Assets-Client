@@ -6,11 +6,15 @@ import 'swiper/css/navigation';
 import { Pagination, Navigation } from 'swiper/modules';
 import "./guestBanner.css"
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 
 const GuestBanner = () => {
     return (
         <div className='h-[80vh]'>
+            <Helmet>
+                <title>Sovereign Assets | Home</title>
+            </Helmet>
             <Swiper
                 slidesPerView={1}
                 spaceBetween={30}

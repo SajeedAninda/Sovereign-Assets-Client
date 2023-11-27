@@ -5,6 +5,7 @@ import useAuth from '../../Hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const CustomRequestsAdmin = () => {
 
@@ -57,6 +58,9 @@ const CustomRequestsAdmin = () => {
 
     return (
         <div className='mx-auto w-[85%] my-12 bg-[#5CDB95] shadow-2xl py-8 px-8'>
+            <Helmet>
+                <title>Admin | Custom Request</title>
+            </Helmet>
             <div>
                 <div>
                     <h1 className='text-3xl text-[#05386B] text-left font-bold'>All Custom Requests: </h1>

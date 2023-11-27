@@ -12,6 +12,7 @@ import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
 import MyDocument from './MyDocument';
+import { Helmet } from 'react-helmet-async';
 
 const MyAsset = () => {
     const [searchField, setSearchField] = useState('');
@@ -67,6 +68,9 @@ const MyAsset = () => {
 
     return (
         <div className='mx-auto w-[85%] my-12 bg-[#5CDB95] shadow-2xl py-8 px-8'>
+            <Helmet>
+                <title>Employee | My Assets</title>
+            </Helmet>
             <div className='pb-6 border-b-2 border-[#05386B]'>
                 <div className='mt-3 relative'>
                     <input onChange={(event) => {

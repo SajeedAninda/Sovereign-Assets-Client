@@ -9,6 +9,7 @@ import Lottie from 'lottie-react';
 import useAxiosInstance from '../../Hooks/useAxiosInstance';
 import useCurrentUserData from '../../Hooks/useCurrentUserData';
 import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
 
 const AddAsset = () => {
     const [assetType, setAssetType] = useState('');
@@ -50,6 +51,9 @@ const AddAsset = () => {
 
     return (
         <div className='mx-auto w-[85%] my-12 bg-[#5CDB95] shadow-2xl py-8 px-8'>
+            <Helmet>
+                <title>Admin | Add Asset</title>
+            </Helmet>
             <h1 className='text-4xl text-[#05386B] text-center font-bold'>
                 Add an Asset
             </h1>

@@ -6,6 +6,7 @@ import useCurrentUserData from '../../Hooks/useCurrentUserData';
 import useAuth from '../../Hooks/useAuth';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const Profile = () => {
     let axiosInstance = useAxiosInstance();
@@ -56,6 +57,9 @@ const Profile = () => {
 
     return (
         <div className='w-[85%] bg-[#5CDB95] mx-auto px-12 my-12 h-fit rounded-md shadow-xl'>
+            <Helmet>
+                <title>Profile</title>
+            </Helmet>
             <div className='py-6'>
                 <h1 className='text-[#05386B] text-center font-bold text-4xl'>Profile Information</h1>
                 <p className='text-[#05386B] text-center font-bold text-lg mt-1'>

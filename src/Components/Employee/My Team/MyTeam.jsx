@@ -5,6 +5,7 @@ import useAuth from '../../Hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import Person3Icon from '@mui/icons-material/Person3';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import { Helmet } from 'react-helmet-async';
 
 const MyTeam = () => {
     let axiosInstance = useAxiosInstance();
@@ -32,6 +33,9 @@ const MyTeam = () => {
 
     return (
         <div className='mx-auto w-[85%] my-12 bg-[#5CDB95] shadow-2xl py-8 px-8'>
+            <Helmet>
+                <title>Employee | My Team</title>
+            </Helmet>
             <div>
                 <h1 className='text-3xl pb-2 text-[#05386B] text-left font-bold'>Upcoming Events:</h1>
                 {upcomingBirthdays?.length === 0 ? (

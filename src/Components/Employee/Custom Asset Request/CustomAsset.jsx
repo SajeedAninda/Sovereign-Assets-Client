@@ -4,6 +4,7 @@ import useAxiosInstance from '../../Hooks/useAxiosInstance';
 import useCurrentUserData from '../../Hooks/useCurrentUserData';
 import useAuth from '../../Hooks/useAuth';
 import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
 
 const CustomAsset = () => {
     const [assetType, setAssetType] = useState('');
@@ -53,6 +54,9 @@ const CustomAsset = () => {
 
     return (
         <div className='mx-auto w-[85%] my-12 bg-[#5CDB95] shadow-2xl py-8 px-8'>
+            <Helmet>
+                <title>Employee | Custom Requests</title>
+            </Helmet>
             <div className='py-3'>
                 <h1 className='text-[#05386B] mb-2 text-center font-bold text-4xl'>Make a Custom Request</h1>
                 <p className='text-[#05386B] text-center font-bold text-lg mt-1'>If you can't find the asset you need, Ask it for yourself through a Custom Request</p>
