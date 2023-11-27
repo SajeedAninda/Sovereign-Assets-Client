@@ -12,6 +12,7 @@ import NoTeam from '../../Employee/NoTeam';
 import PendingAdminHomepage from '../../Admin/Pending Requests Admin Homepage/PendingAdminHomepage';
 import MostReqItemAdmin from '../../Admin/MostReqItemAdmin';
 import MostReqItemEmployee from '../../Employee/MostReqItemEmployee';
+import LimitedStockItems from '../../Admin/Limited Stock Items/LimitedStockItems';
 
 
 const Homepage = () => {
@@ -53,6 +54,7 @@ const Homepage = () => {
                 <div>
                     <PendingAdminHomepage></PendingAdminHomepage>
                     <MostReqItemAdmin></MostReqItemAdmin>
+                    <LimitedStockItems></LimitedStockItems>
                 </div>
             }
         </div>
