@@ -35,6 +35,7 @@ import CustomRequestsAdmin from './Components/Admin/Custom Requests Admin/Custom
 import Profile from './Components/Pages/Profile/Profile.jsx';
 import EmployeeRoute from './Components/Pages/EmployeeRoute/EmployeeRoute.jsx';
 import AdminRoute from './Components/Pages/Admin Route/AdminRoute.jsx';
+import PrivateRoute from './Components/Pages/Private Route/PrivateRoute.jsx';
 
 
 const queryClient = new QueryClient()
@@ -108,7 +109,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <Profile></Profile>
+        element: <PrivateRoute><Profile></Profile></PrivateRoute>
       },
     ],
   },
