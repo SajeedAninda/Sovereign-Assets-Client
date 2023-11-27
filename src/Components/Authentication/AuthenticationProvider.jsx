@@ -25,6 +25,7 @@ const AuthenticationProvider = ({ children }) => {
         return signOut(auth)
     }
     let profileUpdate = (fullName,photoUrl) => {
+        setLoading(true);
         return updateProfile(auth.currentUser, {
             displayName: fullName, photoURL: photoUrl
         })

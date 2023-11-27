@@ -8,7 +8,7 @@ const useCurrentUserData = () => {
     let currentUserEmail = loggedInUser?.email;
 
     let axiosInstance = useAxiosInstance();
-    const { data: userData, isPending: isUserLoading } = useQuery({
+    const { data: userData, isLoading:isUserLoading } = useQuery({
         queryKey: ['userData', currentUserEmail],
         queryFn: async () => {
             const response = await axiosInstance.get(`/userData/${currentUserEmail}`);

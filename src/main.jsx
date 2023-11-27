@@ -33,6 +33,7 @@ import MyTeam from './Components/Employee/My Team/MyTeam.jsx';
 import CustomAsset from './Components/Employee/Custom Asset Request/CustomAsset.jsx';
 import CustomRequestsAdmin from './Components/Admin/Custom Requests Admin/CustomRequestsAdmin.jsx';
 import Profile from './Components/Pages/Profile/Profile.jsx';
+import EmployeeRoute from './Components/Pages/EmployeeRoute/EmployeeRoute.jsx';
 
 
 const queryClient = new QueryClient()
@@ -82,7 +83,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/requestAsset",
-        element: <RequestAsset></RequestAsset>
+        element: <EmployeeRoute><RequestAsset></RequestAsset></EmployeeRoute>
       },
       {
         path: "/allRequests",
@@ -90,15 +91,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/myAssets",
-        element: <MyAsset></MyAsset>
+        element: <EmployeeRoute><MyAsset></MyAsset></EmployeeRoute>
       },
       {
         path: "/myTeam",
-        element: <MyTeam></MyTeam>
+        element: <EmployeeRoute><MyTeam></MyTeam></EmployeeRoute>
       },
       {
         path: "/requestCustomAsset",
-        element: <CustomAsset></CustomAsset>
+        element: <EmployeeRoute><CustomAsset></CustomAsset></EmployeeRoute>
       },
       {
         path: "/customRequests",
