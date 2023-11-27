@@ -14,6 +14,7 @@ import MostReqItemAdmin from '../../Admin/MostReqItemAdmin';
 import MostReqItemEmployee from '../../Employee/MostReqItemEmployee';
 import LimitedStockItems from '../../Admin/Limited Stock Items/LimitedStockItems';
 import PieChartSection from '../../Admin/PieChartSection';
+import HomepageEmployeeInfo from '../../Admin/HomepageEmployeeInfo';
 
 
 const Homepage = () => {
@@ -57,6 +58,7 @@ const Homepage = () => {
                     <MostReqItemAdmin></MostReqItemAdmin>
                     <LimitedStockItems></LimitedStockItems>
                     <PieChartSection></PieChartSection>
+                    <HomepageEmployeeInfo></HomepageEmployeeInfo>
                 </div>
             }
         </div>

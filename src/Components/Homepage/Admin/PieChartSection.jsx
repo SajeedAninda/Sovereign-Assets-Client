@@ -19,7 +19,7 @@ const PieChartSection = () => {
         },
         enabled: !!currentUserEmail,
     })
-    console.log(getPercentage)
+    // console.log(getPercentage)
     let { returnablePercentage, nonReturnablePercentage } = getPercentage;
 
 
