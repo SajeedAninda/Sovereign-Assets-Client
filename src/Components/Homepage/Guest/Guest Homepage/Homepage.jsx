@@ -9,6 +9,7 @@ import EmployeeCustomRequests from '../../Employee/EmployeeCustomRequests';
 import PendingRequests from '../../Employee/PendingRequests';
 import MonthlyRequests from '../../Employee/MonthlyRequests';
 import NoTeam from '../../Employee/NoTeam';
+import PendingAdminHomepage from '../../Admin/Pending Requests Admin Homepage/PendingAdminHomepage';
 
 
 const Homepage = () => {
@@ -47,7 +48,7 @@ const Homepage = () => {
             {
                 (loggedInUser && userData?.role === "admin") &&
                 <div>
-                    <AdminBanner></AdminBanner>
+                    <PendingAdminHomepage></PendingAdminHomepage>
                 </div>
             }
         </div>
