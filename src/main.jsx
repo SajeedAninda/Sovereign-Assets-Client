@@ -34,6 +34,7 @@ import CustomAsset from './Components/Employee/Custom Asset Request/CustomAsset.
 import CustomRequestsAdmin from './Components/Admin/Custom Requests Admin/CustomRequestsAdmin.jsx';
 import Profile from './Components/Pages/Profile/Profile.jsx';
 import EmployeeRoute from './Components/Pages/EmployeeRoute/EmployeeRoute.jsx';
+import AdminRoute from './Components/Pages/Admin Route/AdminRoute.jsx';
 
 
 const queryClient = new QueryClient()
@@ -62,11 +63,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/addAsset",
-        element: <AddAsset></AddAsset>
+        element: <AdminRoute><AddAsset></AddAsset></AdminRoute>
       },
       {
         path: "/assetList",
-        element: <AssetList></AssetList>
+        element: <AdminRoute><AssetList></AssetList></AdminRoute>
       },
       {
         path: "/updateAsset/:id",
@@ -75,11 +76,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/addEmployee",
-        element: <AddEmployee></AddEmployee>
+        element: <AdminRoute><AddEmployee></AddEmployee></AdminRoute>
       },
       {
         path: "/employeeList",
-        element: <EmployeeList></EmployeeList>
+        element: <AdminRoute><EmployeeList></EmployeeList></AdminRoute>
       },
       {
         path: "/requestAsset",
@@ -87,7 +88,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/allRequests",
-        element: <AllRequests></AllRequests>
+        element: <AdminRoute><AllRequests></AllRequests></AdminRoute>
       },
       {
         path: "/myAssets",
@@ -103,7 +104,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/customRequests",
-        element: <CustomRequestsAdmin></CustomRequestsAdmin>
+        element: <AdminRoute><CustomRequestsAdmin></CustomRequestsAdmin></AdminRoute>
       },
       {
         path: "/profile",
