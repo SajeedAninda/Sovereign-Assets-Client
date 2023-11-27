@@ -15,6 +15,7 @@ import MostReqItemEmployee from '../../Employee/MostReqItemEmployee';
 import LimitedStockItems from '../../Admin/Limited Stock Items/LimitedStockItems';
 import PieChartSection from '../../Admin/PieChartSection';
 import HomepageEmployeeInfo from '../../Admin/HomepageEmployeeInfo';
+import AssetAllocation from '../../Admin/AssetAllocation';
 
 
 const Homepage = () => {
@@ -59,6 +60,7 @@ const Homepage = () => {
                     <LimitedStockItems></LimitedStockItems>
                     <PieChartSection></PieChartSection>
                     <HomepageEmployeeInfo></HomepageEmployeeInfo>
+                    <AssetAllocation></AssetAllocation>
                 </div>
             }
         </div>

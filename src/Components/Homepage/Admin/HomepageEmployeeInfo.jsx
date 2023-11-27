@@ -23,7 +23,7 @@ const HomepageEmployeeInfo = () => {
         },
         enabled: !!userData,
     })
-    console.log(homepageEmployee)
+    // console.log(homepageEmployee)
 
 
     return (
@@ -47,7 +47,7 @@ const HomepageEmployeeInfo = () => {
                         className="mySwiper"
                     >
                         {
-                            homepageEmployee.length>0?
+                            homepageEmployee?.length>0?
                             <div>
                             {
                                 homepageEmployee?.map(employee =>
