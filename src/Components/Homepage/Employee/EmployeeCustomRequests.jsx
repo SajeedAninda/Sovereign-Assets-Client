@@ -14,7 +14,7 @@ const EmployeeCustomRequests = () => {
     let { loggedInUser } = useAuth();
     let currentUserEmail = loggedInUser?.email;
     let [editable, setEditable] = useState(false);
-    const [selectedAssetType, setSelectedAssetType] = useState("");
+    const [selectedAssetType, setSelectedAssetType] = useState("Returnable");
 
 
     const [openAssets, setOpenAssets] = useState({});
@@ -83,7 +83,7 @@ const EmployeeCustomRequests = () => {
         <div>
             <h1 className='text-4xl font-bold text-[#05386B] text-center my-12'>My Custom Requests</h1>
 
-            <div className='grid grid-cols-2 gap-8 w-[85%] mx-auto'>
+            <div className='grid grid-cols-2 gap-8 w-[85%] mx-auto mb-12'>
                 {
                     myCustomRequests?.map(requests =>
                         <div class="w-full h-fit bg-transparent border-2 border-[#05386B] rounded-lg shadow">
