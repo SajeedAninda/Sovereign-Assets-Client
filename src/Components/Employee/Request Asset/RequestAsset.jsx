@@ -114,11 +114,13 @@ const RequestAsset = () => {
                         .then(res => {
                             if (res.data.modifiedCount > 0) {
                                 refetch();
+                                handleClose(id);
                             }
                         })
                 }
 
                 toast.success("Made an Asset Request Succesfully");
+                handleClose(id)
             })
     }
 

@@ -8,6 +8,7 @@ import AdminBanner from '../../Admin/AdminBanner';
 import EmployeeCustomRequests from '../../Employee/EmployeeCustomRequests';
 import PendingRequests from '../../Employee/PendingRequests';
 import MonthlyRequests from '../../Employee/MonthlyRequests';
+import NoTeam from '../../Employee/NoTeam';
 
 
 const Homepage = () => {
@@ -27,9 +28,20 @@ const Homepage = () => {
             {
                 (loggedInUser && userData?.role === "employee") &&
                 <div>
-                    <EmployeeCustomRequests></EmployeeCustomRequests>
-                    <PendingRequests></PendingRequests>
-                    <MonthlyRequests></MonthlyRequests>
+                    {
+                        userData?.companyName === "null" ?
+                            <div>
+                                <NoTeam></NoTeam>
+                            </div>
+                            :
+                            <div>
+                                <EmployeeCustomRequests></EmployeeCustomRequests>
+                                <PendingRequests></PendingRequests>
+                                <MonthlyRequests></MonthlyRequests>
+                            </div>
+                    }
+
+
                 </div>
             }
             {

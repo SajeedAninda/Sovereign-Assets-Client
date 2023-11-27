@@ -7,7 +7,7 @@ import useAuth from '../Hooks/useAuth';
 const Navbar = () => {
     let { loggedInUser, logOut } = useAuth();
     let [userData, isUserLoading] = useCurrentUserData();
-    let navigate=useNavigate()
+    let navigate = useNavigate()
 
     let handleLogout = () => {
         logOut()
@@ -112,41 +112,50 @@ const Navbar = () => {
                             Home
                         </NavLink>
 
-                        <NavLink
-                            to={"/myTeam"}
-                            className={({ isActive, isPending }) =>
-                                isPending ? "pending" : isActive ? "text-lg font-bold text-[#05386B] hover:text-[#379683] border-b-2 border-[#05386B]" : "text-lg font-bold text-[#05386B] hover:text-[#379683]"
-                            }
-                        >
-                            My Team
-                        </NavLink>
+                        {
+                            userData?.companyName !== "null" &&
+                            <NavLink
+                                to={"/myTeam"}
+                                className={({ isActive, isPending }) =>
+                                    isPending ? "pending" : isActive ? "text-lg font-bold text-[#05386B] hover:text-[#379683] border-b-2 border-[#05386B]" : "text-lg font-bold text-[#05386B] hover:text-[#379683]"
+                                }
+                            >
+                                My Team
+                            </NavLink>
+                        }
 
-                        <NavLink
-                            to={"/myAssets"}
-                            className={({ isActive, isPending }) =>
-                                isPending ? "pending" : isActive ? "text-lg font-bold text-[#05386B] hover:text-[#379683] border-b-2 border-[#05386B]" : "text-lg font-bold text-[#05386B] hover:text-[#379683]"
-                            }
-                        >
-                            My Assets
-                        </NavLink>
+                        {
+                            userData?.companyName !== "null" &&
+                            <NavLink
+                                to={"/myAssets"}
+                                className={({ isActive, isPending }) =>
+                                    isPending ? "pending" : isActive ? "text-lg font-bold text-[#05386B] hover:text-[#379683] border-b-2 border-[#05386B]" : "text-lg font-bold text-[#05386B] hover:text-[#379683]"
+                                }
+                            >
+                                My Assets
+                            </NavLink>}
 
-                        <NavLink
-                            to={"/requestAsset"}
-                            className={({ isActive, isPending }) =>
-                                isPending ? "pending" : isActive ? "text-lg font-bold text-[#05386B] hover:text-[#379683] border-b-2 border-[#05386B]" : "text-lg font-bold text-[#05386B] hover:text-[#379683]"
-                            }
-                        >
-                            Request Asset
-                        </NavLink>
+                        {
+                            userData?.companyName !== "null" &&
+                            <NavLink
+                                to={"/requestAsset"}
+                                className={({ isActive, isPending }) =>
+                                    isPending ? "pending" : isActive ? "text-lg font-bold text-[#05386B] hover:text-[#379683] border-b-2 border-[#05386B]" : "text-lg font-bold text-[#05386B] hover:text-[#379683]"
+                                }
+                            >
+                                Request Asset
+                            </NavLink>}
 
-                        <NavLink
+                        {
+                            userData?.companyName !== "null" &&
+                            <NavLink
                             to={"/requestCustomAsset"}
                             className={({ isActive, isPending }) =>
                                 isPending ? "pending" : isActive ? "text-lg font-bold text-[#05386B] hover:text-[#379683] border-b-2 border-[#05386B]" : "text-lg font-bold text-[#05386B] hover:text-[#379683]"
                             }
                         >
                             Custom Asset Request
-                        </NavLink>
+                        </NavLink>}
 
                         <NavLink
                             to={"/profile"}
