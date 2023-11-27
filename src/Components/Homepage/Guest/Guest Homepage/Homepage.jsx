@@ -10,6 +10,8 @@ import PendingRequests from '../../Employee/PendingRequests';
 import MonthlyRequests from '../../Employee/MonthlyRequests';
 import NoTeam from '../../Employee/NoTeam';
 import PendingAdminHomepage from '../../Admin/Pending Requests Admin Homepage/PendingAdminHomepage';
+import MostReqItemAdmin from '../../Admin/MostReqItemAdmin';
+import MostReqItemEmployee from '../../Employee/MostReqItemEmployee';
 
 
 const Homepage = () => {
@@ -39,6 +41,7 @@ const Homepage = () => {
                                 <EmployeeCustomRequests></EmployeeCustomRequests>
                                 <PendingRequests></PendingRequests>
                                 <MonthlyRequests></MonthlyRequests>
+                                <MostReqItemEmployee></MostReqItemEmployee>
                             </div>
                     }
 
@@ -49,6 +52,7 @@ const Homepage = () => {
                 (loggedInUser && userData?.role === "admin") &&
                 <div>
                     <PendingAdminHomepage></PendingAdminHomepage>
+                    <MostReqItemAdmin></MostReqItemAdmin>
                 </div>
             }
         </div>

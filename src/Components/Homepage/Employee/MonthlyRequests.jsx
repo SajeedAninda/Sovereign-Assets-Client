@@ -27,7 +27,7 @@ const MonthlyRequests = () => {
         return requestDate.getMonth() + 1 === currentMonth;
     });
 
-    console.log(requestsThisMonth)
+    // console.log(requestsThisMonth)
 
     return (
         <div className='bg-white h-fit'>
