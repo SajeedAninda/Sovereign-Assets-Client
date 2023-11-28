@@ -51,7 +51,7 @@ const MyDocument = ({ assetId }) => {
     let [asset, setAsset] = useState(null)
 
     useEffect(() => {
-        axios.get(`/getAssetDataPDF/${assetId}`)
+        axios.get(`http://localhost:5000/getAssetDataPDF/${assetId}`)
             .then(res => {
                 setAsset(res.data);
             })

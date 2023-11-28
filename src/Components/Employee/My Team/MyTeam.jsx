@@ -32,7 +32,7 @@ const MyTeam = () => {
 
 
     return (
-        <div className='mx-auto w-[85%] my-12 bg-[#5CDB95] shadow-2xl py-8 px-8'>
+        <div className='mx-auto w-[95%] md:w-[85%] my-12 bg-[#5CDB95] shadow-2xl py-8 px-8'>
             <Helmet>
                 <title>Employee | My Team</title>
             </Helmet>
@@ -59,23 +59,23 @@ const MyTeam = () => {
                             return (
                                 <div key={index}>
                                     <div className='w-full bg-[#05386B] justify-center items-center py-3 px-3 h-fit mt-4 rounded-tr-md rounded-tl-md grid grid-cols-12'>
-                                        <h2 className='text-white text-center font-semibold col-span-1'>SL</h2>
-                                        <h2 className='text-white text-center font-semibold col-span-3'>IMAGE</h2>
-                                        <h3 className='text-white text-center font-semibold col-span-4'>NAME</h3>
-                                        <h3 className='text-white text-center font-semibold col-span-2'>Date of Birth</h3>
-                                        <h3 className='text-white text-center font-semibold col-span-2'>Remaining Days</h3>
+                                        <h2 className='text-white text-[11px] md:text-lg text-center font-semibold col-span-1'>SL</h2>
+                                        <h2 className='text-white text-[11px] md:text-lg text-center font-semibold col-span-3'>IMAGE</h2>
+                                        <h3 className='text-white text-[11px] md:text-lg text-center font-semibold col-span-4'>NAME</h3>
+                                        <h3 className='text-white text-[11px] md:text-lg text-center font-semibold col-span-2'>Date of Birth</h3>
+                                        <h3 className='text-white text-center text-[11px] md:text-lg font-semibold col-span-2'>Remaining Days</h3>
                                     </div>
 
                                     <div className='w-full bg-[#05386B] border-2 border-[#05386B] bg-transparent border-collapse text-[#05386B] py-3 px-3 h-fit justify-center items-center grid grid-cols-12'>
-                                        <h2 className='text-[#05386B] text-xl text-center font-semibold col-span-1'>#{index + 1}</h2>
-                                        <div className='text-[#05386B] flex justify-center text-center font-semibold col-span-3'>
+                                        <h2 className='text-[#05386B] text-[11px] md:text-lg text-xl text-center font-semibold col-span-1'>#{index + 1}</h2>
+                                        <div className='text-[#05386B] text-[11px] md:text-lg flex justify-center text-center font-semibold col-span-3'>
                                             <img className='w-[40px] rounded-full' src={team?.image || team?.companyLogo} alt='' />
                                         </div>
-                                        <h3 className='text-[#05386B] text-xl text-center font-semibold col-span-4'>{team?.fullName}</h3>
-                                        <h3 className='text-[#05386B] text-xl text-center font-semibold col-span-2'>
+                                        <h3 className='text-[#05386B] text-[11px] md:text-lg text-xl text-center font-semibold col-span-4'>{team?.fullName}</h3>
+                                        <h3 className='text-[#05386B] text-[11px] md:text-lg text-xl text-center font-semibold col-span-2'>
                                             {team?.date_of_birth}
                                         </h3>
-                                        <h3 className='text-[#05386B] text-xl text-center font-semibold col-span-2'>
+                                        <h3 className='text-[#05386B] text-[11px] md:text-lg text-xl text-center font-semibold col-span-2'>
                                             {birthdayPassed ? 'Birthday has passed' : `${daysUntilBirthday} days to go`}
                                         </h3>
                                     </div>

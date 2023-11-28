@@ -14,17 +14,17 @@ const EmployeeCustomRequests = () => {
     let { loggedInUser } = useAuth();
     let currentUserEmail = loggedInUser?.email;
     let [editable, setEditable] = useState(false);
-    const [selectedAssetType, setSelectedAssetType] = useState("Returnable");
-    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-    const [openAssets, setOpenAssets] = useState({});
+    let [selectedAssetType, setSelectedAssetType] = useState("Returnable");
+    let [screenWidth, setScreenWidth] = useState(window.innerWidth);
+    let [openAssets, setOpenAssets] = useState({});
 
-    const handleOpen = (assetId) => {
+    let handleOpen = (assetId) => {
         setOpenAssets((prevOpenAssets) => ({
             ...prevOpenAssets,
             [assetId]: true,
         }));
     };
-    const handleClose = (assetId) => {
+    let handleClose = (assetId) => {
         setOpenAssets((prevOpenAssets) => ({
             ...prevOpenAssets,
             [assetId]: false,
@@ -32,20 +32,18 @@ const EmployeeCustomRequests = () => {
     };
 
     useEffect(() => {
-        const handleResize = () => {
+        let handleResize = () => {
           setScreenWidth(window.innerWidth);
         };
       
         window.addEventListener('resize', handleResize);
-      
-        // Remove the event listener when the component is unmounted
         return () => {
           window.removeEventListener('resize', handleResize);
         };
       }, []);
       
 
-      const style = {
+      let style = {
         position: 'absolute',
         top: '50%',
         left: '50%',
@@ -60,10 +58,10 @@ const EmployeeCustomRequests = () => {
         p: 4,
       };
 
-    const { data: myCustomRequests, refetch } = useQuery({
+    let { data: myCustomRequests, refetch } = useQuery({
         queryKey: ['myCustomRequests', currentUserEmail],
         queryFn: async () => {
-            const response = await axiosInstance.get(`/getMyCustomRequests/${currentUserEmail}`);
+            let response = await axiosInstance.get(`/getMyCustomRequests/${currentUserEmail}`);
             return response.data;
         },
         enabled: !!currentUserEmail,
@@ -71,7 +69,7 @@ const EmployeeCustomRequests = () => {
 
     let handleSubmit = (id, e) => {
         e.preventDefault();
-        const form = e.currentTarget;
+        let form = e.currentTarget;
         let assetName = form.querySelector('[name="assetName"]').value;
         let assetPrice = parseInt(form.querySelector('[name="assetPrice"]').value);
         let assetImage = form.querySelector('[name="assetImage"]').value;

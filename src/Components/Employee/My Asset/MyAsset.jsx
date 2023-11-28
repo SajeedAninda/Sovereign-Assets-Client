@@ -67,7 +67,7 @@ const MyAsset = () => {
 
 
     return (
-        <div className='mx-auto w-[85%] my-12 bg-[#5CDB95] shadow-2xl py-8 px-8'>
+        <div className='mx-auto w-full lg:w-[85%] my-12 bg-[#5CDB95] shadow-2xl py-8 px-0 lg:px-8'>
             <Helmet>
                 <title>Employee | My Assets</title>
             </Helmet>
@@ -126,12 +126,12 @@ const MyAsset = () => {
                 </div>
                 <div>
                     <div className='w-full bg-[#05386B] py-3 px-3 h-fit mt-4 rounded-tr-md rounded-tl-md grid grid-cols-12'>
-                        <h2 className='text-white text-center font-semibold col-span-2'>ASSET NAME</h2>
-                        <h2 className='text-white text-center font-semibold col-span-2'>ASSET TYPE</h2>
-                        <h2 className='text-white text-center font-semibold col-span-2'>REQUEST DATE</h2>
-                        <h2 className='text-white text-center font-semibold col-span-2'>APPROVAL DATE</h2>
-                        <h3 className='text-white text-center font-semibold col-span-2'>REQUEST STATUS</h3>
-                        <h3 className='text-white text-center font-semibold col-span-2'>ACTION</h3>
+                        <h2 className='text-white text-[10px] md:text-[13px] lg:text-base xl:text-lg text-center font-semibold col-span-2'>ASSET NAME</h2>
+                        <h2 className='text-white text-[10px] md:text-[13px] lg:text-base xl:text-lg text-center font-semibold col-span-2'>ASSET TYPE</h2>
+                        <h2 className='text-white text-[10px] md:text-[13px] lg:text-base xl:text-lg text-center font-semibold col-span-2'>REQUEST DATE</h2>
+                        <h2 className='text-white text-[10px] md:text-[13px] lg:text-base xl:text-lg text-center font-semibold col-span-2'>APPROVAL DATE</h2>
+                        <h3 className='text-white text-[10px] md:text-[13px] lg:text-base xl:text-lg text-center font-semibold col-span-2'>REQUEST STATUS</h3>
+                        <h3 className='text-white text-[10px] md:text-[13px] lg:text-base xl:text-lg text-center font-semibold col-span-2'>ACTION</h3>
                     </div>
                 </div>
             </div>
@@ -146,16 +146,16 @@ const MyAsset = () => {
                         {
                             requestedData?.map((data, index) =>
                                 <div className='w-full bg-[#05386B] justify-center items-center border-2 border-[#05386B] bg-transparent border-collapse text-[#05386B] py-3 px-3 h-fit grid grid-cols-12'>
-                                    <h2 className='text-[#05386B] text-xl text-center font-semibold col-span-2'>{data?.assetName}</h2>
-                                    <h2 className='text-[#05386B] text-xl text-center font-semibold col-span-2'>{data?.assetType}</h2>
-                                    <h3 className='text-[#05386B] text-lg text-center font-semibold col-span-2'>
+                                    <h2 className='text-[#05386B] text-[10px] md:text-[13px] lg:text-base xl:text-lg text-xl text-center font-semibold col-span-2'>{data?.assetName}</h2>
+                                    <h2 className='text-[#05386B] text-[10px] md:text-[13px] lg:text-base xl:text-lg text-xl text-center font-semibold col-span-2'>{data?.assetType}</h2>
+                                    <h3 className='text-[#05386B] text-[10px] md:text-[13px] lg:text-base xl:text-lg text-lg text-center font-semibold col-span-2'>
                                         {new Date(data?.requestedDate).toLocaleDateString('en-US', {
                                             month: 'long',
                                             day: 'numeric',
                                             year: 'numeric'
                                         })}
                                     </h3>
-                                    <h3 className='text-[#05386B] text-lg text-center font-semibold col-span-2'>
+                                    <h3 className='text-[#05386B] text-[10px] md:text-[13px] lg:text-base xl:text-lg text-lg text-center font-semibold col-span-2'>
                                         {data?.approvalDate === "null"
                                             ? ""
                                             : new Date(data?.approvalDate).toLocaleDateString('en-US', {
@@ -166,14 +166,14 @@ const MyAsset = () => {
                                         }
                                     </h3>
 
-                                    <h2 className='text-[#05386B] text-xl text-center font-semibold col-span-2'>{data?.requestStatus}</h2>
+                                    <h2 className='text-[#05386B] text-[10px] md:text-[13px] lg:text-base xl:text-lg text-xl text-center font-semibold col-span-2'>{data?.requestStatus}</h2>
 
                                     {/* CONDITIONAL BUTTONS  */}
                                     {
                                         data?.requestStatus === "Pending" &&
                                         <button
                                             onClick={() => handleCancel(data?._id)}
-                                            className='text-white bg-[#05386B] py-3 rounded-md border border-[#05386B] hover:bg-transparent hover:text-[#05386B] hover:border hover:border-[#05386B] col-span-2'
+                                            className='text-white bg-[#05386B] text-[10px] md:text-[13px] lg:text-base xl:text-lg py-3 rounded-md border border-[#05386B] hover:bg-transparent hover:text-[#05386B] hover:border hover:border-[#05386B] col-span-2'
                                         >
                                             Cancel Request
                                         </button>
@@ -185,9 +185,9 @@ const MyAsset = () => {
                                             <PDFDownloadLink document={data?.assetId ? <MyDocument assetId={data.assetId} /> : null} fileName="AssetDetails.pdf">
                                                 {() => (
                                                     <button
-                                                        className='text-white bg-[#05386B] py-3 rounded-md border border-[#05386B] hover:bg-transparent hover:text-[#05386B] hover:border hover:border-[#05386B] w-full col-span-2'
+                                                        className='text-white text-[10px] md:text-[13px] lg:text-base xl:text-lg bg-[#05386B] py-3 rounded-md border border-[#05386B] hover:bg-transparent hover:text-[#05386B] hover:border hover:border-[#05386B] w-full col-span-2'
                                                     >
-                                                       Print
+                                                        Print
                                                     </button>
                                                 )}
                                             </PDFDownloadLink>
@@ -199,7 +199,7 @@ const MyAsset = () => {
                                         ((data?.requestStatus === "Approved" || data?.requestStatus === "Returned") && data?.assetType === "Returnable") &&
                                         <button
                                             onClick={() => handleReturn(data?._id, data?.assetId)}
-                                            className={`text-white bg-[#05386B] py-3 rounded-md border ${data?.requestStatus === "Returned" ? "bg-gray-300 text-gray-500 border-gray-500 cursor-not-allowed" : "border-[#05386B] hover:bg-transparent hover:text-[#05386B] hover:border hover:border-[#05386B]"} col-span-2`}
+                                            className={`text-white bg-[#05386B] text-[10px] md:text-[13px] lg:text-base xl:text-lg py-3 rounded-md border ${data?.requestStatus === "Returned" ? "bg-gray-300 text-gray-500 border-gray-500 cursor-not-allowed" : "border-[#05386B] hover:bg-transparent hover:text-[#05386B] hover:border hover:border-[#05386B]"} col-span-2`}
                                             disabled={data?.requestStatus === "Returned"}
                                         >
                                             Return

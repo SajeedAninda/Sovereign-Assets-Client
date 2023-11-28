@@ -18,33 +18,34 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
 const RequestAsset = () => {
-    const [searchField, setSearchField] = useState('');
-    const [status, setStatus] = useState('');
-    const [assetType, setAssetType] = useState('');
+    let [searchField, setSearchField] = useState('');
+    let [status, setStatus] = useState('');
+    let [assetType, setAssetType] = useState('');
+    let [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-    const [openAssets, setOpenAssets] = useState([]);
-    const [open, setOpen] = useState(false);
+    let [openAssets, setOpenAssets] = useState([]);
+    let [open, setOpen] = useState(false);
 
-    const [additionalInfo, setAdditionalInfo] = useState('');
+    let [additionalInfo, setAdditionalInfo] = useState('');
 
-    const handleOpen = (assetId) => {
+    let handleOpen = (assetId) => {
         setOpenAssets((prevOpenAssets) => ({
             ...prevOpenAssets,
             [assetId]: true,
         }));
     };
-    const handleClose = (assetId) => {
+    let handleClose = (assetId) => {
         setOpenAssets((prevOpenAssets) => ({
             ...prevOpenAssets,
             [assetId]: false,
         }));
     };
 
-    const handleStatusChange = (event) => {
+    let handleStatusChange = (event) => {
         setStatus(event.target.value);
     };
 
-    const handleAssetTypeChange = (event) => {
+    let handleAssetTypeChange = (event) => {
         setAssetType(event.target.value);
     };
 
@@ -53,16 +54,16 @@ const RequestAsset = () => {
     let [userData] = useCurrentUserData();
     let axiosInstance = useAxiosInstance();
 
-    const { data: assetData, refetch } = useQuery({
+    let { data: assetData, refetch } = useQuery({
         queryKey: ['assetData', userData, assetType, status, searchField],
         queryFn: async () => {
-            const response = await axiosInstance.get(`/getTeamAssets/${userData?.companyName}?productType=${assetType}&status=${status}&productName=${searchField}`);
+            let response = await axiosInstance.get(`/getTeamAssets/${userData?.companyName}?productType=${assetType}&status=${status}&productName=${searchField}`);
             return response.data;
         },
         enabled: !!userData,
     })
 
-    const style = {
+    let style = {
         position: 'absolute',
         top: '50%',
         left: '50%',
@@ -73,7 +74,7 @@ const RequestAsset = () => {
         boxShadow: 24,
         p: 4,
     };
-    const currentDate = new Date();
+    let currentDate = new Date();
 
     let handleRequest = (id) => {
         //GET INDIVIDUAL ASSET BASED ON ID
@@ -128,7 +129,7 @@ const RequestAsset = () => {
 
 
     return (
-        <div className='mx-auto w-[85%] my-12 bg-[#5CDB95] shadow-2xl py-8 px-8'>
+        <div className='mx-auto 2-[95%] md:w-[85%] my-12 bg-[#5CDB95] shadow-2xl py-8 px-2 md:px-8'>
             <Helmet>
                 <title>Employee | Request Assets</title>
             </Helmet>
@@ -188,12 +189,12 @@ const RequestAsset = () => {
                         <h2 className='text-3xl font-bold text-[#05386B]'>All Assets Available to your Team:</h2>
                     </div>
                     <div>
-                        <div className='w-full bg-[#05386B] justify-center items-center py-3 px-3 h-fit mt-4 rounded-tr-md rounded-tl-md grid grid-cols-12'>
-                            <h2 className='text-white text-center font-semibold col-span-1'>#SL</h2>
-                            <h2 className='text-white text-center font-semibold col-span-3'>NAME</h2>
-                            <h2 className='text-white text-center font-semibold col-span-3'>TYPE</h2>
-                            <h3 className='text-white text-center font-semibold col-span-2'>Availibility</h3>
-                            <h3 className='text-white text-center font-semibold col-span-2'>Request</h3>
+                        <div className='w-full bg-[#05386B] justify-center items-center py-3 px-3 h-fit mt-4 rounded-tr-md rounded-tl-md grid grid-cols-11'>
+                            <h2 className='text-white text-[12px] md:text-lg text-center font-semibold col-span-1'>#SL</h2>
+                            <h2 className='text-white text-[12px] md:text-lg text-center font-semibold col-span-3'>NAME</h2>
+                            <h2 className='text-white text-[12px] md:text-lg text-center font-semibold col-span-3'>TYPE</h2>
+                            <h3 className='text-white text-[12px] md:text-lg text-center font-semibold col-span-2'>Availibility</h3>
+                            <h3 className='text-white text-[12px] md:text-lg text-center font-semibold col-span-2'>Request</h3>
                         </div>
                     </div>
 
@@ -206,19 +207,19 @@ const RequestAsset = () => {
                             <div>
                                 {
                                     assetData?.map((asset, index) =>
-                                        <div className='w-full bg-[#05386B] border-2 border-[#05386B] bg-transparent border-collapse justify-center items-center text-[#05386B] py-3 px-3 h-fit grid grid-cols-12'>
-                                            <h2 className='text-[#05386B] text-xl text-center font-semibold col-span-1'>#{index + 1}</h2>
+                                        <div className='w-full bg-[#05386B] border-2 border-[#05386B] bg-transparent border-collapse justify-center items-center text-[#05386B] py-3 px-3 h-fit grid grid-cols-11'>
+                                            <h2 className='text-[#05386B] text-[12px] md:text-lg text-xl text-center font-semibold col-span-1'>#{index + 1}</h2>
 
-                                            <h3 className='text-[#05386B] text-xl text-center font-semibold col-span-3'>{asset?.productName}</h3>
+                                            <h3 className='text-[#05386B] text-[12px] md:text-lg text-xl text-center font-semibold col-span-3'>{asset?.productName}</h3>
 
-                                            <h3 className='text-[#05386B] text-xl text-center font-semibold col-span-3'>{asset?.productType}</h3>
-                                            <h3 className='text-[#05386B] text-xl text-center font-semibold col-span-2'>
+                                            <h3 className='text-[#05386B] text-[12px] md:text-lg text-xl text-center font-semibold col-span-3'>{asset?.productType}</h3>
+                                            <h3 className='text-[#05386B] text-[12px] md:text-lg text-xl text-center font-semibold col-span-2'>
                                                 {asset?.productQuantity > 0 ? 'Available' : 'Unavailable'}
                                             </h3>
                                             <button
                                                 onClick={() => handleOpen(asset._id)}
                                                 disabled={asset?.productQuantity === 0}
-                                                className={`border-[#05386B] py-1 border-2 hover:text-[#05386B] bg-[#05386B] text-center text-white rounded-md hover:bg-transparent hover:border-2 ${asset?.productQuantity === 0 ? 'cursor-not-allowed opacity-50' : 'hover:border-[#05386B]'
+                                                className={`border-[#05386B] text-[12px] md:text-lg py-1 border-2 hover:text-[#05386B] bg-[#05386B] text-center text-white rounded-md hover:bg-transparent hover:border-2 ${asset?.productQuantity === 0 ? 'cursor-not-allowed opacity-50' : 'hover:border-[#05386B]'
                                                     } font-semibold col-span-2`}
                                             >
                                                 Request
@@ -238,7 +239,7 @@ const RequestAsset = () => {
                                                             }} className="w-full border-2 px-2 py-2 border-[#05386B]" placeholder='Write Additional Notes' type="text" />
                                                         </Typography>
                                                         <div className='flex justify-center items-center mt-4'>
-                                                            <button onClick={() => handleRequest(asset._id)} className='border-[#05386B] mx-auto py-2 px-8 border-2 hover:text-[#05386B] bg-[#05386B] text-center text-white rounded-md hover:bg-transparent hover:border-2'>
+                                                            <button onClick={() => handleRequest(asset._id)} className='border-[#05386B] flex justify-center items-center mx-auto py-2 px-8 border-2 hover:text-[#05386B] bg-[#05386B] text-center text-white rounded-md hover:bg-transparent hover:border-2'>
                                                                 Request
                                                             </button>
                                                         </div>
