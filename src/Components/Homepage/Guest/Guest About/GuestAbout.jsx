@@ -6,10 +6,10 @@ const GuestAbout = () => {
     return (
         <section className="bg-[#05386B]">
             <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-                <h1 className='text-center text-white font-bold text-5xl pb-8'>About Us</h1>
-                <div className=' flex justify-center items-center gap-10'>
+                <h1 className='text-center text-white font-bold text-5xl pb-8 mt-12 lg:mt-0'>About Us</h1>
+                <div className=' flex flex-col lg:flex-row justify-center items-center gap-10'>
                     <div className="max-w-screen-lg flex-1 text-gray-500 sm:text-lg dark:text-gray-400">
-                        <h2 className="mb-4 text-4xl tracking-tight font-bold text-gray-900 dark:text-white">Energizing Asset Management for an extensive number of companies globally.</h2>
+                        <h2 className="mb-4 text-4xl tracking-tight font-bold text-white text-center lg:text-left ">Energizing Asset Management for an extensive number of companies globally.</h2>
                         <p className='mt-4'>Welcome to Sovereign Asset Solution, where innovation meets efficiency in asset and product management. Our cutting-edge web application is designed to revolutionize the way businesses oversee their resources, ensuring seamless operations and heightened productivity.</p>
 
                         <p className='mt-4'>With our web app, any company can effortlessly manage its assets and products by subscribing to our intuitive platform. Our primary focus is to simplify the task of HR/Admin professionals in monitoring how employees utilize company assets.</p>
@@ -17,7 +17,7 @@ const GuestAbout = () => {
                         <p className='mt-4'>At Sovereign Asset Solution, we are committed to providing businesses with a powerful tool that not only streamlines asset management but also enhances the overall organizational experience. Join us on this journey to transform the way you track and optimize your valuable resources.</p>
 
                     </div>
-                    <div className='w-[40%]'>
+                    <div className='w-fulllg:w-[40%]'>
                         <Lottie animationData={aboutLottie} loop={true} />
                     </div>
                 </div>
