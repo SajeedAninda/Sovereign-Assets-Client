@@ -34,7 +34,7 @@ const Navbar = () => {
 
     return (
         <div className='bg-[#5CDB95] '>
-            <div className='w-[95%] mx-auto h-fit py-5 flex justify-between items-center flex-wrap'>
+            <div className='w-[95%] mx-auto h-fit py-4 flex justify-between items-center flex-wrap'>
 
                 {/* CONDITIONAL LOGOS */}
                 {

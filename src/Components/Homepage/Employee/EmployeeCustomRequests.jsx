@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useAxiosInstance from '../../Hooks/useAxiosInstance';
 import useCurrentUserData from '../../Hooks/useCurrentUserData';
 import useAuth from '../../Hooks/useAuth';
@@ -15,8 +15,7 @@ const EmployeeCustomRequests = () => {
     let currentUserEmail = loggedInUser?.email;
     let [editable, setEditable] = useState(false);
     const [selectedAssetType, setSelectedAssetType] = useState("Returnable");
-
-
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     const [openAssets, setOpenAssets] = useState({});
 
     const handleOpen = (assetId) => {
@@ -32,17 +31,34 @@ const EmployeeCustomRequests = () => {
         }));
     };
 
-    const style = {
+    useEffect(() => {
+        const handleResize = () => {
+          setScreenWidth(window.innerWidth);
+        };
+      
+        window.addEventListener('resize', handleResize);
+      
+        // Remove the event listener when the component is unmounted
+        return () => {
+          window.removeEventListener('resize', handleResize);
+        };
+      }, []);
+      
+
+      const style = {
         position: 'absolute',
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 700,
+        width: screenWidth > 600 ? '700px' : '90%', 
+        maxWidth: '100%',
+        // maxHeight: '100vh', 
         bgcolor: 'background.paper',
         border: '8px solid #05386B',
+        overflowY: "scroll",
         boxShadow: 24,
         p: 4,
-    };
+      };
 
     const { data: myCustomRequests, refetch } = useQuery({
         queryKey: ['myCustomRequests', currentUserEmail],
@@ -83,7 +99,7 @@ const EmployeeCustomRequests = () => {
         <div>
             <h1 className='text-4xl font-bold text-[#05386B] text-center my-12'>My Custom Requests</h1>
 
-            <div className='grid grid-cols-2 gap-8 w-[85%] mx-auto mb-12'>
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 w-[85%] mx-auto mb-12'>
                 {
                     myCustomRequests?.map(requests =>
                         <div class="w-full h-fit bg-transparent border-2 border-[#05386B] rounded-lg shadow">
@@ -126,7 +142,7 @@ const EmployeeCustomRequests = () => {
                                                                 <input placeholder='Image Link' className='w-full border-2 border-[#05386B] rounded-md text-lg' defaultValue={requests?.assetImage} type="text" name='assetImage' />
                                                                 :
                                                                 (
-                                                                    <img className='w-full object-cover h-[200px]' src={requests?.assetImage} alt="" />
+                                                                    <img className='w-full hidden md:block object-cover md:h-[160px] lg:h-[200px]' src={requests?.assetImage} alt="" />
                                                                 )
                                                         }
                                                     </div>
