@@ -50,12 +50,12 @@ const EmployeeList = () => {
 
 
     return (
-        <div className='mx-auto w-[85%] my-12 bg-[#5CDB95] shadow-2xl py-8 px-8'>
+        <div className='mx-auto w-full lg:w-[85%] my-12 bg-[#5CDB95] shadow-2xl py-8 px-1 lg:px-8'>
             <Helmet>
                 <title>Admin | Employee List</title>
             </Helmet>
             <div className='border-b-2 border-[#05386B] pb-8'>
-                <div className='flex justify-center items-center gap-20'>
+                <div className='flex flex-col lg:flex-row justify-center items-center gap-20'>
                     <h2 className='text-4xl text-[#05386B] text-center font-bold'>
                         Team Name: {userData?.companyName}
                     </h2>
@@ -75,7 +75,7 @@ const EmployeeList = () => {
                 </h2>
 
                 <div>
-                    <div className='w-full bg-[#05386B] py-3 px-3 h-fit mt-4 rounded-tr-md rounded-tl-md grid grid-cols-12'>
+                    <div className='w-full bg-[#05386B] py-3 px-3 h-fit mt-4 rounded-tr-md rounded-tl-md grid grid-cols-12 justify-center items-center'>
                         <h2 className='text-white text-center font-semibold col-span-1'>SL</h2>
                         <h2 className='text-white text-center font-semibold col-span-3'>IMAGE</h2>
                         <h3 className='text-white text-center font-semibold col-span-4'>NAME</h3>
@@ -93,10 +93,10 @@ const EmployeeList = () => {
                         <div>
                             {
                                 teamEmployees?.map((employee, index) =>
-                                    <div className='w-full bg-[#05386B] border-2 border-[#05386B] bg-transparent border-collapse text-[#05386B] py-3 px-3 h-fit grid grid-cols-12'>
+                                    <div className='w-full bg-[#05386B] border-2 border-[#05386B] bg-transparent border-collapse text-[#05386B] py-3 px-3 h-fit grid grid-cols-12 justify-center items-center'>
                                         <h2 className='text-[#05386B] text-xl text-center font-semibold col-span-1'>#{index + 1}</h2>
-                                        <div className='text-[#05386B] flex justify-center text-center font-semibold col-span-3'>
-                                            <img className='w-[40px] rounded-full' src={employee?.image || employee?.companyLogo} alt="" />
+                                        <div className='text-[#05386B] flex justify-center items-center text-center font-semibold col-span-3'>
+                                            <img className='w-[30px] lg:w-[40px] rounded-full' src={employee?.image || employee?.companyLogo} alt="" />
                                         </div>
                                         <h3 className='text-[#05386B] text-xl text-center font-semibold col-span-4'>{employee?.fullName}</h3>
                                         <div className='text-[#05386B] text-center font-semibold col-span-2'>

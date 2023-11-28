@@ -62,7 +62,7 @@ const AddAsset = () => {
             </p>
 
             <div className='flex mt-2 justify-center items-center'>
-                <form onSubmit={handleAddAsset} className='w-[60%] border-4 border-[#05386B] rounded-md p-4'>
+                <form onSubmit={handleAddAsset} className='w-full md:w-[60%] border-4 border-[#05386B] rounded-md p-4'>
                     <div className='w-full'>
                         <label className='text-2xl text-[#05386B] font-bold' htmlFor="productName">Product Name:</label> <br />
                         <input className='py-3 px-4 rounded-md mt-2 w-full' placeholder='Enter The Product Name' type="text" id='productName' name='productName' required />
@@ -98,7 +98,7 @@ const AddAsset = () => {
                         Add Asset
                     </button>
                 </form>
-                <div className='w-[40%]'>
+                <div className='hidden md:block md:w-[60%] lg:w-[40%]'>
                     <Lottie animationData={addAssetLottie} loop={true} />
                 </div>
             </div>

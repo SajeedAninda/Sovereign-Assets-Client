@@ -79,7 +79,7 @@ const AssetList = () => {
 
 
     return (
-        <div className='mx-auto w-[85%] my-12 bg-[#5CDB95] shadow-2xl py-8 px-8'>
+        <div className='mx-auto w-full md:w-[85%] my-12 bg-[#5CDB95] shadow-2xl py-8 px-2 md:px-8'>
             <Helmet>
                 <title>Admin | Asset List</title>
             </Helmet>
@@ -88,7 +88,7 @@ const AssetList = () => {
                 <p className='text-xl mt-2 w-[75%] mx-auto text-[#05386B] text-center font-bold'>Efficiently manage and track your assets with this user-friendly system, providing a detailed overview of your organizational resources</p>
             </div>
 
-            <div className='grid grid-cols-3 gap-6 mt-3'>
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-6 mt-3'>
                 <div>
                     <Box sx={{ minWidth: 120, marginTop: "8px", backgroundColor: "white" }}>
                         <FormControl fullWidth>
@@ -155,12 +155,12 @@ const AssetList = () => {
 
             <div>
                 <div className='w-full bg-[#05386B] py-3 px-3 h-fit mt-4 rounded-tr-md rounded-tl-md grid grid-cols-10 justify-center items-center'>
-                    <h2 className='text-white text-center font-semibold col-span-2'>NAME</h2>
-                    <h2 className='text-white text-center font-semibold col-span-2'>TYPE</h2>
-                    <h3 className='text-white text-center font-semibold col-span-1'>QUANTITY</h3>
-                    <h3 className='text-white text-center font-semibold col-span-3'>ADDED DATE</h3>
-                    <h3 className='text-white text-center font-semibold col-span-1'>UPDATE</h3>
-                    <h3 className='text-white text-center font-semibold col-span-1'>DELETE</h3>
+                    <h2 className='text-white text-xs md:text-lg text-center font-semibold col-span-2'>NAME</h2>
+                    <h2 className='text-white text-xs md:text-lg text-center font-semibold col-span-2'>TYPE</h2>
+                    <h3 className='text-white text-xs md:text-lg text-center font-semibold col-span-1'>QUANTITY</h3>
+                    <h3 className='text-white text-xs md:text-lg text-center font-semibold col-span-3'>ADDED DATE</h3>
+                    <h3 className='text-white text-xs md:text-lg text-center font-semibold col-span-1'>UPDATE</h3>
+                    <h3 className='text-white text-xs md:text-lg text-center font-semibold col-span-1'>DELETE</h3>
                 </div>
             </div>
 
@@ -168,10 +168,10 @@ const AssetList = () => {
                 {
                     assetList?.map(asset =>
                         <div className='w-full bg-[#05386B] border-2 border-[#05386B] bg-transparent border-collapse text-[#05386B] py-3 px-3 h-fit grid grid-cols-10 justify-center items-center'>
-                            <h2 className='text-[#05386B] text-center font-semibold col-span-2'>{asset?.productName}</h2>
-                            <h2 className='text-[#05386B] text-center font-semibold col-span-2'>{asset?.productType}</h2>
-                            <h3 className='text-[#05386B] text-center font-semibold col-span-1'>{asset?.productQuantity}</h3>
-                            <h3 className='text-[#05386B] text-center font-semibold col-span-3'>
+                            <h2 className='text-[#05386B] text-xs md:text-lg text-center font-semibold col-span-2'>{asset?.productName}</h2>
+                            <h2 className='text-[#05386B] text-xs md:text-lg text-center font-semibold col-span-2'>{asset?.productType}</h2>
+                            <h3 className='text-[#05386B] text-xs md:text-lg text-center font-semibold col-span-1'>{asset?.productQuantity}</h3>
+                            <h3 className='text-[#05386B] text-xs md:text-lg text-center font-semibold col-span-3'>
                                 {new Date(asset?.dateAdded).toLocaleDateString('en-US', {
                                     month: 'long',
                                     day: 'numeric',
@@ -179,11 +179,11 @@ const AssetList = () => {
                                 })}
                             </h3>
                             <Link className='flex justify-center items-center' to={`/updateAsset/${asset._id}`}>
-                                <button className='text-[#05386B] flex justify-center items-center text-center font-semibold'>
+                                <button className='text-[#05386B] text-xs md:text-lg flex justify-center items-center text-center font-semibold'>
                                     < BorderColorIcon />
                                 </button>
                             </Link>
-                            <button onClick={() => handleDelete(asset._id)} className='text-[#05386B] text-center font-semibold col-span-1'>
+                            <button onClick={() => handleDelete(asset._id)} className='text-[#05386B] text-xs md:text-lg text-center font-semibold col-span-1'>
                                 <DeleteIcon />
                             </button>
                         </div>

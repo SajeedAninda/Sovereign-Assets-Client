@@ -57,7 +57,7 @@ const CustomRequestsAdmin = () => {
     }
 
     return (
-        <div className='mx-auto w-[85%] my-12 bg-[#5CDB95] shadow-2xl py-8 px-8'>
+        <div className='mx-auto w-full lg:w-[85%] my-12 bg-[#5CDB95] shadow-2xl py-8 px-2 lg:px-8'>
             <Helmet>
                 <title>Admin | Custom Request</title>
             </Helmet>
@@ -68,14 +68,14 @@ const CustomRequestsAdmin = () => {
 
                 <div>
                     <div className='w-full bg-[#05386B] py-3 px-1 h-fit mt-4 rounded-tr-md rounded-tl-md grid grid-cols-12 justify-center items-center'>
-                        <h2 className='text-white text-center font-semibold col-span-2'>ASSET NAME</h2>
-                        <h2 className='text-white text-center font-semibold col-span-1'>ASSET PRICE</h2>
-                        <h3 className='text-white text-center font-semibold col-span-1'>ASSET TYPE</h3>
-                        <h3 className='text-white text-center font-semibold col-span-2'>ASSET IMAGE</h3>
-                        <h3 className='text-white text-center font-semibold col-span-2'>WHY NEEDED</h3>
-                        <h3 className='text-white text-center font-semibold col-span-2'>ADDITIONAL INFO</h3>
-                        <h3 className='text-white text-center font-semibold col-span-1'>APPROVE</h3>
-                        <h3 className='text-white text-center font-semibold col-span-1'>REJECT</h3>
+                        <h2 className='text-white text-[9px] md:text-[12px] lg:text-lg text-center font-semibold col-span-2'>ASSET NAME</h2>
+                        <h2 className='text-white text-[9px] md:text-[12px] lg:text-lg text-center font-semibold col-span-1'>ASSET PRICE</h2>
+                        <h3 className='text-white text-[9px] md:text-[12px] lg:text-lg text-center font-semibold col-span-1'>ASSET TYPE</h3>
+                        <h3 className='text-white text-[9px] md:text-[12px] lg:text-lg text-center font-semibold col-span-2'>ASSET IMAGE</h3>
+                        <h3 className='text-white text-[9px] md:text-[12px] lg:text-lg text-center font-semibold col-span-2'>WHY NEEDED</h3>
+                        <h3 className='text-white text-[9px] md:text-[12px] lg:text-lg text-center font-semibold col-span-2'>ADDITIONAL INFO</h3>
+                        <h3 className='text-white text-[9px] md:text-[12px] lg:text-lg text-center font-semibold col-span-1'>APPROVE</h3>
+                        <h3 className='text-white text-[9px] md:text-[12px] lg:text-lg text-center font-semibold col-span-1'>REJECT</h3>
                     </div>
                 </div>
 
@@ -89,18 +89,18 @@ const CustomRequestsAdmin = () => {
                             {
                                 allCustomRequests?.map((requests, index) =>
                                     <div className='w-full justify-center items-center bg-[#05386B] border-2 border-[#05386B] bg-transparent border-collapse text-[#05386B] py-3 px-3 h-fit grid grid-cols-12'>
-                                        <h2 className='text-[#05386B] text-base text-center font-semibold col-span-2'>{requests?.assetName}</h2>
-                                        <h2 className='text-[#05386B] text-base text-center font-semibold col-span-1'>{requests?.assetPrice}</h2>
-                                        <h2 className='text-[#05386B] text-base text-center font-semibold col-span-1'>{requests?.assetTypes}</h2>
-                                        <div className='text-[#05386B] text-base text-center font-semibold col-span-2'>
-                                            <img src={requests?.assetImage} alt="" />
+                                        <h2 className='text-[#05386B] text-[9px] md:text-[12px] lg:text-lg text-base text-center font-semibold col-span-2'>{requests?.assetName}</h2>
+                                        <h2 className='text-[#05386B] text-[9px] md:text-[12px] lg:text-lg text-base text-center font-semibold col-span-1'>{requests?.assetPrice}</h2>
+                                        <h2 className='text-[#05386B] text-[9px] md:text-[12px] lg:text-lg text-base text-center font-semibold col-span-1'>{requests?.assetTypes}</h2>
+                                        <div className='text-[#05386B] text-[9px] md:text-[12px] lg:text-lg text-base text-center font-semibold col-span-2'>
+                                            <img className='w-[60%] mx-auto' src={requests?.assetImage} alt="" />
                                         </div>
-                                        <h2 className='text-[#05386B] text-base text-center font-semibold col-span-2'>{requests?.whyNeed}</h2>
-                                        <h2 className='text-[#05386B] text-base text-center font-semibold col-span-2'>{requests?.additionalInfo}</h2>
+                                        <h2 className='text-[#05386B] text-[9px] md:text-[12px] lg:text-lg text-base text-center font-semibold col-span-2'>{requests?.whyNeed}</h2>
+                                        <h2 className='text-[#05386B] text-[9px] md:text-[12px] lg:text-lg text-base text-center font-semibold col-span-2'>{requests?.additionalInfo}</h2>
 
                                         <button
                                             onClick={() => handleApprove(requests?._id)}
-                                            className={`text-white py-2 px-1 rounded-md border ${requests?.status === "Rejected" || requests?.status === "Approved" ? "bg-gray-300 text-gray-500 border-gray-500 cursor-not-allowed" : "border-[#05386B] bg-[#05386B] hover:bg-transparent hover:text-[#05386B] hover:border hover:border-[#05386B]"} mr-2`}
+                                            className={`text-white text-[9px] md:text-[12px] lg:text-lg py-2 px-1 rounded-md border ${requests?.status === "Rejected" || requests?.status === "Approved" ? "bg-gray-300 text-[9px] md:text-[12px] lg:text-lg text-gray-500 border-gray-500 cursor-not-allowed" : "border-[#05386B] text-[9px] md:text-[12px] lg:text-lg bg-[#05386B] hover:bg-transparent hover:text-[#05386B] hover:border hover:border-[#05386B]"} mr-2`}
                                             disabled={requests?.status === "Rejected" || requests?.status === "Approved"}
                                         >
                                             APPROVE
@@ -109,7 +109,7 @@ const CustomRequestsAdmin = () => {
 
                                         <button
                                             onClick={() => handleReject(requests?._id)}
-                                            className={`text-white py-2 px-1 rounded-md border ${requests?.status === "Rejected" ? "bg-gray-300 text-gray-500 border-gray-500 cursor-not-allowed" : "border-[#05386B] bg-[#05386B] hover:bg-transparent hover:text-[#05386B] hover:border hover:border-[#05386B]"} mr-2`}
+                                            className={`text-white text-[9px] md:text-[12px] lg:text-lg py-2 px-1 rounded-md border ${requests?.status === "Rejected" ? "bg-gray-300 text-[9px] md:text-[12px] lg:text-lg text-gray-500 border-gray-500 cursor-not-allowed" : "border-[#05386B] text-[9px] md:text-[12px] lg:text-lg bg-[#05386B] hover:bg-transparent hover:text-[#05386B] hover:border hover:border-[#05386B]"} mr-2`}
                                             disabled={requests?.status === "Rejected"}
                                         >
                                             REJECT
