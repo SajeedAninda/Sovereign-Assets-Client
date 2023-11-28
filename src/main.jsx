@@ -74,8 +74,11 @@ const router = createBrowserRouter([
       {
         path: "/updateAsset/:id",
         element: <UpdateAsset></UpdateAsset>,
-        loader: ({ params }) => fetch(`http://localhost:5000/updateAsset/${params.id}`)
-      },
+        loader: ({ params }) => fetch(`http://localhost:5000/updateAsset/${params.id}`, {
+          credentials: 'include'
+        })
+      }
+      ,
       {
         path: "/addEmployee",
         element: <AdminRoute><AddEmployee></AddEmployee></AdminRoute>

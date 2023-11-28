@@ -37,6 +37,11 @@ const JoinAsEmployee = () => {
                     .then(() => {
                         let employeeInfo = { email: email, role: "employee", fullName: fullName, date_of_birth: dob, image: image, companyName: "null", companyLogo: "null" };
 
+                        axiosInstance.post('/jwt', user)
+                            .then(res => {
+                                console.log(res.data)
+                            })
+
 
                         axiosInstance.post("/employeeRegister", employeeInfo)
                             .then(res => {
@@ -63,6 +68,11 @@ const JoinAsEmployee = () => {
                 const user = result.user;
                 console.log(user);
                 let employeeInfo = { email: user?.email, role: "employee", fullName: user?.displayName, date_of_birth: "", image: user?.photoURL, companyName: "null", companyLogo: "null" }
+
+                axiosInstance.post('/jwt', user)
+                            .then(res => {
+                                console.log(res.data)
+                            })
 
                 axiosInstance.post("/employeeSocialRegister", employeeInfo)
                     .then(res => {

@@ -17,6 +17,7 @@ import PieChartSection from '../../Admin/PieChartSection';
 import HomepageEmployeeInfo from '../../Admin/HomepageEmployeeInfo';
 import AssetAllocation from '../../Admin/AssetAllocation';
 import EmployeeBanner from '../../Employee/EmployeeBanner';
+import { Navigate } from 'react-router-dom';
 
 
 const Homepage = () => {
@@ -26,45 +27,52 @@ const Homepage = () => {
     return (
         <div>
             {
-                !userData &&
-                <div>
-                    <GuestBanner></GuestBanner>
-                    <GuestAbout></GuestAbout>
-                    <Packages></Packages>
-                </div>
-            }
-            {
-                (loggedInUser && userData?.role === "employee") &&
-                <div>
-                    {
-                        userData?.companyName === "null" ?
+                userData?.role === "unpaid_admin" ?
+                    <Navigate to={"/payment"}></Navigate>
+                    :
+                    <div>
+                        {
+                            !userData &&
                             <div>
-                                <NoTeam></NoTeam>
+                                <GuestBanner></GuestBanner>
+                                <GuestAbout></GuestAbout>
+                                <Packages></Packages>
                             </div>
-                            :
+                        }
+                        {
+                            (loggedInUser && userData?.role === "employee") &&
                             <div>
-                                <EmployeeBanner></EmployeeBanner>
-                                <EmployeeCustomRequests></EmployeeCustomRequests>
-                                <PendingRequests></PendingRequests>
-                                <MonthlyRequests></MonthlyRequests>
-                                <MostReqItemEmployee></MostReqItemEmployee>
-                            </div>
-                    }
+                                {
+                                    userData?.companyName === "null" ?
+                                        <div>
+                                            <NoTeam></NoTeam>
+                                        </div>
+                                        :
+                                        <div>
+                                            <EmployeeBanner></EmployeeBanner>
+                                            <EmployeeCustomRequests></EmployeeCustomRequests>
+                                            <PendingRequests></PendingRequests>
+                                            <MonthlyRequests></MonthlyRequests>
+                                            <MostReqItemEmployee></MostReqItemEmployee>
+                                        </div>
+                                }
 
 
-                </div>
-            }
-            {
-                (loggedInUser && userData?.role === "admin") &&
-                <div>
-                    <AdminBanner></AdminBanner>
-                    <PendingAdminHomepage></PendingAdminHomepage>
-                    <MostReqItemAdmin></MostReqItemAdmin>
-                    <LimitedStockItems></LimitedStockItems>
-                    <PieChartSection></PieChartSection>
-                    <HomepageEmployeeInfo></HomepageEmployeeInfo>
-                    <AssetAllocation></AssetAllocation>
-                </div>
+                            </div>
+                        }
+                        {
+                            (loggedInUser && userData?.role === "admin") &&
+                            <div>
+                                <AdminBanner></AdminBanner>
+                                <PendingAdminHomepage></PendingAdminHomepage>
+                                <MostReqItemAdmin></MostReqItemAdmin>
+                                <LimitedStockItems></LimitedStockItems>
+                                <PieChartSection></PieChartSection>
+                                <HomepageEmployeeInfo></HomepageEmployeeInfo>
+                                <AssetAllocation></AssetAllocation>
+                            </div>
+                        }
+                    </div>
             }
         </div>
     );

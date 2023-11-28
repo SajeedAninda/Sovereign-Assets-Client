@@ -97,7 +97,7 @@ const CheckOutForm = () => {
                             console.log(res.data)
                             if (res.data.modifiedCount > 0) {
                                 toast.success("Payment successful!");
-                                navigate('/')
+                                navigate('/login')
                             }
                         })
                 }

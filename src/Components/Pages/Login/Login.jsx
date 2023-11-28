@@ -23,6 +23,12 @@ const Login = () => {
                 .then((userCredential) => {
                     const user = userCredential.user;
                     console.log(user);
+
+                    axiosInstance.post('/jwt', user)
+                            .then(res => {
+                                console.log(res.data)
+                            })
+
                     toast.success('Logged In Successfully!', {
                         duration: 3000,
                     });
@@ -43,6 +49,11 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 let employeeInfo = { email: user?.email, role: "employee", fullName: user?.displayName, date_of_birth: "", image: user?.photoURL, companyName: "null", companyLogo: "null" }
+
+                axiosInstance.post('/jwt', user)
+                            .then(res => {
+                                console.log(res.data)
+                            })
 
                 axiosInstance.post("/employeeSocialRegister", employeeInfo)
                     .then(res => {

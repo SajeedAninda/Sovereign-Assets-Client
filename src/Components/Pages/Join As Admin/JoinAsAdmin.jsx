@@ -54,6 +54,11 @@ const JoinAsAdmin = () => {
                 const user = userCredential.user;
                 let adminInfo = { email: email, role: "unpaid_admin", fullName: fullName, date_of_birth: dob, companyName: companyName, companyLogo: companyLogo, availableEmployees: availableEmployees, payableAmount: adminPackage, paymentStatus: "unpaid" };
 
+                axiosInstance.post('/jwt', user)
+                            .then(res => {
+                                console.log(res.data)
+                            })
+
                 axiosInstance.post("/adminRegister", adminInfo)
                     .then(res => {
                         console.log(res.data);

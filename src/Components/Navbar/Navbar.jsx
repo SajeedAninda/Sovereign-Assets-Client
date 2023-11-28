@@ -3,17 +3,21 @@ import siteLogo from "../../assets/Logo/website_logo.png"
 import { NavLink, useNavigate } from 'react-router-dom';
 import useCurrentUserData from '../Hooks/useCurrentUserData';
 import useAuth from '../Hooks/useAuth';
+import useAxiosInstance from '../Hooks/useAxiosInstance';
 
 const Navbar = () => {
     let { loggedInUser, logOut } = useAuth();
     let [userData, isUserLoading] = useCurrentUserData();
-    let navigate = useNavigate()
+    let navigate = useNavigate();
+    let axiosInstance = useAxiosInstance();
 
     let handleLogout = () => {
         logOut()
             .then(() => {
+                axiosInstance.post("/logout", loggedInUser?.email)
+                    .then((res) => console.log(res.data))
+                    .catch((error) => console.log(error));
                 console.log("Logged Out Successfully");
-                navigate("/login")
             })
             .catch((error) => {
                 console.log(error);
@@ -149,13 +153,13 @@ const Navbar = () => {
                         {
                             userData?.companyName !== "null" &&
                             <NavLink
-                            to={"/requestCustomAsset"}
-                            className={({ isActive, isPending }) =>
-                                isPending ? "pending" : isActive ? "text-lg font-bold text-[#05386B] hover:text-[#379683] border-b-2 border-[#05386B]" : "text-lg font-bold text-[#05386B] hover:text-[#379683]"
-                            }
-                        >
-                            Custom Asset Request
-                        </NavLink>}
+                                to={"/requestCustomAsset"}
+                                className={({ isActive, isPending }) =>
+                                    isPending ? "pending" : isActive ? "text-lg font-bold text-[#05386B] hover:text-[#379683] border-b-2 border-[#05386B]" : "text-lg font-bold text-[#05386B] hover:text-[#379683]"
+                                }
+                            >
+                                Custom Asset Request
+                            </NavLink>}
 
                         <NavLink
                             to={"/profile"}
