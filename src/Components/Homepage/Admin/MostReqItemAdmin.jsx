@@ -27,7 +27,7 @@ const MostReqItemAdmin = () => {
             <h1 className='text-4xl font-bold text-center text-[#05386B]'>Top Most Requested Items</h1>
             {
                 mostReqItemAdmin?.length > 0 ?
-                    <div className='grid grid-cols-3 py-8 gap-6'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-8 gap-6'>
                         {
                             mostReqItemAdmin?.map(requests =>
                                 <div className='group hover:bg-[#05386B] cursor-pointer border-2 border-[#05386B] p-4'>

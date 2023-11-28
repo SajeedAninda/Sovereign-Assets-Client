@@ -26,7 +26,7 @@ const PendingAdminHomepage = () => {
                 <h1 className='text-4xl font-bold text-center text-[#5CDB95]'>Pending Requests</h1>
                 {
                     pendingReqHomeAdmin?.length > 0 ?
-                        <div className='grid grid-cols-3 py-8 gap-6'>
+                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-8 gap-6'>
                             {
                                 pendingReqHomeAdmin?.map(requests =>
                                     <div className='group hover:bg-[#5CDB95] cursor-pointer border-2 border-[#5CDB95] p-4'>

@@ -15,7 +15,7 @@ const ApexChart = ({ returnablePercentage, nonReturnablePercentage }) => {
       options={chartOptions}
       series={chartSeries}
       type="pie"
-      width="480"
+      width="400"
     />
   );
 };

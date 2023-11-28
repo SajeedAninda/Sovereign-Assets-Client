@@ -54,8 +54,8 @@ const HomepageEmployeeInfo = () => {
                                     <SwiperSlide>
                                         <div className='flex flex-col gap-6 justify-center items-center py-12'>
                                             <img className='w-[120px] rounded-full' src={employee?.image} alt="" />
-                                            <h2 className='text-white font-bold text-3xl'>{employee?.fullName}</h2>
-                                            <h2 className='text-white font-bold text-2xl'>{employee?.email}</h2>
+                                            <h2 className='text-white font-bold text-2xl md:text-3xl'>{employee?.fullName}</h2>
+                                            <h2 className='text-white font-bold text-xl md:text-2xl'>{employee?.email}</h2>
                                             <h2 className='text-white font-bold text-xl capitalize'>{employee?.role}</h2>
                                         </div>
                                     </SwiperSlide>
