@@ -68,7 +68,7 @@ const Profile = () => {
 
                 <div>
                     <form onSubmit={handleProfileUpdate} className='pb-12 gap-8 flex justify-center items-center'>
-                        <div className='w-[50%]'>
+                        <div className='w-full md:w-[50%]'>
                             {/* Full Name */}
                             <div className='w-full'>
                                 <label className='text-2xl text-[#05386B] font-bold' htmlFor="fullName">
@@ -149,7 +149,7 @@ const Profile = () => {
                                 </button>
                             )}
                         </div>
-                        <div className='w-[50%]'>
+                        <div className='hidden md:block w-[50%]'>
                             <Lottie animationData={employeeRegisterLottie} loop={true} />
                         </div>
                     </form>
