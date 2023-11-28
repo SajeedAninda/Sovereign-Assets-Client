@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
-import useAxiosInstance from '../../Hooks/useAxiosInstance';
 import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 
 // Create styles
 const styles = StyleSheet.create({
@@ -46,16 +46,16 @@ const formattedDate = currentDate.toLocaleString('en-US', {
 
 // Create Document Component
 const MyDocument = ({ assetId }) => {
-    const axiosInstance = useAxiosInstance();
+    // const axiosInstance = useAxiosInstance();
 
     let [asset, setAsset] = useState(null)
 
     useEffect(() => {
-        axiosInstance.get(`/getAssetDataPDF/${assetId}`)
+        axios.get(`/getAssetDataPDF/${assetId}`)
             .then(res => {
                 setAsset(res.data);
             })
-    }, [])
+    }, [assetId])
 
     return (
         <Document>
