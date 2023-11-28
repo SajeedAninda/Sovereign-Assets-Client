@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SavedSearchIcon from '@mui/icons-material/SavedSearch';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
@@ -63,12 +63,23 @@ const RequestAsset = () => {
         enabled: !!userData,
     })
 
+    useEffect(() => {
+        let handleResize = () => {
+          setScreenWidth(window.innerWidth);
+        };
+      
+        window.addEventListener('resize', handleResize);
+        return () => {
+          window.removeEventListener('resize', handleResize);
+        };
+      }, []);
+
     let style = {
         position: 'absolute',
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 700,
+        width: screenWidth > 600 ? '700px' : '90%', 
         bgcolor: 'background.paper',
         border: '8px solid #05386B',
         boxShadow: 24,

@@ -64,19 +64,19 @@ const CustomAsset = () => {
 
             <div>
                 <form onSubmit={handleCustomRequest}>
-                    <div className='mt-4 flex gap-6'>
+                    <div className='mt-4  flex-col md:flex-row gap-6'>
                         <div className='w-full'>
                             <label className='text-2xl text-[#05386B] font-bold' htmlFor="assetName">Asset Name:</label> <br />
                             <input className='py-3 px-4 rounded-md mt-2 w-full' placeholder='Enter Your Required Asset Name' type="text" id='assetName' name='assetName' required />
                         </div>
 
-                        <div className='w-full'>
+                        <div className='w-full mt-4'>
                             <label className='text-2xl text-[#05386B] font-bold' htmlFor="assetPrice">Asset Price:</label> <br />
                             <input className='py-3 px-4 rounded-md mt-2 w-full' placeholder='Enter The Price' type="number" id='assetPrice' name='assetPrice' required />
                         </div>
                     </div>
 
-                    <div className='mt-4 flex gap-6'>
+                    <div className='mt-4 flex flex-col md:flex-row gap-6'>
                         <div className='w-full'>
                             <label className='text-2xl text-[#05386B] font-bold' htmlFor="package">Asset Type:</label> <br />
                             <Box sx={{ minWidth: 120, marginTop: "4px", backgroundColor: "white" }}>
@@ -102,7 +102,7 @@ const CustomAsset = () => {
                         </div>
                     </div>
 
-                    <div className='mt-4 flex gap-6'>
+                    <div className='mt-4 flex flex-col md:flex-row gap-6'>
                         <div className='w-full'>
                             <label className='text-2xl text-[#05386B] font-bold' htmlFor="whyNeed">Why You need this:</label> <br />
                             <textarea className='py-3 px-4 rounded-md mt-2 w-full' name="whyNeed" id="whyNeed" cols="20" rows="5"></textarea>
