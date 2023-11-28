@@ -96,7 +96,7 @@ const JoinAsAdmin = () => {
                                 <input className='py-3 px-4 rounded-md mt-2 w-full' placeholder='Enter Your Full Name' type="text" id='fullName' name='fullName' required />
                             </div>
 
-                            <div className='mt-4 flex gap-6'>
+                            <div className='mt-4 flex flex-col lg:flex-row gap-6'>
                                 <div className='w-full'>
                                     <label className='text-2xl text-[#05386B] font-bold' htmlFor="companyName">Company Name:</label> <br />
                                     <input className='py-3 px-4 rounded-md mt-2 w-full' placeholder='Enter Your Company Name' type="text" id='companyName' name='companyName' required />
@@ -108,7 +108,7 @@ const JoinAsAdmin = () => {
                                 </div>
                             </div>
 
-                            <div className='mt-4 flex gap-6'>
+                            <div className='mt-4 flex flex-col lg:flex-row gap-6'>
                                 <div className='w-full'>
                                     <label className='text-2xl text-[#05386B] font-bold' htmlFor="email">Email:</label> <br />
                                     <input className='py-3 px-4 rounded-md mt-2 w-full' placeholder='Enter Your Email' type="email" id='email' name='email' required />
@@ -120,7 +120,7 @@ const JoinAsAdmin = () => {
                                 </div>
                             </div>
 
-                            <div className='flex mt-4 gap-6 items-center justify-center'>
+                            <div className='flex flex-col lg:flex-row mt-4 gap-6 items-center justify-center'>
                                 <div className='w-full mt-3'>
                                     <label className='text-2xl text-[#05386B] font-bold' htmlFor="dob">Date of Birth:</label> <br />
                                     <input className='py-3 px-4 rounded-md mt-2 w-full' type="date" name="dob" id="" />

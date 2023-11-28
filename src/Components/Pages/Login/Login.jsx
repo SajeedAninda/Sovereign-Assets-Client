@@ -82,7 +82,7 @@ const Login = () => {
 
                 <div>
                     <form onSubmit={handleLogin} className='pb-12 gap-8 flex flex-row-reverse justify-center items-center'>
-                        <div className='w-[50%]'>
+                        <div className='w-full lg:w-[50%]'>
                             <div className='w-full mt-4'>
                                 <label className='text-2xl text-[#05386B] font-bold' htmlFor="email">Email:</label> <br />
                                 <input className='py-3 px-4 rounded-md mt-2 w-full' placeholder='Enter Your Email' type="email" id='email' name='email' required />
@@ -97,13 +97,13 @@ const Login = () => {
                             </button>
                             <div className='text-[#05386B] w-full font-bold text-center mt-6 pb-12'>
                                 <h2 className='text-xl'>You can also</h2>
-                                <div onClick={handleGoogleLogin} className='flex justify-center items-center cursor-pointer hover:bg-[#05386B] hover:text-white gap-2 p-3 border-2 mt-2 text-2xl rounded-md border-[#05386B] w-[60%] mx-auto'>
+                                <div onClick={handleGoogleLogin} className='flex justify-center items-center cursor-pointer hover:bg-[#05386B] hover:text-white gap-2 p-3 border-2 mt-2 text-2xl rounded-md border-[#05386B] w-full md:w-[80%] lg:w-[60%] mx-auto'>
                                     Login With Google
                                     <GoogleIcon />
                                 </div>
                             </div>
                         </div>
-                        <div className='w-[50%]'>
+                        <div className='hidden lg:block w-[50%]'>
                             <Lottie animationData={loginLottie} loop={true} />
                         </div>
                     </form>

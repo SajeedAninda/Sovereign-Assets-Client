@@ -102,7 +102,7 @@ const JoinAsEmployee = () => {
 
                 <div>
                     <form onSubmit={handleJoinAsEmployee} className='pb-12 gap-8 flex justify-center items-center'>
-                        <div className='w-[50%]'>
+                        <div className='w-full lg:w-[50%]'>
                             <div className='w-full'>
                                 <label className='text-2xl text-[#05386B] font-bold' htmlFor="fullName">Full Name:</label> <br />
                                 <input className='py-3 px-4 rounded-md mt-2 w-full' placeholder='Enter Your Full Name' type="text" id='fullName' name='fullName' required />
@@ -131,13 +131,13 @@ const JoinAsEmployee = () => {
                                 Sign Up
                             </button>
                         </div>
-                        <div className='w-[50%]'>
+                        <div className='hidden lg:block w-[50%]'>
                             <Lottie animationData={employeeRegisterLottie} loop={true} />
                         </div>
                     </form>
                     <div className='text-[#05386B] font-bold text-center pb-12'>
                         <h2 className='text-xl'>You can also</h2>
-                        <div onClick={handleGoogleLogin} className='flex justify-center items-center cursor-pointer hover:bg-[#05386B] hover:text-white gap-2 p-3 border-2  mt-2 text-2xl rounded-md border-[#05386B] w-[30%] mx-auto'>
+                        <div onClick={handleGoogleLogin} className='flex justify-center items-center cursor-pointer hover:bg-[#05386B] hover:text-white gap-2 p-3 border-2  mt-2 text-2xl rounded-md border-[#05386B] w-full lg:w-[50%] xl:w-[30%] mx-auto'>
                             Join With Google
                             <GoogleIcon />
                         </div>
