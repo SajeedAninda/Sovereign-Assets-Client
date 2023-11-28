@@ -51,7 +51,7 @@ const MyDocument = ({ assetId }) => {
     let [asset, setAsset] = useState(null)
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/getAssetDataPDF/${assetId}`)
+        axios.get(`https://sovereign-asset-solutions-server.vercel.app/getAssetDataPDF/${assetId}`)
             .then(res => {
                 setAsset(res.data);
             })

@@ -74,7 +74,7 @@ const router = createBrowserRouter([
       {
         path: "/updateAsset/:id",
         element: <UpdateAsset></UpdateAsset>,
-        loader: ({ params }) => fetch(`http://localhost:5000/updateAsset/${params.id}`, {
+        loader: ({ params }) => fetch(`https://sovereign-asset-solutions-server.vercel.app/updateAsset/${params.id}`, {
           credentials: 'include'
         })
       }
