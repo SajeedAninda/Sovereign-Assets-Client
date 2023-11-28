@@ -64,7 +64,7 @@ const HomepageEmployeeInfo = () => {
                         </div>
                         :
                         <div className='py-8'>
-                            <h1 className='text-3xl font-bold text-center text-[#05386B]'>No Employees Added Yet</h1>
+                            <h1 className='text-3xl font-bold text-center text-white'>No Employees Added Yet</h1>
                         </div>
                         }
                     </Swiper>
