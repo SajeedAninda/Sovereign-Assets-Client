@@ -27,17 +27,13 @@ const Profile = () => {
         let fullName = e.target.fullName.value;
         let dob = e.target.dateOfBirth.value;
         let updateData = { fullName, dob };
-        profileUpdate(fullName)
-            .then(() => {
-                axiosInstance.patch(`/updateProfile/${userData?._id}`, updateData)
-                    .then(res => {
-                        if (res.data.modifiedCount > 0) {
-                            toast.success("Profile Updated");
-                            navigate("/");
-                            setEditMode(false);
-                        }
-                    })
-
+        axiosInstance.patch(`/updateProfile/${userData?._id}`, updateData)
+            .then(res => {
+                if (res.data.modifiedCount > 0) {
+                    toast.success("Profile Updated");
+                    navigate("/");
+                    setEditMode(false);
+                }
             })
     };
 
