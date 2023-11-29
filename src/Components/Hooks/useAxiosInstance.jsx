@@ -9,25 +9,25 @@ const instance = axios.create({
 });
 
 const useAxiosInstance = () => {
-    let { logOut } = useAuth();
-    const navigate = useNavigate();
+    // let { logOut } = useAuth();
+    // const navigate = useNavigate();
 
-    useEffect(() => {
-        instance.interceptors.response.use(res => {
-            return res;
-        }, error => {
-            if (error.response.status == 401) {
-                logOut()
-                    .then(() => {
-                        navigate("/login");
-                        console.log("Logged Out Successfully");
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
-            }
-        })
-    }, [])
+    // useEffect(() => {
+    //     instance.interceptors.response.use(res => {
+    //         return res;
+    //     }, error => {
+    //         if (error.response.status == 401) {
+    //             logOut()
+    //                 .then(() => {
+    //                     navigate("/login");
+    //                     console.log("Logged Out Successfully");
+    //                 })
+    //                 .catch((error) => {
+    //                     console.log(error);
+    //                 });
+    //         }
+    //     })
+    // }, [])
 
     return instance;
 };

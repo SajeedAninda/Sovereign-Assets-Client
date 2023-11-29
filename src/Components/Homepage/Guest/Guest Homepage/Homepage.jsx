@@ -18,7 +18,7 @@ import HomepageEmployeeInfo from '../../Admin/HomepageEmployeeInfo';
 import AssetAllocation from '../../Admin/AssetAllocation';
 import EmployeeBanner from '../../Employee/EmployeeBanner';
 import { Navigate } from 'react-router-dom';
-
+import { ColorRing } from 'react-loader-spinner';
 
 const Homepage = () => {
     let { loggedInUser, logOut } = useAuth();
@@ -26,54 +26,69 @@ const Homepage = () => {
 
     return (
         <div>
-            {
-                userData?.role === "unpaid_admin" ?
-                    <Navigate to={"/payment"}></Navigate>
-                    :
-                    <div>
-                        {
-                            !userData &&
-                            <div>
-                                <GuestBanner></GuestBanner>
-                                <GuestAbout></GuestAbout>
-                                <Packages></Packages>
-                            </div>
-                        }
-                        {
-                            (loggedInUser && userData?.role === "employee") &&
-                            <div>
-                                {
-                                    userData?.companyName === "null" ?
+            {isUserLoading ? (
+                <div className='flex justify-center min-h-screen items-center'>
+                    <ColorRing
+                        visible={true}
+                        height="80"
+                        width="80"
+                        ariaLabel="blocks-loading"
+                        wrapperStyle={{}}
+                        wrapperClass="blocks-wrapper"
+                        colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+                    />
+                </div>
+            ) : (
+                <>
+                    {userData?.role === "unpaid_admin" ? (
+                        <Navigate to={"/payment"} />
+                    ) : (
+                        <div>
+                            {!userData && (
+                                <div>
+                                    <GuestBanner />
+                                    <GuestAbout />
+                                    <Packages />
+                                </div>
+                            )}
+                            {loggedInUser && userData?.role === "employee" && (
+                                <div>
+                                    {userData?.companyName === "null" ? (
                                         <div>
-                                            <NoTeam></NoTeam>
+                                            <NoTeam />
                                         </div>
-                                        :
+                                    ) : (
                                         <div>
-                                            <EmployeeBanner></EmployeeBanner>
-                                            <EmployeeCustomRequests></EmployeeCustomRequests>
-                                            <PendingRequests></PendingRequests>
-                                            <MonthlyRequests></MonthlyRequests>
-                                            <MostReqItemEmployee></MostReqItemEmployee>
+                                            <EmployeeBanner />
+                                            <EmployeeCustomRequests />
+                                            <PendingRequests />
+                                            <MonthlyRequests />
+                                            <MostReqItemEmployee />
                                         </div>
-                                }
-
-
-                            </div>
-                        }
-                        {
-                            (loggedInUser && userData?.role === "admin") &&
-                            <div>
-                                <AdminBanner></AdminBanner>
-                                <PendingAdminHomepage></PendingAdminHomepage>
-                                <MostReqItemAdmin></MostReqItemAdmin>
-                                <LimitedStockItems></LimitedStockItems>
-                                <PieChartSection></PieChartSection>
-                                <HomepageEmployeeInfo></HomepageEmployeeInfo>
-                                <AssetAllocation></AssetAllocation>
-                            </div>
-                        }
-                    </div>
-            }
+                                    )}
+                                </div>
+                            )}
+                            {loggedInUser && userData?.role === "admin" && (
+                                <div>
+                                    {isUserLoading ? (
+                                        <h1 className='text-center text-6xl h-screen flex justify-center items-center'>Loading...</h1>
+                                    ) : (
+                                        <div>
+                                            <AdminBanner />
+                                            <PendingAdminHomepage />
+                                            <MostReqItemAdmin />
+                                            <LimitedStockItems />
+                                            <PieChartSection />
+                                            <HomepageEmployeeInfo />
+                                            <AssetAllocation />
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+                        </div>
+                    )}
+                </>
+            )}
         </div>
     );
 };

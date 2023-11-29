@@ -28,7 +28,7 @@ const PendingAdminHomepage = () => {
                     pendingReqHomeAdmin?.length > 0 ?
                         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-8 gap-6'>
                             {
-                                pendingReqHomeAdmin?.map(requests =>
+                                pendingReqHomeAdmin?.slice(0,5).map(requests =>
                                     <div className='group hover:bg-[#5CDB95] cursor-pointer border-2 border-[#5CDB95] p-4'>
                                         <h2 className='text-[#5CDB95] group-hover:text-[#05386B] text-2xl font-bold'>Asset Name: {requests?.assetName}</h2>
                                         <h2 className='text-[#5CDB95] group-hover:text-[#05386B] text-2xl font-bold'>Asset Type: {requests?.assetType}</h2>
