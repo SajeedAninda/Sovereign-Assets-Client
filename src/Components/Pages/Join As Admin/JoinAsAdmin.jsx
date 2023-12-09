@@ -8,7 +8,7 @@ import useAuth from '../../Hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import useAxiosInstance from '../../Hooks/useAxiosInstance';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 
 const JoinAsAdmin = () => {
     const [adminPackage, setAdminPackage] = useState('');

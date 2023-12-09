@@ -38,10 +38,10 @@ const HomepageEmployeeInfo = () => {
                         pagination={{
                             clickable: true,
                         }}
-                        autoplay={{
-                            delay: 1000,
-                            disableOnInteraction: false,
-                        }}
+                        // autoplay={{
+                        //     delay: 1000,
+                        //     disableOnInteraction: false,
+                        // }}
                         navigation={true}
                         modules={[Pagination, Navigation]}
                         className="mySwiper"

@@ -15,6 +15,7 @@ import Swal from 'sweetalert2';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { ColorRing } from 'react-loader-spinner';
 
 const AssetList = () => {
     const [status, setStatus] = useState('');
@@ -39,7 +40,7 @@ const AssetList = () => {
 
 
     let axiosInstance = useAxiosInstance();
-    const { data: assetList, isPending: isListLoading, refetch } = useQuery({
+    const { data: assetList, isLoading, refetch } = useQuery({
         queryKey: ['assetList', currentUserEmail, assetType, sorted, status, searchField],
         queryFn: async () => {
             const response = await axiosInstance.get(`/assetList/${currentUserEmail}?productType=${assetType}&sort=${sorted}&status=${status}&productName=${searchField}`);
@@ -153,43 +154,73 @@ const AssetList = () => {
                 </span>
             </div>
 
-            <div>
-                <div className='w-full bg-[#05386B] py-3 px-3 h-fit mt-4 rounded-tr-md rounded-tl-md grid grid-cols-10 justify-center items-center'>
-                    <h2 className='text-white text-xs md:text-lg text-center font-semibold col-span-2'>NAME</h2>
-                    <h2 className='text-white text-xs md:text-lg text-center font-semibold col-span-2'>TYPE</h2>
-                    <h3 className='text-white text-xs md:text-lg text-center font-semibold col-span-1'>QUANTITY</h3>
-                    <h3 className='text-white text-xs md:text-lg text-center font-semibold col-span-3'>ADDED DATE</h3>
-                    <h3 className='text-white text-xs md:text-lg text-center font-semibold col-span-1'>UPDATE</h3>
-                    <h3 className='text-white text-xs md:text-lg text-center font-semibold col-span-1'>DELETE</h3>
-                </div>
-            </div>
-
-            <div>
-                {
-                    assetList?.map(asset =>
-                        <div className='w-full bg-[#05386B] border-2 border-[#05386B] bg-transparent border-collapse text-[#05386B] py-3 px-3 h-fit grid grid-cols-10 justify-center items-center'>
-                            <h2 className='text-[#05386B] text-xs md:text-lg text-center font-semibold col-span-2'>{asset?.productName}</h2>
-                            <h2 className='text-[#05386B] text-xs md:text-lg text-center font-semibold col-span-2'>{asset?.productType}</h2>
-                            <h3 className='text-[#05386B] text-xs md:text-lg text-center font-semibold col-span-1'>{asset?.productQuantity}</h3>
-                            <h3 className='text-[#05386B] text-xs md:text-lg text-center font-semibold col-span-3'>
-                                {new Date(asset?.dateAdded).toLocaleDateString('en-US', {
-                                    month: 'long',
-                                    day: 'numeric',
-                                    year: 'numeric'
-                                })}
-                            </h3>
-                            <Link className='flex justify-center items-center' to={`/updateAsset/${asset._id}`}>
-                                <button className='text-[#05386B] text-xs md:text-lg flex justify-center items-center text-center font-semibold'>
-                                    < BorderColorIcon />
-                                </button>
-                            </Link>
-                            <button onClick={() => handleDelete(asset._id)} className='text-[#05386B] text-xs md:text-lg text-center font-semibold col-span-1'>
-                                <DeleteIcon />
-                            </button>
+            {
+                assetList?.length === 0 ?
+                    (
+                        <div>
+                            <h1 className='text-3xl text-[#05386B] text-center mt-3 font-bold'>No Assets Added Yet</h1>
                         </div>
                     )
-                }
-            </div>
+                    :
+                    (
+                        isLoading ?
+                            (
+                                <div className='flex justify-center items-center'>
+                                    <ColorRing
+                                        visible={true}
+                                        height="80"
+                                        width="80"
+                                        ariaLabel="blocks-loading"
+                                        wrapperStyle={{}}
+                                        wrapperClass="blocks-wrapper"
+                                        colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+                                    />
+                                </div>
+                            )
+                            :
+                            (
+                                <div>
+                                    <div>
+                                        <div className='w-full bg-[#05386B] py-3 px-3 h-fit mt-4 rounded-tr-md rounded-tl-md grid grid-cols-10 justify-center items-center'>
+                                            <h2 className='text-white text-xs md:text-lg text-center font-semibold col-span-2'>NAME</h2>
+                                            <h2 className='text-white text-xs md:text-lg text-center font-semibold col-span-2'>TYPE</h2>
+                                            <h3 className='text-white text-xs md:text-lg text-center font-semibold col-span-1'>QUANTITY</h3>
+                                            <h3 className='text-white text-xs md:text-lg text-center font-semibold col-span-3'>ADDED DATE</h3>
+                                            <h3 className='text-white text-xs md:text-lg text-center font-semibold col-span-1'>UPDATE</h3>
+                                            <h3 className='text-white text-xs md:text-lg text-center font-semibold col-span-1'>DELETE</h3>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        {
+                                            assetList?.map(asset =>
+                                                <div className='w-full bg-[#05386B] border-2 border-[#05386B] bg-transparent border-collapse text-[#05386B] py-3 px-3 h-fit grid grid-cols-10 justify-center items-center'>
+                                                    <h2 className='text-[#05386B] text-xs md:text-lg text-center font-semibold col-span-2'>{asset?.productName}</h2>
+                                                    <h2 className='text-[#05386B] text-xs md:text-lg text-center font-semibold col-span-2'>{asset?.productType}</h2>
+                                                    <h3 className='text-[#05386B] text-xs md:text-lg text-center font-semibold col-span-1'>{asset?.productQuantity}</h3>
+                                                    <h3 className='text-[#05386B] text-xs md:text-lg text-center font-semibold col-span-3'>
+                                                        {new Date(asset?.dateAdded).toLocaleDateString('en-US', {
+                                                            month: 'long',
+                                                            day: 'numeric',
+                                                            year: 'numeric'
+                                                        })}
+                                                    </h3>
+                                                    <Link className='flex justify-center items-center' to={`/updateAsset/${asset._id}`}>
+                                                        <button className='text-[#05386B] text-xs md:text-lg flex justify-center items-center text-center font-semibold'>
+                                                            < BorderColorIcon />
+                                                        </button>
+                                                    </Link>
+                                                    <button onClick={() => handleDelete(asset._id)} className='text-[#05386B] text-xs md:text-lg text-center font-semibold col-span-1'>
+                                                        <DeleteIcon />
+                                                    </button>
+                                                </div>
+                                            )
+                                        }
+                                    </div>
+                                </div>
+                            )
+                    )
+            }
         </div>
     );
 };

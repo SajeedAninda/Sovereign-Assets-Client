@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import Person3Icon from '@mui/icons-material/Person3';
 import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet-async';
+import { ColorRing } from 'react-loader-spinner';
 
 
 const AddEmployee = () => {
@@ -15,7 +16,7 @@ const AddEmployee = () => {
     let { loggedInUser } = useAuth();
     let currentUserEmail = loggedInUser?.email;
 
-    const { data: productCountData, isPending: isUserLoading } = useQuery({
+    const { data: productCountData, isLoading } = useQuery({
         queryKey: ['productCountData', currentUserEmail],
         queryFn: async () => {
             const response = await axiosInstance.get(`/productCount/${currentUserEmail}`);
@@ -40,7 +41,7 @@ const AddEmployee = () => {
                     refetch();
                     toast.success("User Added to the Team");
                 }
-                if (res.data ==="Not Enough Limit") {
+                if (res.data === "Not Enough Limit") {
                     toast.error("Not Enough Limit");
                 }
             })
@@ -68,41 +69,62 @@ const AddEmployee = () => {
                 List of Users who are Currently Available to Add:
             </h2>
 
-            <div>
-                <div className='w-full bg-[#05386B] py-3 px-3 h-fit mt-4 rounded-tr-md rounded-tl-md grid grid-cols-12 justify-center items-center'>
-                    <h2 className='text-white text-center font-semibold col-span-1'>SL</h2>
-                    <h2 className='text-white text-center font-semibold col-span-3'>IMAGE</h2>
-                    <h3 className='text-white text-center font-semibold col-span-4'>NAME</h3>
-                    <h3 className='text-white text-center font-semibold col-span-2'>TYPE</h3>
-                    <h3 className='text-white text-center font-semibold col-span-2'>ADD TO TEAM</h3>
-                </div>
-            </div>
-
             {
-                availableEmployeeData?.length==0?
-                <div>
-                    <h1 className='text-3xl text-[#05386B] text-center mt-3 font-bold'>No Users Available To Add</h1>
-                </div>
-                :
-                <div>
-                {
-                    availableEmployeeData?.map((employee, index) =>
-                        <div className='w-full bg-[#05386B] border-2 border-[#05386B] bg-transparent border-collapse text-[#05386B] py-3 px-3 h-fit grid grid-cols-12 justify-center items-center'>
-                            <h2 className='text-[#05386B] text-xl text-center font-semibold col-span-1'>#{index + 1}</h2>
-                            <div className='text-[#05386B] flex justify-center text-center font-semibold col-span-3'>
-                                <img className='w-[40px] rounded-full' src={employee?.image} alt="" />
-                            </div>
-                            <h3 className='text-[#05386B] text-xl text-center font-semibold col-span-4'>{employee?.fullName}</h3>
-                            <div className='text-[#05386B] text-center font-semibold col-span-2'>
-                                <Person3Icon />
-                            </div>
-                            <button onClick={() => handleAddToTeam(employee._id)} className='text-white py-2 px-2 rounded-md hover:bg-transparent border-2 border-[#05386B] hover:text-[#05386B] bg-[#05386B] text-center font-semibold col-span-2'>
-                                Add to Team
-                            </button>
+                isLoading ?
+                    (
+                        <div className='flex justify-center items-center'>
+                            <ColorRing
+                                visible={true}
+                                height="80"
+                                width="80"
+                                ariaLabel="blocks-loading"
+                                wrapperStyle={{}}
+                                wrapperClass="blocks-wrapper"
+                                colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+                            />
                         </div>
                     )
-                }
-            </div>
+                    :
+                    (
+                        <div>
+                            <div>
+                                <div className='w-full bg-[#05386B] py-3 px-3 h-fit mt-4 rounded-tr-md rounded-tl-md grid grid-cols-12 justify-center items-center'>
+                                    <h2 className='text-white text-center font-semibold col-span-1'>SL</h2>
+                                    <h2 className='text-white text-center font-semibold col-span-3'>IMAGE</h2>
+                                    <h3 className='text-white text-center font-semibold col-span-4'>NAME</h3>
+                                    <h3 className='text-white text-center font-semibold col-span-2'>TYPE</h3>
+                                    <h3 className='text-white text-center font-semibold col-span-2'>ADD TO TEAM</h3>
+                                </div>
+                            </div>
+
+                            {
+                                availableEmployeeData?.length == 0 ?
+                                    <div>
+                                        <h1 className='text-3xl text-[#05386B] text-center mt-3 font-bold'>No Users Available To Add</h1>
+                                    </div>
+                                    :
+                                    <div>
+                                        {
+                                            availableEmployeeData?.map((employee, index) =>
+                                                <div className='w-full bg-[#05386B] border-2 border-[#05386B] bg-transparent border-collapse text-[#05386B] py-3 px-3 h-fit grid grid-cols-12 justify-center items-center'>
+                                                    <h2 className='text-[#05386B] text-xl text-center font-semibold col-span-1'>#{index + 1}</h2>
+                                                    <div className='text-[#05386B] flex justify-center text-center font-semibold col-span-3'>
+                                                        <img className='w-[40px] rounded-full' src={employee?.image} alt="" />
+                                                    </div>
+                                                    <h3 className='text-[#05386B] text-xl text-center font-semibold col-span-4'>{employee?.fullName}</h3>
+                                                    <div className='text-[#05386B] text-center font-semibold col-span-2'>
+                                                        <Person3Icon />
+                                                    </div>
+                                                    <button onClick={() => handleAddToTeam(employee._id)} className='text-white py-2 px-2 rounded-md hover:bg-transparent border-2 border-[#05386B] hover:text-[#05386B] bg-[#05386B] text-center font-semibold col-span-2'>
+                                                        Add to Team
+                                                    </button>
+                                                </div>
+                                            )
+                                        }
+                                    </div>
+                            }
+                        </div>
+                    )
             }
 
         </div>

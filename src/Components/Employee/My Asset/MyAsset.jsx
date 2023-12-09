@@ -13,6 +13,7 @@ import toast from 'react-hot-toast';
 import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
 import MyDocument from './MyDocument';
 import { Helmet } from 'react-helmet-async';
+import { ColorRing } from 'react-loader-spinner';
 
 const MyAsset = () => {
     const [searchField, setSearchField] = useState('');
@@ -33,7 +34,7 @@ const MyAsset = () => {
     let [userData] = useCurrentUserData();
     let axiosInstance = useAxiosInstance();
 
-    const { data: requestedData, refetch } = useQuery({
+    const { data: requestedData, isLoading, refetch } = useQuery({
         queryKey: ['requestedData', currentUserEmail, assetType, status, searchField],
         queryFn: async () => {
             const response = await axiosInstance.get(`/getRequestedData/${currentUserEmail}?assetType=${assetType}&requestStatus=${status}&assetName=${searchField}`);
@@ -137,80 +138,97 @@ const MyAsset = () => {
             </div>
 
             {
-                requestedData?.length == 0 ?
-                    <div>
-                        <h1 className='text-3xl text-[#05386B] text-center mt-3 font-bold'>No Requests Made</h1>
-                    </div>
+                isLoading ?
+                    (<div className='flex justify-center items-center'>
+                        <ColorRing
+                            visible={true}
+                            height="80"
+                            width="80"
+                            ariaLabel="blocks-loading"
+                            wrapperStyle={{}}
+                            wrapperClass="blocks-wrapper"
+                            colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+                        />
+                    </div>)
                     :
-                    <div>
+                    (<div>
                         {
-                            requestedData?.map((data, index) =>
-                                <div className='w-full bg-[#05386B] justify-center items-center border-2 border-[#05386B] bg-transparent border-collapse text-[#05386B] py-3 px-3 h-fit grid grid-cols-12'>
-                                    <h2 className='text-[#05386B] text-[10px] md:text-[13px] lg:text-base xl:text-lg text-xl text-center font-semibold col-span-2'>{data?.assetName}</h2>
-                                    <h2 className='text-[#05386B] text-[10px] md:text-[13px] lg:text-base xl:text-lg text-xl text-center font-semibold col-span-2'>{data?.assetType}</h2>
-                                    <h3 className='text-[#05386B] text-[10px] md:text-[13px] lg:text-base xl:text-lg text-lg text-center font-semibold col-span-2'>
-                                        {new Date(data?.requestedDate).toLocaleDateString('en-US', {
-                                            month: 'long',
-                                            day: 'numeric',
-                                            year: 'numeric'
-                                        })}
-                                    </h3>
-                                    <h3 className='text-[#05386B] text-[10px] md:text-[13px] lg:text-base xl:text-lg text-lg text-center font-semibold col-span-2'>
-                                        {data?.approvalDate === "null"
-                                            ? ""
-                                            : new Date(data?.approvalDate).toLocaleDateString('en-US', {
-                                                month: 'long',
-                                                day: 'numeric',
-                                                year: 'numeric'
-                                            })
-                                        }
-                                    </h3>
-
-                                    <h2 className='text-[#05386B] text-[10px] md:text-[13px] lg:text-base xl:text-lg text-xl text-center font-semibold col-span-2'>{data?.requestStatus}</h2>
-
-                                    {/* CONDITIONAL BUTTONS  */}
+                            requestedData?.length == 0 ?
+                                <div>
+                                    <h1 className='text-3xl text-[#05386B] text-center mt-3 font-bold'>No Requests Made</h1>
+                                </div>
+                                :
+                                <div>
                                     {
-                                        data?.requestStatus === "Pending" &&
-                                        <button
-                                            onClick={() => handleCancel(data?._id)}
-                                            className='text-white bg-[#05386B] text-[10px] md:text-[13px] lg:text-base xl:text-lg py-3 rounded-md border border-[#05386B] hover:bg-transparent hover:text-[#05386B] hover:border hover:border-[#05386B] col-span-2'
-                                        >
-                                            Cancel Request
-                                        </button>
-                                    }
+                                        requestedData?.map((data, index) =>
+                                            <div className='w-full bg-[#05386B] justify-center items-center border-2 border-[#05386B] bg-transparent border-collapse text-[#05386B] py-3 px-3 h-fit grid grid-cols-12'>
+                                                <h2 className='text-[#05386B] text-[10px] md:text-[13px] lg:text-base xl:text-lg text-xl text-center font-semibold col-span-2'>{data?.assetName}</h2>
+                                                <h2 className='text-[#05386B] text-[10px] md:text-[13px] lg:text-base xl:text-lg text-xl text-center font-semibold col-span-2'>{data?.assetType}</h2>
+                                                <h3 className='text-[#05386B] text-[10px] md:text-[13px] lg:text-base xl:text-lg text-lg text-center font-semibold col-span-2'>
+                                                    {new Date(data?.requestedDate).toLocaleDateString('en-US', {
+                                                        month: 'long',
+                                                        day: 'numeric',
+                                                        year: 'numeric'
+                                                    })}
+                                                </h3>
+                                                <h3 className='text-[#05386B] text-[10px] md:text-[13px] lg:text-base xl:text-lg text-lg text-center font-semibold col-span-2'>
+                                                    {data?.approvalDate === "null"
+                                                        ? ""
+                                                        : new Date(data?.approvalDate).toLocaleDateString('en-US', {
+                                                            month: 'long',
+                                                            day: 'numeric',
+                                                            year: 'numeric'
+                                                        })
+                                                    }
+                                                </h3>
 
-                                    {
-                                        (data?.requestStatus === "Approved" && data?.assetType !== "Returnable") &&
-                                        <div className='col-span-2'>
-                                            <PDFDownloadLink document={data?.assetId ? <MyDocument assetId={data.assetId} /> : null} fileName="AssetDetails.pdf">
-                                                {() => (
+                                                <h2 className='text-[#05386B] text-[10px] md:text-[13px] lg:text-base xl:text-lg text-xl text-center font-semibold col-span-2'>{data?.requestStatus}</h2>
+
+                                                {/* CONDITIONAL BUTTONS  */}
+                                                {
+                                                    data?.requestStatus === "Pending" &&
                                                     <button
-                                                        className='text-white text-[10px] md:text-[13px] lg:text-base xl:text-lg bg-[#05386B] py-3 rounded-md border border-[#05386B] hover:bg-transparent hover:text-[#05386B] hover:border hover:border-[#05386B] w-full col-span-2'
+                                                        onClick={() => handleCancel(data?._id)}
+                                                        className='text-white bg-[#05386B] text-[10px] md:text-[13px] lg:text-base xl:text-lg py-3 rounded-md border border-[#05386B] hover:bg-transparent hover:text-[#05386B] hover:border hover:border-[#05386B] col-span-2'
                                                     >
-                                                        Print
+                                                        Cancel Request
                                                     </button>
-                                                )}
-                                            </PDFDownloadLink>
-                                        </div>
+                                                }
 
-                                    }
+                                                {
+                                                    (data?.requestStatus === "Approved" && data?.assetType !== "Returnable") &&
+                                                    <div className='col-span-2'>
+                                                        <PDFDownloadLink document={data?.assetId ? <MyDocument assetId={data.assetId} /> : null} fileName="AssetDetails.pdf">
+                                                            {() => (
+                                                                <button
+                                                                    className='text-white text-[10px] md:text-[13px] lg:text-base xl:text-lg bg-[#05386B] py-3 rounded-md border border-[#05386B] hover:bg-transparent hover:text-[#05386B] hover:border hover:border-[#05386B] w-full col-span-2'
+                                                                >
+                                                                    Print
+                                                                </button>
+                                                            )}
+                                                        </PDFDownloadLink>
+                                                    </div>
 
-                                    {
-                                        ((data?.requestStatus === "Approved" || data?.requestStatus === "Returned") && data?.assetType === "Returnable") &&
-                                        <button
-                                            onClick={() => handleReturn(data?._id, data?.assetId)}
-                                            className={`text-white bg-[#05386B] text-[10px] md:text-[13px] lg:text-base xl:text-lg py-3 rounded-md border ${data?.requestStatus === "Returned" ? "bg-gray-300 text-gray-500 border-gray-500 cursor-not-allowed" : "border-[#05386B] hover:bg-transparent hover:text-[#05386B] hover:border hover:border-[#05386B]"} col-span-2`}
-                                            disabled={data?.requestStatus === "Returned"}
-                                        >
-                                            Return
-                                        </button>
+                                                }
+
+                                                {
+                                                    ((data?.requestStatus === "Approved" || data?.requestStatus === "Returned") && data?.assetType === "Returnable") &&
+                                                    <button
+                                                        onClick={() => handleReturn(data?._id, data?.assetId)}
+                                                        className={`text-white bg-[#05386B] text-[10px] md:text-[13px] lg:text-base xl:text-lg py-3 rounded-md border ${data?.requestStatus === "Returned" ? "bg-gray-300 text-gray-500 border-gray-500 cursor-not-allowed" : "border-[#05386B] hover:bg-transparent hover:text-[#05386B] hover:border hover:border-[#05386B]"} col-span-2`}
+                                                        disabled={data?.requestStatus === "Returned"}
+                                                    >
+                                                        Return
+                                                    </button>
+                                                }
+
+                                            </div>
+                                        )
                                     }
 
                                 </div>
-                            )
                         }
-
-                    </div>
+                    </div>)
             }
         </div>
     );

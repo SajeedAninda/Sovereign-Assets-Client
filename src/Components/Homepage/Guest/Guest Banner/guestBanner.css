@@ -1,13 +1,13 @@
 .employee {
-    background-image: url('../../../../assets/Slider_Images/employee.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  
-  .admin{
-        background-image: url('../../../../assets/Slider_Images/admin.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-  }
+  background-image: url('../../../../assets/Slider_Images/employee.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.admin {
+  background-image: url('../../../../assets/Slider_Images/admin.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}

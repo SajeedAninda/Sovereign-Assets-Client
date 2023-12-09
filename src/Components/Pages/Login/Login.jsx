@@ -95,6 +95,10 @@ const Login = () => {
                             <button className='py-3 w-full bg-[#05386B] border-2 border-[#05386B] text-white font-bold text-lg mt-4 rounded-md hover:bg-transparent hover:text-[#05386B] hover:border-2 hover:border-[#05386B]' type='submit'>
                                 Login
                             </button>
+                            <div className='mt-2'>
+                                <h3 className='text-[#05386B] font-bold'>Demo Admin Email : nebula@admin.com</h3>
+                                <h3 className='text-[#05386B] font-bold'>Demo Admin Pass : Nebula!9</h3>
+                            </div>
                             <div className='text-[#05386B] w-full font-bold text-center mt-6 pb-12'>
                                 <h2 className='text-xl'>You can also</h2>
                                 <div onClick={handleGoogleLogin} className='flex justify-center items-center cursor-pointer hover:bg-[#05386B] hover:text-white gap-2 p-3 border-2 mt-2 text-2xl rounded-md border-[#05386B] w-full md:w-[80%] lg:w-[60%] mx-auto'>
