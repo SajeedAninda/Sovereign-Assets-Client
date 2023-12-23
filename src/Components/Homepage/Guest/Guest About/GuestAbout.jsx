@@ -4,11 +4,11 @@ import Lottie from 'lottie-react';
 
 const GuestAbout = () => {
     return (
-        <section className="bg-[#05386B]">
+        <section className="bg-gradient-to-tr from-[#05386B] to-[#2d77c0]">
             <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
                 <h1 className='text-center text-white font-bold text-5xl pb-8 mt-12 lg:mt-0'>About Us</h1>
                 <div className=' flex flex-col lg:flex-row justify-center items-center gap-10'>
-                    <div className="max-w-screen-lg flex-1 text-gray-500 sm:text-lg dark:text-gray-400">
+                    <div className="max-w-screen-lg flex-1 text-white">
                         <h2 className="mb-4 text-4xl tracking-tight font-bold text-white text-center lg:text-left ">Energizing Asset Management for an extensive number of companies globally.</h2>
                         <p className='mt-4'>Welcome to Sovereign Asset Solution, where innovation meets efficiency in asset and product management. Our cutting-edge web application is designed to revolutionize the way businesses oversee their resources, ensuring seamless operations and heightened productivity.</p>
 

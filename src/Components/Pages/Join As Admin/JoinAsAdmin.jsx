@@ -82,7 +82,7 @@ const JoinAsAdmin = () => {
             <Helmet>
                 <title>Join As Admin</title>
             </Helmet>
-            <div className='w-[85%] bg-[#5CDB95] mx-auto px-12 my-12 h-fit rounded-md shadow-xl'>
+            <div className='w-[85%] bg-gradient-to-bl from-[#5ebe88] to-[#3bf78f] mx-auto px-12 my-12 h-fit rounded-md shadow-xl'>
                 <div className='py-6'>
                     <h1 className='text-white text-center font-bold text-4xl'>Join As An Admin/HR</h1>
                     <p className='text-white text-center font-bold text-lg mt-1'>Please Put down your details to register yourself as an Admin/HR</p>

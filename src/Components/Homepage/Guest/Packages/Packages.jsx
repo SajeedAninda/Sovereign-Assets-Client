@@ -2,7 +2,7 @@ import React from 'react';
 
 const Packages = () => {
     return (
-        <div className='bg-[#5CDB95] h-fit'>
+        <div className='bg-gradient-to-bl from-[#5ebe88] to-[#3bf78f] h-fit'>
             <div className='w-[95%] mx-auto pb-12'>
                 <div className='py-12'>
                     <h1 className='text-center text-5xl font-bold text-[#05386B]'>
@@ -17,19 +17,19 @@ const Packages = () => {
                     </div>
 
                     <div className='cards grid grid-cols-1 lg:grid-cols-3 gap-6 w-[60%] items-center'>
-                        <div className='group hover:bg-[#05386B] border-2 border-[#05386B] rounded-md flex flex-col justify-center items-center h-[300px] gap-2 shadow-2xl'>
+                        <div className='group hover:bg-gradient-to-tr hover:from-[#05386B] hover:to-[#2d77c0] border-2 border-[#05386B] rounded-md flex flex-col justify-center items-center h-[300px] gap-2 shadow-2xl cursor-pointer'>
                             <p className=' group-hover:text-white text-xl font-bold text-[#05386B]'>Maximum</p>
                             <h3 className='group-hover:text-white text-2xl font-bold text-[#05386B]'>5 Employees</h3>
                             <h2 className='group-hover:text-white text-6xl mt-2 font-bold text-[#05386B]'>$5</h2>
                         </div>
 
-                        <div className='group hover:bg-[#05386B] border-2 border-[#05386B] rounded-md flex flex-col justify-center items-center h-[350px] gap-2 shadow-2xl'>
+                        <div className='group hover:bg-gradient-to-tr hover:from-[#05386B] hover:to-[#2d77c0] border-2 border-[#05386B] rounded-md flex flex-col justify-center items-center h-[350px] gap-2 shadow-2xl cursor-pointer'>
                             <p className='group-hover:text-white text-xl font-bold text-[#05386B]'>Maximum</p>
                             <h3 className='group-hover:text-white text-2xl font-bold text-[#05386B]'>20 Employees</h3>
                             <h2 className='group-hover:text-white text-6xl mt-2 font-bold text-[#05386B]'>$15</h2>
                         </div>
 
-                        <div className='group hover:bg-[#05386B] border-2 border-[#05386B] rounded-md flex flex-col justify-center items-center h-[300px] gap-2 shadow-2xl'>
+                        <div className='group hover:bg-gradient-to-tr hover:from-[#05386B] hover:to-[#2d77c0] border-2 border-[#05386B] rounded-md flex flex-col justify-center items-center h-[300px] gap-2 shadow-2xl cursor-pointer'>
                             <p className='group-hover:text-white text-xl font-bold text-[#05386B]'>Maximum</p>
                             <h3 className='group-hover:text-white text-2xl font-bold text-[#05386B]'>10 Employees</h3>
                             <h2 className='group-hover:text-white text-6xl mt-2 font-bold text-[#05386B]'>$8</h2>
