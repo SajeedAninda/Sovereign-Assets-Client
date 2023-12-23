@@ -21,6 +21,7 @@ import { Navigate } from 'react-router-dom';
 import { ColorRing } from 'react-loader-spinner';
 import Features from '../Features/Features';
 import Offer from '../What we offer/Offer';
+import Clients from '../Clients Says/Clients';
 
 const Homepage = () => {
     let { loggedInUser, logOut } = useAuth();
@@ -53,6 +54,7 @@ const Homepage = () => {
                                     <Offer></Offer>
                                     <Packages />
                                     <Features></Features>
+                                    <Clients></Clients>
                                 </div>
                             )}
                             {loggedInUser && userData?.role === "employee" && (

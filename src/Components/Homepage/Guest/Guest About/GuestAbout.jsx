@@ -6,7 +6,14 @@ const GuestAbout = () => {
     return (
         <section className="bg-gradient-to-tr from-[#05386B] to-[#2d77c0]">
             <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-                <h1 className='text-center text-white font-bold text-5xl pb-8 mt-12 lg:mt-0'>About Us</h1>
+                <h1 className='text-center text-white font-bold text-5xl mt-12 lg:mt-0'>About Us</h1>
+                <div class="text-center">
+                            <span class="inline-block w-1 h-1 rounded-full bg-white ml-1"></span>
+                            <span class="inline-block w-3 h-1 rounded-full bg-white ml-1"></span>
+                            <span class="inline-block w-40 h-1 rounded-full bg-white"></span>
+                            <span class="inline-block w-3 h-1 rounded-full bg-white ml-1"></span>
+                            <span class="inline-block w-1 h-1 rounded-full bg-white ml-1"></span>
+                        </div>
                 <div className=' flex flex-col lg:flex-row justify-center items-center gap-10'>
                     <div className="max-w-screen-lg flex-1 text-white">
                         <h2 className="mb-4 text-4xl tracking-tight font-bold text-white text-center lg:text-left ">Energizing Asset Management for an extensive number of companies globally.</h2>

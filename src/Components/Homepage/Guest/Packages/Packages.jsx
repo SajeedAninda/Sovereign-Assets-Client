@@ -8,6 +8,13 @@ const Packages = () => {
                     <h1 className='text-center text-5xl font-bold text-[#05386B]'>
                         Packages
                     </h1>
+                    <div class="text-center">
+                            <span class="inline-block w-1 h-1 rounded-full bg-[#05386B] ml-1"></span>
+                            <span class="inline-block w-3 h-1 rounded-full bg-[#05386B] ml-1"></span>
+                            <span class="inline-block w-40 h-1 rounded-full bg-[#05386B]"></span>
+                            <span class="inline-block w-3 h-1 rounded-full bg-[#05386B] ml-1"></span>
+                            <span class="inline-block w-1 h-1 rounded-full bg-[#05386B] ml-1"></span>
+                        </div>
                 </div>
 
                 <div className='flex flex-col lg:flex-row justify-center items-center gap-10'>
