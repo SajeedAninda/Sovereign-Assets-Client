@@ -20,6 +20,7 @@ import EmployeeBanner from '../../Employee/EmployeeBanner';
 import { Navigate } from 'react-router-dom';
 import { ColorRing } from 'react-loader-spinner';
 import Features from '../Features/Features';
+import Offer from '../What we offer/Offer';
 
 const Homepage = () => {
     let { loggedInUser, logOut } = useAuth();
@@ -49,8 +50,9 @@ const Homepage = () => {
                                 <div>
                                     <GuestBanner />
                                     <GuestAbout />
-                                    <Features></Features>
+                                    <Offer></Offer>
                                     <Packages />
+                                    <Features></Features>
                                 </div>
                             )}
                             {loggedInUser && userData?.role === "employee" && (
