@@ -22,6 +22,7 @@ import { ColorRing } from 'react-loader-spinner';
 import Features from '../Features/Features';
 import Offer from '../What we offer/Offer';
 import Clients from '../Clients Says/Clients';
+import Newsletter from '../Newsletter/Newsletter';
 
 const Homepage = () => {
     let { loggedInUser, logOut } = useAuth();
@@ -55,6 +56,7 @@ const Homepage = () => {
                                     <Packages />
                                     <Features></Features>
                                     <Clients></Clients>
+                                    <Newsletter></Newsletter>
                                 </div>
                             )}
                             {loggedInUser && userData?.role === "employee" && (

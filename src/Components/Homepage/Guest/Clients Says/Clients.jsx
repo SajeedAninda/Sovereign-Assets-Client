@@ -3,7 +3,7 @@ import React from 'react';
 const Clients = () => {
     return (
         <div class="min-w-screen min-h-screen flex items-center justify-center">
-            <div class="w-full bg-gradient-to-tr from-[#05386B] to-[#2d77c0] border-t border-b shadow-md px-5 py-12">
+            <div class="w-full bg-gradient-to-tr from-[#05386B] to-[#2d77c0] px-5 py-12">
                 <div class="w-full max-w-6xl mx-auto">
                     <div class="text-center max-w-xl mx-auto">
                         <h1 class="text-white font-bold text-5xl">What people <br />are saying.</h1>
