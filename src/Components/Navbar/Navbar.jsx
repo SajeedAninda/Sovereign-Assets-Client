@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import siteLogo from "../../assets/Logo/website_logo.png"
-import {Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import useCurrentUserData from '../Hooks/useCurrentUserData';
 import useAuth from '../Hooks/useAuth';
 import useAxiosInstance from '../Hooks/useAxiosInstance';
@@ -107,6 +107,15 @@ const Navbar = () => {
                                             }
                                         >
                                             Join As HR/Admin
+                                        </NavLink>
+
+                                        <NavLink
+                                            to={"/contact"}
+                                            className={({ isActive, isPending }) =>
+                                                isPending ? "pending" : isActive ? "text-xl font-bold text-[#05386B] hover:text-[#379683] border-b-2 border-[#05386B]" : "text-xl font-bold text-[#05386B] hover:text-[#379683]"
+                                            }
+                                        >
+                                            Contact Us
                                         </NavLink>
 
                                         <NavLink
@@ -348,6 +357,15 @@ const Navbar = () => {
                                     }
                                 >
                                     Join As HR/Admin
+                                </NavLink>
+
+                                <NavLink
+                                    to={"/contact"}
+                                    className={({ isActive, isPending }) =>
+                                        isPending ? "pending" : isActive ? "text-xl font-bold text-[#05386B] hover:text-[#379683] border-b-2 border-[#05386B]" : "text-xl font-bold text-[#05386B] hover:text-[#379683]"
+                                    }
+                                >
+                                    Contact Us
                                 </NavLink>
 
                                 <NavLink

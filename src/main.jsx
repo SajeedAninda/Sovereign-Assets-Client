@@ -37,6 +37,7 @@ import EmployeeRoute from './Components/Pages/EmployeeRoute/EmployeeRoute.jsx';
 import AdminRoute from './Components/Pages/Admin Route/AdminRoute.jsx';
 import PrivateRoute from './Components/Pages/Private Route/PrivateRoute.jsx';
 import { HelmetProvider } from 'react-helmet-async';
+import Contact from './Components/Pages/Contact/Contact.jsx';
 
 
 const queryClient = new QueryClient()
@@ -114,6 +115,10 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <PrivateRoute><Profile></Profile></PrivateRoute>
+      },
+      {
+        path: "/contact",
+        element: <Contact></Contact>
       },
     ],
   },
