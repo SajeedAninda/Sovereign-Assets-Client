@@ -141,7 +141,7 @@ const RequestAsset = () => {
 
 
     return (
-        <div className='mx-auto 2-[95%] md:w-[85%] my-12 bg-[#5CDB95] shadow-2xl py-8 px-2 md:px-8'>
+        <div className='mx-auto 2-[95%] md:w-[85%] my-12 bg-gradient-to-bl from-[#5ebe88] to-[#3bf78f] shadow-2xl py-8 px-2 md:px-8'>
             <Helmet>
                 <title>Employee | Request Assets</title>
             </Helmet>

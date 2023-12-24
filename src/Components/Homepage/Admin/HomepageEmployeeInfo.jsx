@@ -27,7 +27,7 @@ const HomepageEmployeeInfo = () => {
 
 
     return (
-        <div className='bg-[#05386B] h-fit py-12'>
+        <div className='bg-gradient-to-tr from-[#05386B] to-[#2d77c0] h-fit py-12'>
             <div className='w-[85%] mx-auto'>
                 <h1 className='text-4xl text-white font-bold text-center'>Employees of Your Team</h1>
                 <div>

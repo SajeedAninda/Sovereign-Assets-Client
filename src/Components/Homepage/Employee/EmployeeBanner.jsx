@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet-async';
 
 const EmployeeBanner = () => {
     return (
-        <div className='h-fit py-28 bg-[#05386B]'>
+        <div className='h-fit py-28 bg-gradient-to-tr from-[#05386B] to-[#2d77c0]'>
             <Helmet>
                 <title>Employee | Home</title>
             </Helmet>

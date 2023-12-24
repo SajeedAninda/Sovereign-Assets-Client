@@ -22,7 +22,7 @@ const LimitedStockItems = () => {
 
 
     return (
-        <div className='bg-[#5CDB95] h-fit'>
+        <div className='bg-gradient-to-bl from-[#5ebe88] to-[#3bf78f] h-fit'>
             <div className='w-[85%] mx-auto py-12 '>
                 <h1 className='text-4xl font-bold text-center text-[#05386B]'>Limited Stock Items</h1>
                 {

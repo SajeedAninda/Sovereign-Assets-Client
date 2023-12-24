@@ -21,7 +21,7 @@ const PendingAdminHomepage = () => {
 
 
     return (
-        <div className='bg-[#05386B] h-fit'>
+        <div className='bg-gradient-to-tr from-[#05386B] to-[#2d77c0] h-fit'>
             <div className='w-[85%] mx-auto py-12 '>
                 <h1 className='text-4xl font-bold text-center text-[#5CDB95]'>Pending Requests</h1>
                 {

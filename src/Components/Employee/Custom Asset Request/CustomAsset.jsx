@@ -53,7 +53,7 @@ const CustomAsset = () => {
 
 
     return (
-        <div className='mx-auto w-[85%] my-12 bg-[#5CDB95] shadow-2xl py-8 px-8'>
+        <div className='mx-auto w-[85%] my-12 bg-gradient-to-bl from-[#5ebe88] to-[#3bf78f] shadow-2xl py-8 px-8'>
             <Helmet>
                 <title>Employee | Custom Requests</title>
             </Helmet>

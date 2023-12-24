@@ -52,7 +52,7 @@ const Profile = () => {
     };
 
     return (
-        <div className='w-[85%] bg-[#5CDB95] mx-auto px-12 my-12 h-fit rounded-md shadow-xl'>
+        <div className='w-[85%] bg-gradient-to-bl from-[#5ebe88] to-[#3bf78f] mx-auto px-12 my-12 h-fit rounded-md shadow-xl'>
             <Helmet>
                 <title>Profile</title>
             </Helmet>

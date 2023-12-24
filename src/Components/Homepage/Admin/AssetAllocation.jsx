@@ -21,7 +21,7 @@ const AssetAllocation = () => {
     // console.log(allocatedAsset)
 
     return (
-        <div className='bg-[#5CDB95] py-12'>
+        <div className='bg-gradient-to-bl from-[#5ebe88] to-[#3bf78f] py-12'>
             <div className='w-[85%] mx-auto'>
                 <h1 className='text-4xl font-bold text-[#05386B] text-center'>
                     Allocated Assets
