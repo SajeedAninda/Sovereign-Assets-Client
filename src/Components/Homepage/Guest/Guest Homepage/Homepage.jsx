@@ -24,6 +24,7 @@ import Offer from '../What we offer/Offer';
 import Clients from '../Clients Says/Clients';
 import Newsletter from '../Newsletter/Newsletter';
 import FAQ from '../FAQ Section/FAQ';
+import Footer from '../Footer/Footer';
 
 const Homepage = () => {
     let { loggedInUser, logOut } = useAuth();
@@ -59,6 +60,7 @@ const Homepage = () => {
                                     <Clients></Clients>
                                     <Newsletter></Newsletter>
                                     <FAQ></FAQ>
+                                    <Footer></Footer>
                                 </div>
                             )}
                             {loggedInUser && userData?.role === "employee" && (
