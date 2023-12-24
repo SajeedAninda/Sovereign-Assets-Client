@@ -119,6 +119,15 @@ const Navbar = () => {
                                         </NavLink>
 
                                         <NavLink
+                                            to={"/team"}
+                                            className={({ isActive, isPending }) =>
+                                                isPending ? "pending" : isActive ? "text-xl font-bold text-[#05386B] hover:text-[#379683] border-b-2 border-[#05386B]" : "text-xl font-bold text-[#05386B] hover:text-[#379683]"
+                                            }
+                                        >
+                                            Our Team
+                                        </NavLink>
+
+                                        <NavLink
                                             to={"/login"}
                                             className={({ isActive, isPending }) =>
                                                 isPending ? "pending" : isActive ? "text-xl font-bold text-[#05386B] hover:text-[#379683] border-b-2 border-[#05386B]" : "text-xl font-bold text-[#05386B] hover:text-[#379683]"
@@ -366,6 +375,15 @@ const Navbar = () => {
                                     }
                                 >
                                     Contact Us
+                                </NavLink>
+
+                                <NavLink
+                                    to={"/team"}
+                                    className={({ isActive, isPending }) =>
+                                        isPending ? "pending" : isActive ? "text-xl font-bold text-[#05386B] hover:text-[#379683] border-b-2 border-[#05386B]" : "text-xl font-bold text-[#05386B] hover:text-[#379683]"
+                                    }
+                                >
+                                    Our Team
                                 </NavLink>
 
                                 <NavLink
