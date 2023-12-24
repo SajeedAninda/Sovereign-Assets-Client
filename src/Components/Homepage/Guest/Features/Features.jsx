@@ -42,7 +42,7 @@ const Features = () => {
                 </p>
             </div>
             <div className="grid max-w-screen-lg mx-auto space-y-6 lg:grid-cols-2 lg:space-y-0 lg:divide-x">
-                <div className="space-y-6 sm:px-16">
+                <div className="space-y-6 sm:px-16" data-aos="fade-up">
                     <div className="flex flex-col max-w-md sm:flex-row items-center">
                         <div className="mb-4 mr-4">
                             <div className="flex items-center justify-center w-12 h-12 rounded-full bg-indigo-50">
@@ -125,7 +125,7 @@ const Features = () => {
                         </div>
                     </div>
                 </div>
-                <div className="space-y-6 sm:px-16">
+                <div className="space-y-6 sm:px-16" data-aos="fade-up">
                     <div className="flex flex-col max-w-md sm:flex-row items-center">
                         <div className="mb-4 mr-4">
                             <div className="flex items-center justify-center w-12 h-12 rounded-full bg-indigo-50">

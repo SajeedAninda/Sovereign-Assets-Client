@@ -22,10 +22,10 @@ const FAQ = () => {
                     </div>
                 </div>
                 <div className='w-[90%] h-fit mx-auto flex flex-col-reverse md:flex-row gap-4 md:gap-10 justify-between items-center py-8'>
-                    <div className='flex-1 flex justify-end'>
+                    <div className='flex-1 flex justify-end' data-aos="fade-up">
                         <Lottie animationData={knowLottie} loop={true} />
                     </div>
-                    <div className='flex-1'>
+                    <div className='flex-1' data-aos="fade-up">
                         <Accordion style={{ backgroundColor: '#ffffff', border: "2px solid #05386B", padding: "8px", marginBottom: '2px' }}>
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}

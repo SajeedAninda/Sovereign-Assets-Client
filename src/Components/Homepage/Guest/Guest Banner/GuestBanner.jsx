@@ -32,8 +32,8 @@ const GuestBanner = () => {
             >
                 <SwiperSlide>
                     <div className='employee h-[85vh] flex justify-center lg:justify-end items-center pr-0 lg:pr-32 pb-20'>
-                        <div className='flex-col justify-center items-center lg:items-end'>
-                            <div className='flex flex-col items-center lg:items-end gap-2'>
+                        <div className='flex-col justify-center items-center lg:items-end' data-aos="fade-left">
+                            <div className='flex flex-col items-center lg:items-end gap-2' >
                                 <h1 className='text-[#05386B] text-center text-4xl md:text-6xl font-bold'>
                                     Join As an Employee
                                 </h1>
@@ -53,7 +53,7 @@ const GuestBanner = () => {
                 </SwiperSlide>
                 <SwiperSlide>
                     <div className='admin h-[85vh] flex justify-center lg:justify-start items-center pl-0 lg:pl-32 pb-20'>
-                        <div className='flex-col justify-center lg:justify-end items-center lg:items-end'>
+                        <div className='flex-col justify-center lg:justify-end items-center lg:items-end' data-aos="fade-up-right">
                             <div>
                                 <h1 className='text-[#05386B] text-center lg:text-left text-4xl md:text-6xl font-bold'>
                                     Join As an HR/Admin

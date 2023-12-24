@@ -24,19 +24,19 @@ const Packages = () => {
                     </div>
 
                     <div className='cards grid grid-cols-1 lg:grid-cols-3 gap-6 w-full lg:w-[60%] items-center'>
-                        <div className='group hover:bg-gradient-to-tr hover:from-[#05386B] hover:to-[#2d77c0] border-2 border-[#05386B] rounded-md flex flex-col justify-center items-center h-[300px] gap-2 shadow-2xl cursor-pointer'>
+                        <div className='group hover:bg-gradient-to-tr hover:from-[#05386B] hover:to-[#2d77c0] border-2 border-[#05386B] rounded-md flex flex-col justify-center items-center h-[300px] gap-2 shadow-2xl cursor-pointer' data-aos="flip-up">
                             <p className=' group-hover:text-white text-xl font-bold text-[#05386B]'>Maximum</p>
                             <h3 className='group-hover:text-white text-2xl font-bold text-[#05386B]'>5 Employees</h3>
                             <h2 className='group-hover:text-white text-5xl lg:text-6xl mt-2 font-bold text-[#05386B]'>$5</h2>
                         </div>
 
-                        <div className='group hover:bg-gradient-to-tr hover:from-[#05386B] hover:to-[#2d77c0] border-2 border-[#05386B] rounded-md flex flex-col justify-center items-center h-[350px] gap-2 shadow-2xl cursor-pointer'>
+                        <div className='group hover:bg-gradient-to-tr hover:from-[#05386B] hover:to-[#2d77c0] border-2 border-[#05386B] rounded-md flex flex-col justify-center items-center h-[350px] gap-2 shadow-2xl cursor-pointer' data-aos="flip-up">
                             <p className='group-hover:text-white text-xl font-bold text-[#05386B]'>Maximum</p>
                             <h3 className='group-hover:text-white text-2xl font-bold text-[#05386B]'>20 Employees</h3>
                             <h2 className='group-hover:text-white text-5xl lg:text-6xl mt-2 font-bold text-[#05386B]'>$15</h2>
                         </div>
 
-                        <div className='group hover:bg-gradient-to-tr hover:from-[#05386B] hover:to-[#2d77c0] border-2 border-[#05386B] rounded-md flex flex-col justify-center items-center h-[300px] gap-2 shadow-2xl cursor-pointer'>
+                        <div className='group hover:bg-gradient-to-tr hover:from-[#05386B] hover:to-[#2d77c0] border-2 border-[#05386B] rounded-md flex flex-col justify-center items-center h-[300px] gap-2 shadow-2xl cursor-pointer' data-aos="flip-up">
                             <p className='group-hover:text-white text-xl font-bold text-[#05386B]'>Maximum</p>
                             <h3 className='group-hover:text-white text-2xl font-bold text-[#05386B]'>10 Employees</h3>
                             <h2 className='group-hover:text-white text-5xl lg:text-6xl mt-2 font-bold text-[#05386B]'>$8</h2>

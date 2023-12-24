@@ -38,7 +38,7 @@ const Offer = () => {
                     </svg>
                 </div>
             </div>
-            <div>
+            <div data-aos="fade-up">
                 <h6 class="mb-2 font-semibold leading-5 text-[#05386B]">For Guests:</h6>
                 <p class="mb-3 text-sm text-[#05386B]">
                     Our team always takes great care of the peoples that are interested in our services and try to provide constant support.
@@ -96,8 +96,8 @@ const Offer = () => {
                     </svg>
                 </div>
             </div>
-            <div>
-                <h6 class="mb-2 font-semibold leading-5 text-[#05386B]">For Admins:</h6>
+            <div data-aos="fade-up">
+                <h6 class="mb-2 font-semibold leading-5 text-[#05386B]" >For Admins:</h6>
                 <p class="mb-3 text-sm text-[#05386B]">
                     Subscribed Admins and Hr's are our most valuable assets. We constantly try to improve our services and provide the best that we have to offer.
                 </p>
@@ -154,7 +154,7 @@ const Offer = () => {
                     </svg>
                 </div>
             </div>
-            <div>
+            <div data-aos="fade-up">
                 <h6 class="mb-2 font-semibold leading-5 text-[#05386B]">For Employees:</h6>
                 <p class="mb-3 text-sm text-[#05386B]">
                     Without Employees, our system cannot function at all. They are the nucleus what makes us what we are and how we provide service.
