@@ -2,14 +2,14 @@ import React from 'react';
 
 const Features = () => {
     return (
-        <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+        <div className="px-4 py-16 mx-auto w-[90%] lg:py-20">
             <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
                 <div>
-                    <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-[#05386B] uppercase rounded-full bg-teal-accent-400">
+                    <p className="inline-block px-3 py-px mb-4 text-sm font-semibold tracking-wider text-[#05386B] uppercase rounded-full bg-teal-accent-400 text-center">
                         All new
                     </p>
                 </div>
-                <h2 className="max-w-lg mb-6 text-3xl font-bold leading-none tracking-tight text-[#05386B] sm:text-4xl md:mx-auto">
+                <h2 className="max-w-lg  mb-6 text-4xl lg:text-5xl font-bold leading-none tracking-tight text-[#05386B] md:mx-auto text-center">
                     <span className="relative inline-block">
                         <svg
                             viewBox="0 0 52 24"
@@ -37,13 +37,13 @@ const Features = () => {
                     </span>{' '}
                     Features
                 </h2>
-                <p className="text-base text-[#05386B] md:text-lg">
+                <p className="text-base text-[#05386B] md:text-lg text-center">
                     Take a glimse of some of the best features that we provide and make decisions for yourself
                 </p>
             </div>
             <div className="grid max-w-screen-lg mx-auto space-y-6 lg:grid-cols-2 lg:space-y-0 lg:divide-x">
                 <div className="space-y-6 sm:px-16">
-                    <div className="flex flex-col max-w-md sm:flex-row">
+                    <div className="flex flex-col max-w-md sm:flex-row items-center">
                         <div className="mb-4 mr-4">
                             <div className="flex items-center justify-center w-12 h-12 rounded-full bg-indigo-50">
                                 <svg
@@ -62,7 +62,7 @@ const Features = () => {
                             </div>
                         </div>
                         <div>
-                            <h6 className="mb-3 text-xl font-bold leading-5 text-[#05386B]">
+                            <h6 className="mb-3 text-xl font-bold leading-5 text-[#05386B] text-center md:text-left">
                                 Buy Packages
                             </h6>
                             <p className="text-sm text-[#05386B]">
@@ -70,7 +70,7 @@ const Features = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="flex flex-col max-w-md sm:flex-row">
+                    <div className="flex flex-col max-w-md sm:flex-row items-center">
                         <div className="mb-4 mr-4">
                             <div className="flex items-center justify-center w-12 h-12 rounded-full bg-indigo-50">
                                 <svg
@@ -89,7 +89,7 @@ const Features = () => {
                             </div>
                         </div>
                         <div>
-                            <h6 className="mb-3 text-xl font-bold leading-5 text-[#05386B]">
+                            <h6 className="mb-3 text-xl font-bold leading-5 text-[#05386B] text-center md:text-left">
                                 Add Assets
                             </h6>
                             <p className="text-sm text-[#05386B]">
@@ -97,7 +97,7 @@ const Features = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="flex flex-col max-w-md sm:flex-row">
+                    <div className="flex flex-col max-w-md sm:flex-row items-center">
                         <div className="mb-4 mr-4">
                             <div className="flex items-center justify-center w-12 h-12 rounded-full bg-indigo-50">
                                 <svg
@@ -116,7 +116,7 @@ const Features = () => {
                             </div>
                         </div>
                         <div>
-                            <h6 className="mb-3 text-xl font-bold leading-5 text-[#05386B]">
+                            <h6 className="mb-3 text-xl font-bold leading-5 text-[#05386B] text-center md:text-left">
                                 Approve Assets
                             </h6>
                             <p className="text-sm text-[#05386B]">
@@ -126,7 +126,7 @@ const Features = () => {
                     </div>
                 </div>
                 <div className="space-y-6 sm:px-16">
-                    <div className="flex flex-col max-w-md sm:flex-row">
+                    <div className="flex flex-col max-w-md sm:flex-row items-center">
                         <div className="mb-4 mr-4">
                             <div className="flex items-center justify-center w-12 h-12 rounded-full bg-indigo-50">
                                 <svg
@@ -145,7 +145,7 @@ const Features = () => {
                             </div>
                         </div>
                         <div>
-                            <h6 className="mb-3 text-xl font-bold leading-5 text-[#05386B]">
+                            <h6 className="mb-3 text-xl font-bold leading-5 text-[#05386B] text-center md:text-left">
                                 Request Assets
                             </h6>
                             <p className="text-sm text-[#05386B]">
@@ -153,7 +153,7 @@ const Features = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="flex flex-col max-w-md sm:flex-row">
+                    <div className="flex flex-col max-w-md sm:flex-row items-center">
                         <div className="mb-4 mr-4">
                             <div className="flex items-center justify-center w-12 h-12 rounded-full bg-indigo-50">
                                 <svg
@@ -172,7 +172,7 @@ const Features = () => {
                             </div>
                         </div>
                         <div>
-                            <h6 className="mb-3 text-xl font-bold leading-5 text-[#05386B]">
+                            <h6 className="mb-3 text-xl font-bold leading-5 text-[#05386B] text-center md:text-left">
                                 Custom Request
                             </h6>
                             <p className="text-sm text-[#05386B]">
@@ -180,7 +180,7 @@ const Features = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="flex flex-col max-w-md sm:flex-row">
+                    <div className="flex flex-col max-w-md sm:flex-row items-center">
                         <div className="mb-4 mr-4">
                             <div className="flex items-center justify-center w-12 h-12 rounded-full bg-indigo-50">
                                 <svg
@@ -199,7 +199,7 @@ const Features = () => {
                             </div>
                         </div>
                         <div>
-                            <h6 className="mb-3 text-xl font-bold leading-5 text-[#05386B]">
+                            <h6 className="mb-3 text-xl font-bold leading-5 text-[#05386B] text-center md:text-left">
                                 See Events
                             </h6>
                             <p className="text-sm text-[#05386B]">

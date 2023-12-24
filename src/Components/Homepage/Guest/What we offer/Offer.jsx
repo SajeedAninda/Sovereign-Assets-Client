@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 
 const Offer = () => {
     return (
-        <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+        <div class="px-4 py-16 mx-auto w-[90%]">
 
-    <div class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
+    <div class="max-w-xl mb-10 md:mx-auto text-center lg:max-w-2xl md:mb-12">
         <h2
-            class="max-w-lg mb-6 text-3xl font-bold leading-none tracking-tight text-[#05386B] sm:text-4xl md:mx-auto">
+            class="max-w-lg mb-6 text-4xl lg:text-5xl font-bold leading-none tracking-tight text-[#05386B] sm:text-4xl md:mx-auto">
             <span class="relative inline-block">
 
                 <svg viewBox="0 0 52 24" fill="currentColor"

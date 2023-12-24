@@ -4,9 +4,9 @@ const Clients = () => {
     return (
         <div class="min-w-screen min-h-screen flex items-center justify-center">
             <div class="w-full bg-gradient-to-tr from-[#05386B] to-[#2d77c0] px-5 py-12">
-                <div class="w-full max-w-6xl mx-auto">
+                <div class="w-[90%] mx-auto">
                     <div class="text-center max-w-xl mx-auto">
-                        <h1 class="text-white font-bold text-5xl">What people <br />are saying.</h1>
+                        <h1 class="text-white font-bold text-4xl lg:text-5xl">What people <br />are saying.</h1>
                         <h3 class="text-white font-semibold text-2xl mt-2">We have delivered exemplary services to our clients</h3>
                         <div class="text-center mb-10">
                             <span class="inline-block w-1 h-1 rounded-full bg-white ml-1"></span>

@@ -24,7 +24,7 @@ const Newsletter = () => {
 
     return (
         <div className="bg-gradient-to-bl from-[#5ebe88] to-[#3bf78f]  text-[#05386B] p-6">
-            <div className="grid lg:grid-cols-2 items-center gap-16 w-[95%] mx-auto min-h-[350px]">
+            <div className="grid lg:grid-cols-2 items-center gap-16 w-[90%] mx-auto min-h-[350px]">
                 <form onSubmit={handleNewsletter}>
                     <h3 className="text-4xl font-extrabold">Subscribe to Our Newsletter</h3>
                     <p className="text-base mt-4 text-[#05386B]">Subscribe to our newsletter and stay up to date with the latest news,
